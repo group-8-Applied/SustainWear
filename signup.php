@@ -1,6 +1,32 @@
 <?php
 	session_start();
 	$signup_msg = "";
+	$db = new SQLite3("database.db");
+
+	function user_exists($email) {
+		global $db;
+		$statement = $db->prepare("SELECT * FROM accounts WHERE email = :email");
+		$statement->bindParam(":email", $email);
+		$result = $statement->execute();
+		$account_data = $result->fetchArray(SQLITE3_ASSOC);
+		return boolval($account_data);
+	}
+
+	function create_user($full_name, $email, $raw_password) {
+		// hash password
+		$password_hash = password_hash($raw_password, PASSWORD_BCRYPT);
+
+		// generate token
+		$session_token = bin2hex(random_bytes(32));
+
+		global $db;
+		$statement = $db->prepare("INSERT INTO accounts (full_name, email, password_hash, session_token, user_role) VALUES (:fname, :email, :pw_hash, :token, 'donor')");
+		$statement->bindParam(":fname", $full_name);
+		$statement->bindParam(":email", $email);
+		$statement->bindParam(":pw_hash", $password_hash);
+		$statement->bindParam(":token", $session_token);
+		$statement->execute();
+	}
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$email = $_POST["email"];
@@ -8,12 +34,44 @@
 		$password = $_POST["password"];
 		$password_confirmation = $_POST["password-confirmation"];
 
-		// todo
 		// check pw match
+		if ($password !== $password_confirmation) { 
+			$signup_msg = "Passwords do not match";
+		}
+		// ensure pw at least 8 long
+		else if (strlen($password) < 8) {
+			$signup_msg = "Password is too short";
+		}
+		// require 2 names & at least 4 letters
+		else if (substr_count($full_name, " ") < 1 || count(count_chars($full_name, 1)) < 4) {
+			$signup_msg = "Name invalid";
+		}
+		// email validity
+		else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			$signup_msg = "Email address is invalid";
+		}
 		// ensure email doesnt exist
-		// pass pw
-		// create database entry for user
-		// create session and redirect to account page
+		else if (user_exists($email)) {
+			$signup_msg = "Email address is already registered";
+		}
+		// all checks passed, create user and sign in
+		else {
+			$signup_msg = "Sign up success";
+
+			// create database entry for user
+			create_user($full_name, $email, $password);
+
+			// fetch session token and user id
+			$statement = $db->prepare("SELECT * FROM accounts WHERE email = :email");
+			$statement->bindParam(":email", $email);
+			$result = $statement->execute();
+			$account_data = $result->fetchArray(SQLITE3_ASSOC);
+
+			// set session & redirect to account page
+			$_SESSION["session_token"] = $account_data["session_token"];
+			$_SESSION["user_id"] = $account_data["user_id"];
+			header("Location: account.php");
+		}
 	}
 ?>
 
@@ -40,7 +98,7 @@
 			<form action="signup.php" method="POST" class="form active">
 				<div class="row">
 						<label for="su-name">Full name</label>
-						<input id="su-name" name="Full Name" type="text" placeholder="Taylor Green" required />
+						<input id="su-name" name="full_name" type="text" placeholder="Taylor Green" required />
 				</div>
 
 				<div class="row">
