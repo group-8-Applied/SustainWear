@@ -20,12 +20,12 @@
 			<div>
 				<div>
 					<h1 class="font-bold text-lg">Email</h1>
-					<p><?php echo $account_data["email"]; ?> </p>
+					<p><?= $account_data["email"]; ?></p>
 				</div>
 
 				<div class="pt-4">
 					<h1 class="font-bold text-lg">Full Name</h1>
-					<p><?php echo $account_data["full_name"]; ?> </p>
+					<p><?= $account_data["full_name"]; ?></p>
 				</div>
 			</div>
 
