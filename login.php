@@ -67,7 +67,7 @@
 					<input id="login-password" name="password" type="password" placeholder="••••••••" required />
 				</div>
 
-				<button class="btn btn-primary" type="submit">Sign In</button>
+				<button class="btn btn-primary mt-2" type="submit">Sign In</button>
 			</form>
 
 			<p class="text-red-500 text-center mt-4">

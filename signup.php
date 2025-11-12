@@ -53,7 +53,7 @@
 					<input id="su-confirm" name="password-confirmation" type="password" placeholder="Confirm password" required />
 				</div>
 
-				<button class="btn btn-primary" type="submit">Create Account</button>
+				<button class="btn btn-primary mt-2" type="submit">Create Account</button>
 			</form>
 
 			<p class="text-red-500 text-center mt-4">
