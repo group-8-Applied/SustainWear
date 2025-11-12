@@ -2,7 +2,7 @@
 	header("Location: index.html");
 	exit(); // this file should only run if a new database is required
 
-    $db = new SQLite3("database.db");
+	$db = new SQLite3("database.db");
 
 	$db->exec("CREATE TABLE IF NOT EXISTS accounts (
 		user_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -12,7 +12,7 @@
 		session_token TEXT NOT NULL,
 		user_role TEXT NOT NULL
 	)");
-  
+
 	$password_hash = password_hash("bigflemmer", PASSWORD_BCRYPT);
 	$db->exec("INSERT INTO accounts (full_name, email, password_hash, session_token, user_role) VALUES (
 		'Jake Flemmings',
