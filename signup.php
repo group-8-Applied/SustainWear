@@ -8,7 +8,12 @@
 		$password = $_POST["password"];
 		$password_confirmation = $_POST["password-confirmation"];
 
-		
+		// todo
+		// check pw match
+		// ensure email doesnt exist
+		// pass pw
+		// create database entry for user
+		// create session and redirect to account page
 	}
 ?>
 
