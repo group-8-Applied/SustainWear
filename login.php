@@ -11,7 +11,6 @@
 		$statement = $db->prepare("SELECT * FROM accounts WHERE email = :email");
 		$statement->bindParam(":email", $email);
 		$result = $statement->execute();
-
 		$account_data = $result->fetchArray(SQLITE3_ASSOC);
 
 		if (!$account_data) {
@@ -67,7 +66,7 @@
 					<input id="login-password" name="password" type="password" placeholder="••••••••" required />
 				</div>
 
-				<button class="btn btn-primary mt-2" type="submit">Sign In</button>
+				<button class="btn btn-primary mt-2" type="submit">Proceed</button>
 			</form>
 
 			<p class="text-red-500 text-center mt-4">
