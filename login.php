@@ -43,36 +43,38 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<title>SustainWear • Log In</title>
 	<link rel="stylesheet" href="styles/output.css" />
-	<link rel="stylesheet" href="styles/style.css" />
+
 </head>
 
-<body class="">
-	<div class="authWrapper">
-		<div class="authCards">
-			<h1 class="logo text-2xl">SustainWear</h1>
+<body class="flex justify-center items-center h-screen bg-[#e5e7eb] shadow-md">
+	<div class="p-12 rounded-xl bg-white">
 
-			<div class="tabs">
-				<button id="tab-login" class="tab active" type="button">Log In</button>
-				<button id="tab-signup" class="tab" type="button" onclick="location.href='signup.php'">Sign Up</button>
-			</div>
+		<h1 class="font-extrabold text-4xl text-center text-[#15803d]">SustainWear</h1>
 
-			<form action="login.php" method="POST" class="form active">
-				<div class="row">
-					<label for="login-email">Email</label>
-					<input id="login-email" name="email" type="email" placeholder="you@example.com" required />
-				</div>
-				<div class="row">
-					<label for="login-password">Password</label>
-					<input id="login-password" name="password" type="password" placeholder="••••••••" required />
-				</div>
-
-				<button class="btn btn-primary mt-2" type="submit">Proceed</button>
-			</form>
-
-			<p class="text-red-500 text-center mt-4">
-				<?php echo $login_msg; ?>
-			</p>
+		<div class="flex justify-center items-center p-10">
+			<button class="bg-[#22c55e] w-full border border-gray-300 rounded py-2 px-3 mb-4 " active type="button">Log In</button>
+			<button class="bg-[#e5e7eb] w-full border border-gray-300 rounded py-2 px-3 mb-4" type="button" onclick="location.href='signup.php'">Sign Up</button>
 		</div>
+
+		<div class="w-full max-w-xs"></div>
+			<form class="rounded px-8 pt-6 pb-8 mb-4" action="login.php" method="POST">
+				<div class="mb-4">
+					<label class="block" for="login-email">Email</label>
+					<input class="appearance-none w-full" blockname="email" type="email" placeholder="you@example.com" required />
+				</div>
+				
+				<div class="mb-4">
+					<label class="block" for="login-password">Password</label>
+					<input class="appearance-none w-full" name="password" type="password" placeholder="••••••••" required />
+				</div>
+
+				<button class="bg-[#3b82f6] w-full border border-gray-300 rounded py-2 px-3 mb-4" type="submit">Proceed</button>
+
+			</form>
+		</div>
+
+		<p><?php echo $login_msg; ?></p>
+
 	</div>
 </body>
 </html>
