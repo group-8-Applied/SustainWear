@@ -91,29 +91,34 @@
 			<h1 class="logo text-2xl">SustainWear</h1>
 
 			<div class="tabs">
-				<button id="tab-login" class="tab" type="button" onclick="location.href='login.php'">Log In</button>
-				<button id="tab-signup" class="tab active" type="button">Sign Up</button>
+				
+				<button type="submit"class="bg-gray-200 hover:bg-gray-300 rounded py-2"onclick="location.href='login.php'">Login</button>
+				<button type="submit"class="bg-green-500 hover:bg-green-700 rounded py-2">Sign Up</button>
+				
 			</div>
 
 			<form action="signup.php" method="POST" class="form active">
 				<div class="row">
+
 						<label for="su-name">Full name</label>
-						<input id="su-name" name="full_name" type="text" placeholder="Taylor Green" required />
+						<input id = "su-name" name= "full_name"type="text" placeholder="Taylor Green" class="flex-1 bg-transparent outline-none" required />
+						
+						
 				</div>
 
 				<div class="row">
 					<label for="su-email">Email</label>
-					<input id="su-email" name="email" type="email" placeholder="you@example.com" required />
+					<input id = "su-email" name= "email"type="email" placeholder="you@example.com" class="flex-1 bg-transparent outline-none" required />
 				</div>
 
 				<div class="row">
 					<label for="su-password">Password</label>
-					<input id="su-password" name="password" type="password" placeholder="Create password" required />
+					<input id = "su-password" name= "password"type="password" placeholder="Create password" class="flex-1 bg-transparent outline-none" required />
 				</div>
 
 				<div class="row">
 					<label for="su-confirm">Confirm password</label>
-					<input id="su-confirm" name="password-confirmation" type="password" placeholder="Confirm password" required />
+					<input id = "su-confirm" name= "password-confirmation"type="password" placeholder="Confirm password" class="flex-1 bg-transparent outline-none" required />
 				</div>
 
 				<button class="btn btn-primary mt-2" type="submit">Create Account</button>
