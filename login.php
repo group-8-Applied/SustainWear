@@ -49,7 +49,7 @@
 <body class="flex justify-center items-center h-screen bg-[#e5e7eb] shadow-md">
 	<div class="p-12 rounded-xl bg-white">
 
-		<h1 class="font-extrabold text-4xl text-center text-[#15803d]">SustainWear</h1>
+		<h1 class="font-extrabold text-4xl text-center text-green-700">SustainWear</h1>
 
 		<div class="flex justify-center items-center p-10">
 			<button class="bg-[#22c55e] w-full border border-gray-300 rounded py-2 px-3 mb-4 " active type="button">Log In</button>
