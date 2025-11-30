@@ -41,7 +41,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
-	<title>SustainWear • Log In</title>
+	<title>DonationStation: Log In</title>
 	<link rel="stylesheet" href="styles/output.css" />
 
 </head>
@@ -49,7 +49,7 @@
 <body class="flex justify-center items-center h-screen bg-[#e5e7eb] shadow-md">
 	<div class="p-12 rounded-xl bg-white">
 
-		<h1 class="font-extrabold text-4xl text-center text-green-700">SustainWear</h1>
+		<h1 class="font-extrabold text-4xl text-center text-green-700">Donation Staion</h1>
 
 		<div class="flex justify-center items-center p-10">
 			<button class="bg-[#22c55e] w-full border border-gray-300 rounded py-2 px-3 mb-4 " active type="button">Log In</button>
@@ -60,7 +60,7 @@
 			<form class="rounded px-8 pt-6 pb-8 mb-4" action="login.php" method="POST">
 				<div class="mb-4">
 					<label class="block" for="login-email">Email</label>
-					<input class="appearance-none w-full" blockname="email" type="email" placeholder="you@example.com" required />
+					<input class="appearance-none w-full" name="email" type="email" placeholder="you@example.com" required />
 				</div>
 				
 				<div class="mb-4">
