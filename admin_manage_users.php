@@ -1,5 +1,5 @@
 <?php
-	$thisPageOwner = ["email"     => "admin@example.com","full_name" => "Admin man","user_role" => "admin",];
+	include "session.php";
 ?>
 
 <!DOCTYPE html>
@@ -33,11 +33,11 @@
 		</aside>
 
 		<!-- main manage users area -->
-		<main class="admin-main-area">
+		<main class="main-panel">
 
 			<section class="section-block">
 				<h2 class="section-title">Manage Users</h2>
-				<p style="margin-bottom: 0.75rem;"> You are signed in as <strong><?= $thisPageOwner["full_name"]; ?></strong> (<?= $thisPageOwner["user_role"]; ?>).</p>
+				<p style="margin-bottom: 0.75rem;">You are signed in as <strong><?= $thisPageOwner["full_name"]; ?></strong> (<?= $thisPageOwner["user_role"]; ?>).</p>
 			</section>
 			<section class="section-block">
 				<div class="filter-box">
@@ -71,7 +71,7 @@
 
 					</div>
 
-					<p class="filter-little-note">Filters are still fake for now – they don’t actually change the user list yet.</p>
+					<p class="filter-little-note">DEMO</p>
 				</div>
 			</section>
 
@@ -92,10 +92,11 @@
 								<th>Actions</th>
 							</tr>
 						</thead>
+
 						<!-- one set of EXAMPLE data -->
 						<tbody>
 							<tr>
-								<td class="users-name">Auser</td>
+								<td class="users-name">User Name</td>
 								<td class="users-email">sss@example.com</td>
 								<td><span class="role-pill role-pill-blue">Staff</span></td>
 								<td><span class="active-pill active-pill-yes">Active</span></td>
@@ -106,10 +107,9 @@
 							</tr>
 						</tbody>
 					</table>
-					<p class="table-hint">thi srow is fake data</p>
+					<p class="table-hint">DEMO DATA</p>
 				</div>
 			</section>
-
 
 			<section class="section-block">
 				<div class="role-change-box">

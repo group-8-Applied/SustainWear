@@ -1,6 +1,5 @@
 <?php
-	// fake admin data so the page has something to show
-	$thisPageOwner = ["email" => "admin@example.com", "full_name" =>"admin man", "user_role" => "admin"];
+	include "session.php";
 ?>
 
 <!DOCTYPE html>
@@ -31,11 +30,11 @@
 			</div>
 
 			<div class="sidebar-logout">
-				<button class="nav-button" onclick="location.href='logout.php'"> Logout </button>
+				<button class="nav-button" onclick="location.href='logout.php'">Logout</button>
 			</div>
 		</aside>
 
-		<main class="admin-main-area">
+		<main class="main-panel">
 
 			<section class="section-block">
 				<h2 class="section-title">Admin Dashboard</h2>
@@ -43,17 +42,17 @@
 				<div class="info-card">
 					<div>
 						<h3 class="info-label">Full Name</h3>
-						<p><?= $thisPageOwner["full_name"]; ?></p>
+						<p><?= $account_data["full_name"]; ?></p>
 					</div>
 
 					<div class="info-group">
 						<h3 class="info-label">Email</h3>
-						<p><?= $thisPageOwner["email"]; ?></p>
+						<p><?= $account_data["email"]; ?></p>
 					</div>
 
 					<div class="info-group">
 						<h3 class="info-label">Role</h3>
-						<p><?= $thisPageOwner["user_role"]; ?></p>
+						<p><?= $account_data["user_role"]; ?></p>
 					</div>
 				</div>
 			</section>

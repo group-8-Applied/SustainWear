@@ -3,3 +3,6 @@ styles/output.css
 
 # database
 database.db
+
+# macOS
+*.DS_Store

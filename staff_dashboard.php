@@ -1,6 +1,5 @@
 <?php
-	//temp login bypass
-	$staff_data = ["email"     => "user@example.com", "full_name" => "Jake", "user_role" => "Loser (staff)",];
+	include "session.php";
 ?>
 
 <!DOCTYPE html>
@@ -116,7 +115,7 @@
 								</tr>
 							</tbody>
 						</table>
-						<p class="table-hint">actual functionality for buttons is not yet implemented</p>
+						<p class="table-hint">Actual functionality for buttons is not yet implemented</p>
 					</div>
 				</div>
 
@@ -135,13 +134,13 @@
 							<tbody>
 								<tr>
 									<td>Coats</td>
-									<td>M–L</td>
+									<td>M-L</td>
 									<td>12</td>
 									<td><span class="status-badge status-ok">In stock</span></td>
 								</tr>
 								<tr>
 									<td>Jeans</td>
-									<td>30–34</td>
+									<td>30-34</td>
 									<td>8</td>
 									<td><span class="status-badge status-low">Low</span></td>
 								</tr>
@@ -153,7 +152,7 @@
 								</tr>
 								<tr>
 									<td>Shoes</td>
-									<td>5–9</td>
+									<td>5-9</td>
 									<td>0</td>
 									<td><span class="status-badge status-out">Out</span></td>
 								</tr>
