@@ -158,7 +158,7 @@
 								</tr>
 							</tbody>
 						</table>
-						<p class="table-hint">^ this data is fake for visual purpose</p>
+						<p class="table-hint">DEMO DATA</p>
 					</div>
 				</div>
 			</section>
