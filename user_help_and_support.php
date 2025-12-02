@@ -18,39 +18,42 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<title>SustainWear • Help & Support</title>
 	<link rel="stylesheet" href="styles/output.css" />
-	<link rel="stylesheet" href="styles/style.css" />
 </head>
 
-<body class="page-background">
-	<div class="page-layout">
+<body class="bg-gray-200 min-h-screen">
+	<div class="flex flex-col lg:flex-row-reverse min-h-screen">
 
-		<aside class="sidebar">
-			<h1 class="sidebar-logo">SustainWear</h1>
-			<div class="sidebar-section">
-				<p class="sidebar-section-title">Navigation</p>
-				<div class="sidebar-nav-list">
-					<button class="nav-button" onclick="location.href='account.php'">Dashboard</button>
-					<button class="nav-button" onclick="location.href='user_donate.php'">Donations</button>
-					<button class="nav-button" onclick="location.href='user_profile.php'">Profile</button>
-					<button class="nav-button" onclick="location.href='user_notifications.php'">Notifications</button>
-					<button class="nav-button nav-button-active">Help & Support</button>
+		<button id="mobile-menu-btn" class="lg:hidden fixed top-4 right-4 z-50 bg-white p-2 rounded-lg shadow-md hover:bg-gray-50 transition-opacity duration-150">
+			<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+			</svg>
+		</button>
+
+		<aside id="sidebar" class="fixed lg:relative top-0 right-0 h-screen lg:h-auto w-64 bg-white shadow-lg lg:shadow-md p-8 flex flex-col z-40 lg:z-auto transition-transform duration-300 ease-in-out lg:flex-shrink-0 order-last" style="transform: translateX(100%)">
+			<h1 class="font-extrabold text-2xl text-center text-green-700">SustainWear</h1>
+			<div class="mt-6">
+				<p class="font-bold text-lg">Navigation</p>
+				<div class="mt-4 flex flex-col gap-4">
+					<button class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200 text-left cursor-pointer hover:opacity-90 transition-opacity" onclick="location.href='account.php'">Dashboard</button>
+					<button class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200 text-left cursor-pointer hover:opacity-90 transition-opacity" onclick="location.href='user_donate.php'">Donations</button>
+					<button class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200 text-left cursor-pointer hover:opacity-90 transition-opacity" onclick="location.href='user_profile.php'">Profile</button>
+					<button class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200 text-left cursor-pointer hover:opacity-90 transition-opacity" onclick="location.href='user_notifications.php'">Notifications</button>
+					<button class="w-full border border-gray-300 rounded px-3 py-2 bg-blue-200 text-left cursor-pointer">Help & Support</button>
 				</div>
 			</div>
-			<div class="sidebar-logout">
-				<button class="nav-button" onclick="location.href='logout.php'">Logout</button>
+			<div class="mt-auto">
+				<button class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200 text-left cursor-pointer hover:opacity-90 transition-opacity" onclick="location.href='logout.php'">Logout</button>
 			</div>
 		</aside>
 
-		<!-- main help content -->
-		<main class="main-panel">
+		<main class="flex-1 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8">
 
-			<!-- intro card -->
-			<section class="section-block">
-				<h2 class="section-title">
+			<section class="mb-6">
+				<h2 class="text-2xl font-bold mb-4">
 					Help &amp; Support
 				</h2>
 
-				<div class="info-card">
+				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
 					<p>
 						You are logged in as
 						<strong><?= htmlspecialchars($account_data["full_name"]); ?></strong><br />
@@ -64,21 +67,20 @@
 				</div>
 			</section>
 
-			<!-- FAQ style list -->
-			<section class="section-block">
-				<div class="help-questions-box">
-					<p class="info-label">
+			<section class="mb-6">
+				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
+					<p class="font-bold text-lg">
 						Common questions
 					</p>
 
-					<ul class="help-list">
+					<ul class="list-none mt-3 p-0">
 						<?php foreach ($helpQuestionsFakeList as $oneHelpRow): ?>
-							<li class="help-item">
-								<p class="help-question">
+							<li class="border-b border-gray-200 py-[0.6rem]">
+								<p class="font-semibold text-[0.95rem] mb-[0.15rem]">
 									<?= htmlspecialchars($oneHelpRow["question"]); ?>
 								</p>
 
-								<p class="help-answer">
+								<p class="text-[0.85rem] mb-[0.15rem]">
 									<?= htmlspecialchars($oneHelpRow["answer"]); ?>
 								</p>
 							</li>
@@ -87,39 +89,39 @@
 				</div>
 			</section>
 
-			<!-- simple contact-style form -->
-			<section class="section-block">
-				<div class="help-contact-box">
-					<p class="info-label">
+			<section class="mb-6">
+				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
+					<p class="font-bold text-lg">
 						Contact support
 					</p>
-					<p class="help-contact-text">Use this form to describe a problem or ask a question. Not functional as of right now</p>
+					<p class="text-sm text-gray-600 mt-1">Use this form to describe a problem or ask a question. Not functional as of right now</p>
 
-					<!-- youtube video helped with forms (https://www.youtube.com/watch?v=2O8pkybH6po, https://www.youtube.com/watch?v=VLeERv_dR6Q)-->
-					<form method="POST" class="help-form-box">
-						<div class="help-form-row">
-							<div class="help-form-field">
-								<label class="filter-label-text" for="help_name">Your name</label>
-								<input id="help_name" name="help_name" type="text" class="filter-text-input" placeholder="How should we address you?" />
+					<form method="POST" class="mt-3">
+						<div class="flex flex-wrap gap-4 mt-3">
+							<div class="flex-1 min-w-full sm:min-w-[10rem]">
+								<label class="block text-sm mb-1" for="help_name">Your name</label>
+								<input id="help_name" name="help_name" type="text" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="How should we address you?" />
 							</div>
-							<div class="help-form-field">
-								<label class="filter-label-text" for="help_topic">Topic (optional)</label>
-								<input id="help_topic" name="help_topic" type="text" class="filter-text-input" placeholder="e.g. Donations, Login, Account" />
-							</div>
-						</div>
-						<div class="help-form-row">
-							<div class="help-form-field">
-								<label class="filter-label-text" for="help_message">What do you need help with?</label>
-								<textarea id="help_message" name="help_message" rows="4" class="filter-text-input" placeholder="Write a short description of the issue."></textarea>
+							<div class="flex-1 min-w-full sm:min-w-[10rem]">
+								<label class="block text-sm mb-1" for="help_topic">Topic (optional)</label>
+								<input id="help_topic" name="help_topic" type="text" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="e.g. Donations, Login, Account" />
 							</div>
 						</div>
-						<div class="help-form-row">
-							<button type="submit" class="table-button">Send message</button>
+						<div class="flex flex-wrap gap-4 mt-3">
+							<div class="flex-1 min-w-full sm:min-w-[10rem]">
+								<label class="block text-sm mb-1" for="help_message">What do you need help with?</label>
+								<textarea id="help_message" name="help_message" rows="4" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Write a short description of the issue."></textarea>
+							</div>
+						</div>
+						<div class="flex flex-wrap gap-4 mt-3">
+							<button type="submit" class="border border-gray-300 rounded bg-blue-500 text-white text-xs cursor-pointer mr-1 px-2 py-1 hover:bg-blue-600 transition-colors">Send message</button>
 						</div>
 					</form>
 				</div>
 			</section>
 		</main>
 	</div>
+
+	<script src="js/mobile-menu.js"></script>
 </body>
 </html>

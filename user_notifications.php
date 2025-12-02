@@ -16,70 +16,75 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<title>SustainWear • Notifications</title>
 	<link rel="stylesheet" href="styles/output.css" />
-	<link rel="stylesheet" href="styles/style.css" />
 </head>
 
-<body class="page-background">
-	<div class="page-layout">
-		<aside class="sidebar">
-			<h1 class="sidebar-logo">SustainWear</h1>
-			<div class="sidebar-section">
-				<p class="sidebar-section-title">Navigation</p>
-				<div class="sidebar-nav-list">
-					<button class="nav-button" onclick="location.href='account.php'">Dashboard</button>
-					<button class="nav-button" onclick="location.href='user_donate.php'">Donations</button>
-					<button class="nav-button" onclick="location.href='user_profile.php'">Profile</button>
-					<button class="nav-button nav-button-active" onclick="location.href='user_notifications.php'">Notifications</button>
-					<button class="nav-button" onclick="location.href='user_help_and_support.php'">Help & Support</button>
+<body class="bg-gray-200 min-h-screen">
+	<div class="flex flex-col lg:flex-row-reverse min-h-screen">
+
+		<button id="mobile-menu-btn" class="lg:hidden fixed top-4 right-4 z-50 bg-white p-2 rounded-lg shadow-md hover:bg-gray-50 transition-opacity duration-150">
+			<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+			</svg>
+		</button>
+
+		<aside id="sidebar" class="fixed lg:relative top-0 right-0 h-screen lg:h-auto w-64 bg-white shadow-lg lg:shadow-md p-8 flex flex-col z-40 lg:z-auto transition-transform duration-300 ease-in-out lg:flex-shrink-0 order-last" style="transform: translateX(100%)">
+			<h1 class="font-extrabold text-2xl text-center text-green-700">SustainWear</h1>
+			<div class="mt-6">
+				<p class="font-bold text-lg">Navigation</p>
+				<div class="mt-4 flex flex-col gap-4">
+					<button class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200 text-left cursor-pointer hover:opacity-90 transition-opacity" onclick="location.href='account.php'">Dashboard</button>
+					<button class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200 text-left cursor-pointer hover:opacity-90 transition-opacity" onclick="location.href='user_donate.php'">Donations</button>
+					<button class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200 text-left cursor-pointer hover:opacity-90 transition-opacity" onclick="location.href='user_profile.php'">Profile</button>
+					<button class="w-full border border-gray-300 rounded px-3 py-2 bg-blue-200 text-left cursor-pointer" onclick="location.href='user_notifications.php'">Notifications</button>
+					<button class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200 text-left cursor-pointer hover:opacity-90 transition-opacity" onclick="location.href='user_help_and_support.php'">Help & Support</button>
 				</div>
 			</div>
-			<div class="sidebar-logout">
-				<button class="nav-button" onclick="location.href='logout.php'">Logout</button>
+			<div class="mt-auto">
+				<button class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200 text-left cursor-pointer hover:opacity-90 transition-opacity" onclick="location.href='logout.php'">Logout</button>
 			</div>
 		</aside>
-		<!-- main notifications content -->
-		<main class="main-panel">
-			<section class="section-block">
-				<h2 class="section-title"><strong>Notifications</strong></h2>
 
-				<div class="info-card">
+		<main class="flex-1 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8">
+			<section class="mb-6">
+				<h2 class="text-2xl font-bold mb-4"><strong>Notifications</strong></h2>
+
+				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
 					<p>You are logged in as <?=$account_data["full_name"]?> <?=$account_data["email"] ?></p>
 					<p>This page shows a simple list of recent activity such as donations, status changes for the user, and account updates.</p>
 				</div>
 			</section>
 
-			<!-- list of notifications -->
-			<section class="section-block">
-				<div class="notification-list-box">
-					<p class="info-label">
+			<section class="mb-6">
+				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
+					<p class="font-bold text-lg">
 						Recent activity
 					</p>
-					<ul class="notification-list">
+					<ul class="list-none mt-3 p-0">
 						<?php foreach ($notificationsExampleData as $oneNote): ?>
 							<?php
-								$dotClass = "notification-dot";
+								$dotClass = "w-2 h-2 rounded-full flex-shrink-0 mt-1";
 								if ($oneNote["kind"] === "good") {
-									$dotClass .= " notification-dot-good";
+									$dotClass .= " bg-green-500";
 								} elseif ($oneNote["kind"] === "middle") {
-									$dotClass .= " notification-dot-middle";
+									$dotClass .= " bg-amber-500";
 								} elseif ($oneNote["kind"] === "info") {
-									$dotClass .= " notification-dot-info";
+									$dotClass .= " bg-blue-500";
 								}
 							?>
-							<li class="notification-item">
-								<div class="notification-main-line">
+							<li class="border-b border-gray-200 py-[0.6rem]">
+								<div class="flex items-start gap-2">
 									<span class="<?= $dotClass; ?>"></span>
 
-									<div class="notification-text-block">
-										<p class="notification-title">
+									<div class="flex-1">
+										<p class="font-semibold text-[0.95rem] mb-[0.15rem]">
 											<?= htmlspecialchars($oneNote["title"]); ?>
 										</p>
 
-										<p class="notification-body">
+										<p class="text-[0.85rem] mb-[0.15rem]">
 											<?= htmlspecialchars($oneNote["text"]); ?>
 										</p>
 
-										<p class="notification-meta">
+										<p class="text-xs text-gray-500">
 											<?= htmlspecialchars($oneNote["time"]); ?>
 										</p>
 									</div>
@@ -88,10 +93,12 @@
 						<?php endforeach; ?>
 					</ul>
 
-					<p class="table-hint">DEMO DATA</p>
+					<p class="mt-2 text-xs text-gray-500">DEMO DATA</p>
 				</div>
 			</section>
 		</main>
 	</div>
+
+	<script src="js/mobile-menu.js"></script>
 </body>
 </html>
