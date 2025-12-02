@@ -11,6 +11,16 @@ document.addEventListener("DOMContentLoaded", function() {
 		else openSidebar();
 	}
 
+	// workaround unwanted animation when loading page on desktop
+	if (window.innerWidth >= MOBILE_THRESHOLD) {
+		sidebar.style.transition = "none";
+		sidebar.style.transform = "translateX(0)";
+		menuBtn.classList.add("opacity-0", "pointer-events-none");
+		// force reflow to avoid issues (https://semisignal.com/triggering-reflow-for-css3-transitions)
+		sidebar.offsetWidth;
+		sidebar.style.transition = "";
+	}
+
 	// adapt sidebar on window resize
 	updateSidebarTransform();
 	window.addEventListener("resize", updateSidebarTransform);
