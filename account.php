@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
-	<title>DonationStation: User Dashboard</title>
+	<title>SustainWear • User Dashboard</title>
 	<link rel="stylesheet" href="styles/output.css" />
 	<link rel="stylesheet" href="styles/style.css" />
 </head>
@@ -16,7 +16,7 @@
 	<div class="page-layout">
 
 		<aside class="sidebar">
-			<h1 class="sidebar-logo">DonationStation</h1>
+			<h1 class="sidebar-logo">SustainWear</h1>
 			<div class="sidebar-section">
 				<p class="sidebar-section-title">Navigation</p>
 				<div class="sidebar-nav-list">

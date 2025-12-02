@@ -15,7 +15,7 @@
 <body class="page-background">
 	<div class="page-layout">
 		<aside class="sidebar">
-			<h1 class="sidebar-logo">DonationStation</h1>
+			<h1 class="sidebar-logo">SustainWear</h1>
 
 			<div class="sidebar-section">
 				<p class="sidebar-section-title">Navigation</p>
