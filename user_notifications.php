@@ -21,14 +21,13 @@
 
 <body class="page-background">
 	<div class="page-layout">
-
 		<aside class="sidebar">
 			<h1 class="sidebar-logo">DonationStation</h1>
 			<div class="sidebar-section">
 				<p class="sidebar-section-title">Navigation</p>
 				<div class="sidebar-nav-list">
 					<button class="nav-button" onclick="location.href='account.php'">Dashboard</button>
-					<button class="nav-button" onclick="location.href='user_donate_page.php'">Donations</button>
+					<button class="nav-button" onclick="location.href='user_donate.php'">Donations</button>
 					<button class="nav-button" onclick="location.href='user_profile.php'">Profile</button>
 					<button class="nav-button nav-button-active" onclick="location.href='user_notifications.php'">Notifications</button>
 					<button class="nav-button" onclick="location.href='user_help_and_support.php'">Help & Support</button>

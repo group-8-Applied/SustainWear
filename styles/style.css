@@ -673,3 +673,27 @@
 	flex: 1;
 	min-width: 10rem;
 }
+
+/* profile css*/
+.profile-form-box {
+	background-color: #ffffff;
+	border-radius: 0.75rem;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+	padding: 1.25rem;
+}
+
+.profile-form {
+	margin-top: 0.5rem;
+}
+
+.profile-form-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-top: 0.75rem;
+}
+
+.profile-form-field {
+	flex: 1;
+	min-width: 10rem;
+}
