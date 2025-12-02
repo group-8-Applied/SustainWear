@@ -7,11 +7,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	if (!sidebar || !menuBtn) return;
 
 	function updateSidebarTransform() {
-		if (window.innerWidth < MOBILE_THRESHOLD) {
-			sidebar.style.transform = "translateX(100%)";
-		} else {
-			sidebar.style.transform = "";
-		}
+		if (window.innerWidth < MOBILE_THRESHOLD) closeSidebar();
+		else openSidebar();
 	}
 
 	// adapt sidebar on window resize
