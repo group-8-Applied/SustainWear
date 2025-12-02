@@ -1,25 +1,43 @@
+const MOBILE_THRESHOLD = 1024; // viewport width to be considered mobile
+
 document.addEventListener("DOMContentLoaded", function() {
 	const sidebar = document.getElementById("sidebar");
 	const menuBtn = document.getElementById("mobile-menu-btn");
 
 	if (!sidebar || !menuBtn) return;
 
+	function updateSidebarTransform() {
+		if (window.innerWidth < MOBILE_THRESHOLD) {
+			sidebar.style.transform = "translateX(100%)";
+		} else {
+			sidebar.style.transform = "";
+		}
+	}
+
+	// adapt sidebar on window resize
+	updateSidebarTransform();
+	window.addEventListener("resize", updateSidebarTransform);
+
 	function openSidebar() {
-		sidebar.classList.remove("translate-x-full");
+		// remove transform
+		sidebar.style.transform = "translateX(0)";
+		// hide menu button
 		menuBtn.classList.add("opacity-0", "pointer-events-none");
 	}
 
 	function closeSidebar() {
-		// move it off screen, classList already contains animation
-		sidebar.classList.add("translate-x-full");
+		// add transform (move it off-screen)
+		sidebar.style.transform = "translateX(100%)";
+		// show menu button
 		menuBtn.classList.remove("opacity-0", "pointer-events-none");
 	}
 
+	// open sidebar when tapping menu button
 	menuBtn.addEventListener("click", openSidebar);
 
 	// tablet users with keyboard
 	document.addEventListener("keydown", function(e) {
-		if (e.key === "Escape" && !sidebar.classList.contains("translate-x-full")) { // if open
+		if (e.key === "Escape" && sidebar.style.transform === "translateX(0px)") { // if open
 			closeSidebar();
 		}
 	});
@@ -27,8 +45,11 @@ document.addEventListener("DOMContentLoaded", function() {
 	// close sidebar when clicking outside
 	document.addEventListener("click", function(e) {
 		// if tapping outside the sidebar, and it is open
-		if (window.innerWidth < 1024 && !sidebar.contains(e.target) && !menuBtn.contains(e.target) && !sidebar.classList.contains("translate-x-full")) {
+		if (window.innerWidth < MOBILE_THRESHOLD && !sidebar.contains(e.target) && !menuBtn.contains(e.target) && sidebar.style.transform === "translateX(0px)") {
 			closeSidebar();
 		}
 	});
+
+	// close when rotating
+	window.addEventListener("orientationchange", closeSidebar);
 });

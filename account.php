@@ -20,7 +20,7 @@
 			</svg>
 		</button>
 
-		<aside id="sidebar" class="fixed lg:relative top-0 right-0 h-screen lg:h-auto w-64 bg-white shadow-lg lg:shadow-md p-8 flex flex-col z-40 lg:z-auto transform translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out lg:flex-shrink-0 order-last">
+		<aside id="sidebar" class="fixed lg:relative top-0 right-0 h-screen lg:h-auto w-64 bg-white shadow-lg lg:shadow-md p-8 flex flex-col z-40 lg:z-auto transition-transform duration-300 ease-in-out lg:flex-shrink-0 order-last" style="transform: translateX(100%)">
 			<h1 class="font-extrabold text-2xl text-center text-green-700">SustainWear</h1>
 			<div class="mt-6">
 				<p class="font-bold text-lg">Navigation</p>
