@@ -16,7 +16,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
-	<title>DonationStation: Help & Support</title>
+	<title>SustainWear • Help & Support</title>
 	<link rel="stylesheet" href="styles/output.css" />
 	<link rel="stylesheet" href="styles/style.css" />
 </head>
@@ -25,7 +25,7 @@
 	<div class="page-layout">
 
 		<aside class="sidebar">
-			<h1 class="sidebar-logo">DonationStation</h1>
+			<h1 class="sidebar-logo">SustainWear</h1>
 			<div class="sidebar-section">
 				<p class="sidebar-section-title">Navigation</p>
 				<div class="sidebar-nav-list">

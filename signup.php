@@ -80,89 +80,48 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
-	<title>DonationStation: Sign Up</title>
+	<title>SustainWear • Sign Up</title>
 	<link rel="stylesheet" href="styles/output.css" />
 </head>
 
-<body class="flex justify-center items-center h-screen bg-[#e5e7eb] shadow-md">
-	<div class="p-12 rounded-xl bg-white">
+<body class="m-0 h-full bg-[#f5f7fb] text-gray-900 font-sans">
+	<div class="min-h-screen grid place-items-center p-7">
+		<div class="w-full max-w-[420px] bg-white rounded-[14px] shadow-[0_12px_30px_rgba(2,8,20,.06)] p-[22px] pb-[26px]">
+			<h1 class="text-center text-green-700 my-[6px_0_14px] mb-[14px] mt-[6px] font-extrabold tracking-[0.3px] text-2xl">SustainWear</h1>
 
-		<h1 class="font-extrabold text-4xl text-center text-green-700">Donation Station</h1>
+			<div class="grid grid-cols-2 gap-[6px] mb-[10px]">
+				<button id="tab-login" class="bg-gray-200 border-0 rounded-[10px] p-[10px] font-bold text-center cursor-pointer" type="button" onclick="location.href='login.php'">Log In</button>
+				<button id="tab-signup" class="bg-green-500 text-white border-0 rounded-[10px] p-[10px] font-bold text-center cursor-pointer" type="button">Sign Up</button>
+			</div>
 
-		<div class="flex justify-center items-center p-10">
-			<!-- grey Login, green Sign Up (opposite of login.php) -->
-			<button
-				class="bg-[#e5e7eb] w-full border border-gray-300 rounded py-2 px-3 mb-4"
-				type="button"
-				onclick="location.href='login.php'">
-				Log In
-			</button>
-			<button
-				class="bg-[#22c55e] w-full border border-gray-300 rounded py-2 px-3 mb-4"
-				type="button">
-				Sign Up
-			</button>
+			<form action="signup.php" method="POST" class="grid gap-[10px] mt-[12px]">
+				<div class="grid gap-[6px] mt-[2px]">
+						<label for="su-name" class="font-semibold text-sm text-gray-700">Full name</label>
+						<input id="su-name" name="full_name" type="text" placeholder="Taylor Green" class="w-full py-[10px] px-[12px] rounded-[10px] border border-gray-300 bg-white" required />
+				</div>
+
+				<div class="grid gap-[6px] mt-[2px]">
+					<label for="su-email" class="font-semibold text-sm text-gray-700">Email</label>
+					<input id="su-email" name="email" type="email" placeholder="you@example.com" class="w-full py-[10px] px-[12px] rounded-[10px] border border-gray-300 bg-white" required />
+				</div>
+
+				<div class="grid gap-[6px] mt-[2px]">
+					<label for="su-password" class="font-semibold text-sm text-gray-700">Password</label>
+					<input id="su-password" name="password" type="password" placeholder="Create password" class="w-full py-[10px] px-[12px] rounded-[10px] border border-gray-300 bg-white" required />
+				</div>
+
+				<div class="grid gap-[6px] mt-[2px]">
+					<label for="su-confirm" class="font-semibold text-sm text-gray-700">Confirm password</label>
+					<input id="su-confirm" name="password-confirmation" type="password" placeholder="Confirm password" class="w-full py-[10px] px-[12px] rounded-[10px] border border-gray-300 bg-white" required />
+				</div>
+
+				<button class="inline-block border-0 rounded-[10px] py-[12px] px-[14px] font-semibold cursor-pointer bg-blue-500 text-white hover:bg-blue-600 mt-2" type="submit">Create Account</button>
+			</form>
+
+			<p class="text-red-500 text-center mt-4">
+				<?php echo $signup_msg; ?>
+			</p>
 		</div>
-
-		<form class="rounded px-8 pt-6 pb-8 mb-4" action="signup.php" method="POST">
-			<div class="mb-4">
-				<label class="block" for="su-name">Full name</label>
-				<input
-					class="appearance-none w-full"
-					id="su-name"
-					name="full_name"
-					type="text"
-					placeholder="Taylor Green"
-					required
-				/>
-			</div>
-
-			<div class="mb-4">
-				<label class="block" for="su-email">Email</label>
-				<input
-					class="appearance-none w-full"
-					id="su-email"
-					name="email"
-					type="email"
-					placeholder="you@example.com"
-					required
-				/>
-			</div>
-
-			<div class="mb-4">
-				<label class="block" for="su-password">Password</label>
-				<input
-					class="appearance-none w-full"
-					id="su-password"
-					name="password"
-					type="password"
-					placeholder="Create password"
-					required
-				/>
-			</div>
-
-			<div class="mb-4">
-				<label class="block" for="su-confirm">Confirm password</label>
-				<input
-					class="appearance-none w-full"
-					id="su-confirm"
-					name="password-confirmation"
-					type="password"
-					placeholder="Confirm password"
-					required
-				/>
-			</div>
-
-			<button
-				class="bg-[#3b82f6] w-full border border-gray-300 rounded py-2 px-3 mb-4"
-				type="submit">
-				Create Account
-			</button>
-		</form>
-
-		<p class="text-red-500 text-center mt-4">
-			<?php echo $signup_msg; ?>
-		</p>
 	</div>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
-	<title>Donation Station: Staff Dashboard</title>
+	<title>SustainWear • Staff Dashboard</title>
 	<link rel="stylesheet" href="styles/output.css" />
 	<link rel="stylesheet" href="styles/style.css" />
 </head>
@@ -15,7 +15,7 @@
 <body class="page-background">
 	<div class="page-layout">
 		<aside class="sidebar">
-			<h1 class="sidebar-logo">Donation Station</h1>
+			<h1 class="sidebar-logo">SustainWear</h1>
 			<div class="sidebar-section">
 				<p class="sidebar-section-title">Navigation</p>
 				<div class="sidebar-nav-list">
@@ -89,8 +89,10 @@
 									<td>Good</td>
 									<td><span class="status-badge status-pending">Pending</span></td>
 									<td>
-										<button class="table-button">Approve</button>
-										<button class="table-button table-button-secondary">Decline</button>
+										<div class="flex gap-2 items-center">
+											<button class="w-8 h-8 rounded-full bg-green-500/20 text-green-600 font-bold text-base flex items-center justify-center hover:opacity-80 transition-opacity flex-shrink-0" title="Approve">✓</button>
+											<button class="w-8 h-8 rounded-full bg-red-500/20 text-red-600 font-bold text-base flex items-center justify-center hover:opacity-80 transition-opacity flex-shrink-0" title="Decline">✕</button>
+										</div>
 									</td>
 								</tr>
 								<tr>
@@ -99,8 +101,10 @@
 									<td>Acceptable</td>
 									<td><span class="status-badge status-pending">Pending</span></td>
 									<td>
-										<button class="table-button">Approve</button>
-										<button class="table-button table-button-secondary">Decline</button>
+										<div class="flex gap-2 items-center">
+											<button class="w-8 h-8 rounded-full bg-green-500/20 text-green-600 font-bold text-base flex items-center justify-center hover:opacity-80 transition-opacity flex-shrink-0" title="Approve">✓</button>
+											<button class="w-8 h-8 rounded-full bg-red-500/20 text-red-600 font-bold text-base flex items-center justify-center hover:opacity-80 transition-opacity flex-shrink-0" title="Decline">✕</button>
+										</div>
 									</td>
 								</tr>
 								<tr>
@@ -109,8 +113,10 @@
 									<td>Excellent</td>
 									<td><span class="status-badge status-pending">Pending</span></td>
 									<td>
-										<button class="table-button">Approve</button>
-										<button class="table-button table-button-secondary">Decline</button>
+										<div class="flex gap-2 items-center">
+											<button class="w-8 h-8 rounded-full bg-green-500/20 text-green-600 font-bold text-base flex items-center justify-center hover:opacity-80 transition-opacity flex-shrink-0" title="Approve">✓</button>
+											<button class="w-8 h-8 rounded-full bg-red-500/20 text-red-600 font-bold text-base flex items-center justify-center hover:opacity-80 transition-opacity flex-shrink-0" title="Decline">✕</button>
+										</div>
 									</td>
 								</tr>
 							</tbody>
