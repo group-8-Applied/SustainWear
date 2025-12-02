@@ -29,8 +29,8 @@
 	}
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		$email = $_POST["email"];
-		$full_name = $_POST["full_name"];
+		$email = strtolower(trim($_POST["email"]));
+		$full_name = ucwords(strtolower(trim($_POST["full_name"])));
 		$password = $_POST["password"];
 		$password_confirmation = $_POST["password-confirmation"];
 
