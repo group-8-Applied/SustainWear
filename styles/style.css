@@ -682,18 +682,46 @@
 	padding: 1.25rem;
 }
 
+
 .profile-form {
 	margin-top: 0.5rem;
 }
 
 .profile-form-row {
 	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
+	flex-direction: row;
 	margin-top: 0.75rem;
+	align-items: flex-start;
 }
+
 
 .profile-form-field {
 	flex: 1;
 	min-width: 10rem;
+}
+
+.profile-form-row {
+    display: flex;
+    gap: 2rem;
+    margin-top: 0.75rem;
+}
+
+.profile-form-input {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-form-input label {
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+.profile-form-input input,
+.profile-form-input textarea {
+    width: 100%;
+    font-size: 16px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
 }

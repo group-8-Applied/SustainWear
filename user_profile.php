@@ -45,33 +45,27 @@
                     <form class="profile-form" method="post">
                         <div class="profile-form-row">
                             <div class="profile-form-input">
-                                <label class="filter-label-text" for="Name">Full Name</label>
+                                <label class="filter-label-text" for="Name"><strong>Full Name</strong></label>
                                 <input id="Name" type="text" name="Name" placeholder="Enter your full name"/>
                             </div>
 
                             <div class="profile-form-input">
-                                <label class="filter-label-text" for="Email">Email Address</label>
+                                <label class="filter-label-text" for="Email"><strong>Email Address</strong></label>
                                 <input id="Email" type="email" name="Email" placeholder="Enter your email address"/>
                             </div>
                         </div>
 
                         <div class="profile-form-row">
                             <div class="profile-form-input">
-                                <label class="filter-label-text" for="Password">New Password</label>
+                                <label class="filter-label-text" for="Password"><strong>New Password</strong></label>
                                 <input id="Password" type="password" name="Password" placeholder="Leave blank to keep current password"/>
                             </div>
 
                             <div class="profile-form-input">
-                                <label id="profile_picture"class="filter-label-text" for="confirm_pass">Confirm New Password</label>
+                                <label id="profile_picture"class="filter-label-text" for="confirm_pass"><strong>Confirm New Password</strong></label>
                                 <input id="confirm_pass" type="password" name="confirm_pass" placeholder="Confirm your new password"/>
                             </div>
                         </div>
-
-                        <div class="profile-form-row">
-                            <div class="profile-form-input">
-                                <label class="filter-label-text" for="profile_picture" type="file" disabled>profile picture</label>
-                                <textarea id="Bio" name="Bio" rows="4" placeholder="Write a short bio about yourself"></textarea>
-                            </div>
 
                         <div class="profile-form-row">
                             <button class="table-button" type="submit">Save Changes</button>
