@@ -20,9 +20,9 @@
 			</svg>
 		</button>
 
-		<aside id="sidebar" class="fixed lg:relative top-0 right-0 h-screen lg:h-auto w-64 bg-white shadow-lg lg:shadow-md p-8 flex flex-col z-40 lg:z-auto transition-transform duration-300 ease-in-out lg:flex-shrink-0 order-last" style="transform: translateX(100%)">
-			<h1 class="font-extrabold text-2xl text-center text-green-700">SustainWear</h1>
-			<div class="mt-6">
+		<aside id="sidebar" class="fixed lg:relative top-0 right-0 h-screen lg:h-auto w-64 bg-white shadow-lg lg:shadow-md p-8 pb-26 max-h-[640px]:pb-20 flex flex-col z-40 lg:z-auto transition-transform duration-300 ease-in-out lg:flex-shrink-0 order-last overflow-y-auto" style="transform: translateX(100%)">
+			<h1 class="font-extrabold text-2xl text-center text-green-700 flex-shrink-0">SustainWear</h1>
+			<div class="mt-6 flex-shrink-0 pb-6">
 				<p class="font-bold text-lg">Navigation</p>
 				<div class="mt-4 flex flex-col gap-4">
 					<button class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200 text-left cursor-pointer hover:opacity-90 transition-opacity" onclick="location.href='admin_dashboard.php'">Overview</button>
@@ -33,7 +33,7 @@
 					<button class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200 text-left cursor-pointer hover:opacity-90 transition-opacity">Help & Support</button>
 				</div>
 			</div>
-			<div class="mt-auto">
+			<div class="mt-auto flex-shrink-0">
 				<button class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200 text-left cursor-pointer hover:opacity-90 transition-opacity" onclick="location.href='logout.php'">Logout</button>
 			</div>
 		</aside>
