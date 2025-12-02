@@ -37,15 +37,15 @@
 				<div class="info-cards">
 					<div>
 						<h3 class="info-label">Full Name</h3>
-						<p><?= $staff_data["full_name"]; ?></p>
+						<p><?= $account_data["full_name"]; ?></p>
 					</div>
 					<div class="info-group">
 						<h3 class="info-label">Email</h3>
-						<p><?= $staff_data["email"]; ?></p>
+						<p><?= $account_data["email"]; ?></p>
 					</div>
 					<div class="info-group">
 						<h3 class="info-label">Role</h3>
-						<p><?= $staff_data["user_role"]; ?></p>
+						<p><?= $account_data["user_role"]; ?></p>
 					</div>
 				</div>
 			</section>

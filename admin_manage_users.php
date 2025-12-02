@@ -37,7 +37,7 @@
 
 			<section class="section-block">
 				<h2 class="section-title">Manage Users</h2>
-				<p style="margin-bottom: 0.75rem;">You are signed in as <strong><?= $thisPageOwner["full_name"]; ?></strong> (<?= $thisPageOwner["user_role"]; ?>).</p>
+				<p style="margin-bottom: 0.75rem;">You are signed in as <strong><?= $account_data["full_name"]; ?></strong> (<?= $account_data["user_role"]; ?>).</p>
 			</section>
 			<section class="section-block">
 				<div class="filter-box">
