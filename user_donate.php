@@ -45,7 +45,7 @@
 
 				<div class="info-card">
 					<p>You are logged in as <?=$account_data["full_name"]?> <br> <?=$account_data["email"] ?>.</p>
-					<p>Use the form below to record a clothing donation. Staff will review it and later change the status to <strong>Approved</strong> or <strong>Declined</strong>.</p>
+					<p>Use the form below to record a clothing donation. Staff will review it and later change the status to <strong class="text-green-600">Approved</strong> or <strong class="text-red-500">Declined</strong>.</p>
 				</div>
 			</section>
 
