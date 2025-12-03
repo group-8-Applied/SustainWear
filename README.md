@@ -1,0 +1,51 @@
+# SustainWear
+
+## Development Environment Setup
+
+### Requirements
+
+- [MAMP](https://www.mamp.info/) - Local PHP server
+- [Tailwind CSS Standalone CLI](https://tailwindcss.com/blog/standalone-cli) - CSS framework
+
+### Setup Instructions
+
+1. **Install MAMP**
+   - Download and install MAMP from https://www.mamp.info/
+   - Move SustainWear project to `<MAMP PATH>/htdocs/SustainWear/`
+
+2. **Install Tailwind CSS CLI**
+   - Download the latest executable from https://github.com/tailwindlabs/tailwindcss/releases/latest
+
+   - Rename executable to tailwindcss(.exe)
+
+   - Make the file executable if required (macOS/Linux):
+     ```bash
+     chmod +x tailwindcss
+     ```
+
+   - Add to PATH
+      - Can place in a bin/ directory
+      - Or System32 if using Windows
+
+### Usage Instructions
+
+1. **Build CSS using Tailwind**
+   ```bash
+   # For development
+   tailwindcss -o styles/output.css --watch
+
+   # For production
+   tailwindcss -o styles/output.css --minify
+
+   # [Run commands from SustainWear directory]
+   ```
+
+2. **Start PHP server**
+   - Launch MAMP
+
+   - Click "Start" to run the PHP server
+
+2. **Access the website**
+   - Open a browser and visit http://localhost/SustainWear
+
+   - If no database has been set up, visit http://localhost/SustainWear/db_init.php to create one
