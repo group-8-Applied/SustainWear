@@ -107,7 +107,7 @@
 					<p class="font-bold text-lg mb-3">All donations</p>
 
 					<div class="overflow-x-auto -mx-4 sm:mx-0">
-						<table class="w-full min-w-[800px] border-collapse text-sm">
+						<table class="w-full border-collapse text-sm">
 							<thead class="bg-gray-100">
 								<tr>
 									<th class="px-3 py-2 text-left border-b border-gray-200">id</th>
