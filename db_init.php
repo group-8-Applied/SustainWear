@@ -1,6 +1,10 @@
 <?php
-	header("Location: index.html");
-	exit(); // this file should only run if a new database is required
+	// this file should only run if a new database is required
+	// if it already exists, exit straight away
+	if (file_exists("database.db")) {
+		header("Location: index.html");
+		exit();
+	}
 
 	$db = new SQLite3("database.db");
 
@@ -39,4 +43,6 @@
 		'',
 		'admin'
 	)");
+
+	echo "Database ititalised";
 ?>
