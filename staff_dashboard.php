@@ -15,7 +15,7 @@
 	<div class="flex flex-col lg:flex-row-reverse min-h-screen">
 		<?php include "components/sidebar.php"; ?>
 
-		<main class="flex-1 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8">
+		<main class="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8">
 			<section class="mb-6">
 				<h2 class="text-2xl font-bold mb-4">Staff Dashboard</h2>
 				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5 flex flex-col gap-3 items-start">
@@ -52,20 +52,20 @@
 					</div>
 				</div>
 			</section>
-			<section class="mb-6">
-				<div class="flex flex-col lg:flex-row gap-6 items-start">
-					<div class="flex-1">
+
+			<section class="mb-6 min-w-0">
+				<div class="flex flex-col lg:flex-row gap-6 items-start min-w-0">
+					<div class="flex-1 min-w-0">
 						<h3 class="font-bold text-lg mb-3">Pending donations</h3>
 
-						<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
-							<div class="overflow-x-auto -mx-4 sm:mx-0">
-								<table class="w-full min-w-[600px] border-collapse text-sm">
+						<div class="bg-white rounded-xl shadow-md overflow-hidden">
+							<div class="overflow-x-auto">
+								<table class="w-full border-collapse text-sm">
 									<thead class="bg-gray-100">
 										<tr>
 											<th class="px-3 py-2 text-left border-b border-gray-200">Donor</th>
 											<th class="px-3 py-2 text-left border-b border-gray-200">Item</th>
 											<th class="px-3 py-2 text-left border-b border-gray-200">Condition</th>
-											<th class="px-3 py-2 text-left border-b border-gray-200">Status</th>
 											<th class="px-3 py-2 text-left border-b border-gray-200">Actions</th>
 										</tr>
 									</thead>
@@ -74,7 +74,6 @@
 											<td class="px-3 py-2 text-left border-b border-gray-200">Taylor Green</td>
 											<td class="px-3 py-2 text-left border-b border-gray-200">Winter Coat (M)</td>
 											<td class="px-3 py-2 text-left border-b border-gray-200">Good</td>
-											<td class="px-3 py-2 text-left border-b border-gray-200"><span class="inline-block px-2.5 py-[0.15rem] rounded-full text-xs font-semibold bg-amber-100 text-amber-800">Pending</span></td>
 											<td class="px-3 py-2 text-left border-b border-gray-200">
 												<div class="flex gap-2 items-center">
 													<button class="w-8 h-8 rounded-full bg-green-500/20 text-green-600 font-bold text-base flex items-center justify-center hover:opacity-80 transition-opacity flex-shrink-0" title="Approve">✓</button>
@@ -86,7 +85,6 @@
 											<td class="px-3 py-2 text-left border-b border-gray-200">Sam Lee</td>
 											<td class="px-3 py-2 text-left border-b border-gray-200">Jeans (32)</td>
 											<td class="px-3 py-2 text-left border-b border-gray-200">Acceptable</td>
-											<td class="px-3 py-2 text-left border-b border-gray-200"><span class="inline-block px-2.5 py-[0.15rem] rounded-full text-xs font-semibold bg-amber-100 text-amber-800">Pending</span></td>
 											<td class="px-3 py-2 text-left border-b border-gray-200">
 												<div class="flex gap-2 items-center">
 													<button class="w-8 h-8 rounded-full bg-green-500/20 text-green-600 font-bold text-base flex items-center justify-center hover:opacity-80 transition-opacity flex-shrink-0" title="Approve">✓</button>
@@ -98,7 +96,6 @@
 											<td class="px-3 py-2 text-left border-b border-gray-200">Jordan White</td>
 											<td class="px-3 py-2 text-left border-b border-gray-200">T-Shirt (L)</td>
 											<td class="px-3 py-2 text-left border-b border-gray-200">Excellent</td>
-											<td class="px-3 py-2 text-left border-b border-gray-200"><span class="inline-block px-2.5 py-[0.15rem] rounded-full text-xs font-semibold bg-amber-100 text-amber-800">Pending</span></td>
 											<td class="px-3 py-2 text-left border-b border-gray-200">
 												<div class="flex gap-2 items-center">
 													<button class="w-8 h-8 rounded-full bg-green-500/20 text-green-600 font-bold text-base flex items-center justify-center hover:opacity-80 transition-opacity flex-shrink-0" title="Approve">✓</button>
@@ -109,15 +106,17 @@
 									</tbody>
 								</table>
 							</div>
-							<p class="mt-2 text-xs text-gray-500">Actual functionality for buttons is not yet implemented</p>
+							<div class="p-4 sm:p-5">
+								<p class="text-xs text-gray-500">Actual functionality for buttons is not yet implemented</p>
+							</div>
 						</div>
 					</div>
 
-					<div class="flex-1">
+					<div class="flex-1 min-w-0">
 						<h3 class="font-bold text-lg mb-3">Inventory snapshot</h3>
-						<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
-							<div class="overflow-x-auto -mx-4 sm:mx-0">
-								<table class="w-full min-w-[600px] border-collapse text-sm">
+						<div class="bg-white rounded-xl shadow-md overflow-hidden">
+							<div class="overflow-x-auto">
+								<table class="w-full border-collapse text-sm">
 									<thead class="bg-gray-100">
 										<tr>
 											<th class="px-3 py-2 text-left border-b border-gray-200">Category</th>
@@ -154,7 +153,9 @@
 									</tbody>
 								</table>
 							</div>
-							<p class="mt-2 text-xs text-gray-500">DEMO DATA</p>
+							<div class="p-4 sm:p-5">
+								<p class="text-xs text-gray-500">DEMO DATA</p>
+							</div>
 						</div>
 					</div>
 				</div>
