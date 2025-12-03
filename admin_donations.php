@@ -150,11 +150,15 @@
 										</td>
 										<td class="px-3 py-2 text-left border-b border-gray-200"><?= $donation["date"] ?></td>
 										<td class="px-3 py-2 text-left border-b border-gray-200">
-											<button class="border border-gray-300 rounded bg-blue-500 text-white text-xs cursor-pointer mr-1 px-2 py-1 hover:bg-blue-600 transition-colors">View</button>
-											<?php if ($donation["status"] === "Pending"): ?>
-												<button class="border border-gray-300 rounded bg-green-500 text-white text-xs cursor-pointer mr-1 px-2 py-1 hover:bg-green-600 transition-colors">Approve</button>
-												<button class="border border-gray-300 rounded bg-red-500 text-white text-xs cursor-pointer px-2 py-1 hover:bg-red-600 transition-colors">Decline</button>
-											<?php endif ?>
+											<div class="flex gap-2 items-center">
+												<button class="border border-gray-300 rounded bg-blue-500 text-white text-xs cursor-pointer mr-1 px-2 py-1 hover:bg-blue-600 transition-colors">View</button>
+
+												<?php if ($donation["status"] === "Pending"): ?>
+													<button class="w-8 h-8 rounded-full bg-green-500/20 text-green-600 font-bold text-base flex items-center justify-center hover:opacity-80 transition-opacity flex-shrink-0" title="Approve">✓</button>
+													<button class="w-8 h-8 rounded-full bg-red-500/20 text-red-600 font-bold text-base flex items-center justify-center hover:opacity-80 transition-opacity flex-shrink-0" title="Decline">✕</button>
+												<?php endif ?>
+
+											</div>
 										</td>
 									</tr>
 								<?php endforeach ?>
