@@ -1,12 +1,9 @@
 <?php
 	session_start();
-	
+
 	$db = new SQLite3("database.db");
 
-	$logged_in = true;
-	
 	if (!isset($_SESSION["session_token"]) || !isset($_SESSION["user_id"])) {
-		$logged_in = false;
 		header("Location: login.php");
 		exit();
 	}
@@ -19,7 +16,6 @@
 
 	// ensure the session is still valid
 	if ($account_data["session_token"] !== $_SESSION["session_token"]) {
-		$logged_in = false;
 		header("Location: login.php");
 		exit();
 	}
