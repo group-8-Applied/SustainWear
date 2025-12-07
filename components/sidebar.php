@@ -13,9 +13,9 @@ if ($account_data["user_role"] === "admin") {
 } else if ($account_data["user_role"] === "staff") {
     $nav_items = [
         ["label" => "Overview", "url" => "staff_dashboard.php"],
-        ["label" => "Pending Donations", "url" => "#"],
-        ["label" => "Inventory", "url" => "#"],
-        ["label" => "Reports", "url" => "#"]
+        ["label" => "Pending Donations", "url" => "staff_pending_donations.php"],
+        ["label" => "Inventory", "url" => "staff_inventory.php"],
+        ["label" => "Reports", "url" => "staff_reports.php"]
     ];
 } else { // donor
     $nav_items = [
