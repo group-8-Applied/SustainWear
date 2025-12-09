@@ -24,6 +24,7 @@ $db->exec("CREATE TABLE IF NOT EXISTS donations (
 	size TEXT NOT NULL,
 	condition TEXT NOT NULL,
 	notes TEXT,
+	photo_path TEXT,
 	status TEXT NOT NULL DEFAULT 'pending',
 	submitted_date TEXT NOT NULL,
 	reviewed_date TEXT,

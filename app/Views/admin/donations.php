@@ -113,6 +113,7 @@
 							<thead class="bg-gray-100">
 								<tr>
 									<th class="px-3 py-2 text-left border-b border-gray-200">ID</th>
+									<th class="px-3 py-2 text-left border-b border-gray-200">Photo</th>
 									<th class="px-3 py-2 text-left border-b border-gray-200">Donor</th>
 									<th class="px-3 py-2 text-left border-b border-gray-200">Item</th>
 									<th class="px-3 py-2 text-left border-b border-gray-200">Size</th>
@@ -131,6 +132,15 @@
 									<?php foreach ($donations as $donation): ?>
 										<tr>
 											<td class="px-3 py-2 text-left border-b border-gray-200">#<?= htmlspecialchars($donation["donation_id"]) ?></td>
+											<td class="px-3 py-2 text-left border-b border-gray-200">
+												<?php if (!empty($donation["photo_path"])): ?>
+													<a href="<?= htmlspecialchars($donation["photo_path"]) ?>" target="_blank" class="block">
+														<img src="<?= htmlspecialchars($donation["photo_path"]) ?>" alt="Photo attachment" class="w-12 h-12 object-cover rounded cursor-pointer hover:opacity-75 transition-opacity" />
+													</a>
+												<?php else: ?>
+													<span class="text-gray-400 text-xs">No photo</span>
+												<?php endif ?>
+											</td>
 											<td class="px-3 py-2 text-left border-b border-gray-200">
 												<div class="font-semibold"><?= htmlspecialchars($donation["donor_name"]) ?></div>
 											</td>

@@ -7,7 +7,7 @@ class Donation {
 		$this->db = Database::getInstance();
 	}
 
-	public function createDonation($donorID, $donorName, $itemType, $size, $condition, $notes = "") {
+	public function createDonation($donorID, $donorName, $itemType, $size, $condition, $notes = "", $photoPath = null) {
 		$donationID = $this->db->insert("donations", [
 			"donor_id" => $donorID,
 			"donor_name" => $donorName,
@@ -15,6 +15,7 @@ class Donation {
 			"size" => $size,
 			"condition" => $condition,
 			"notes" => $notes,
+			"photo_path" => $photoPath,
 			"status" => "pending",
 			"submitted_date" => date("Y-m-d H:i:s")
 		]);

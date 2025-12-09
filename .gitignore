@@ -6,3 +6,6 @@ database.db
 
 # macOS
 *.DS_Store
+
+# donation photo uploads
+public/uploads/donations/donation_*

@@ -24,7 +24,7 @@
 			<section class="mb-6">
 				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
 					<h3 class="font-bold text-lg">New donation</h3>
-					<form method="POST" class="mt-3">
+					<form method="POST" enctype="multipart/form-data" class="mt-3">
 						<div class="flex flex-wrap gap-4 mt-3">
 							<div class="flex-1 min-w-full sm:min-w-[10rem]">
 								<label class="block text-sm mb-1" for="item_type">Item type</label>
@@ -63,9 +63,9 @@
 
 						<div class="flex flex-wrap gap-4 mt-3">
 							<div class="flex-1 min-w-full sm:min-w-[10rem]">
-								<label class="block text-sm mb-1">Photo (coming later)</label>
-								<input type="file" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-gray-100 cursor-not-allowed" disabled />
-								<p class="text-xs text-gray-500">Photos don't work currently, this is just so where the field will be.</p>
+								<label class="block text-sm mb-1" for="photo">Photo (optional)</label>
+								<input type="file" id="photo" name="photo" accept="image/jpeg,image/jpg,image/png,image/gif,image/webp" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white" />
+								<p class="text-xs text-gray-500 mt-1">Accepted formats: JPG, PNG, GIF, WebP (10MB limit)</p>
 							</div>
 						</div>
 
@@ -87,6 +87,7 @@
 						<table class="w-full border-collapse text-sm">
 							<thead class="bg-gray-100">
 								<tr>
+									<th class="px-3 py-2 text-left border-b border-gray-200">Photo</th>
 									<th class="px-3 py-2 text-left border-b border-gray-200">Item</th>
 									<th class="px-3 py-2 text-left border-b border-gray-200">Size</th>
 									<th class="px-3 py-2 text-left border-b border-gray-200">Condition</th>
@@ -98,11 +99,20 @@
 							<tbody>
 								<?php if (empty($donations)): ?>
 									<tr>
-										<td colspan="5" class="px-3 py-4 text-center text-gray-500">No donations yet. Submit your first donation above!</td>
+										<td colspan="6" class="px-3 py-4 text-center text-gray-500">No donations yet. Submit your first donation above!</td>
 									</tr>
 								<?php else: ?>
 									<?php foreach ($donations as $donation): ?>
 										<tr>
+											<td class="px-3 py-2 text-left border-b border-gray-200">
+												<?php if (!empty($donation["photo_path"])): ?>
+													<a href="<?= htmlspecialchars($donation["photo_path"]) ?>" target="_blank" class="block">
+														<img src="<?= htmlspecialchars($donation["photo_path"]) ?>" alt="Photo attachment" class="w-12 h-12 object-cover rounded cursor-pointer hover:opacity-75 transition-opacity" />
+													</a>
+												<?php else: ?>
+													<span class="text-gray-400 text-xs">No photo</span>
+												<?php endif ?>
+											</td>
 											<td class="px-3 py-2 text-left border-b border-gray-200"><?= htmlspecialchars($donation["item_type"]) ?></td>
 											<td class="px-3 py-2 text-left border-b border-gray-200"><?= htmlspecialchars($donation["size"]) ?></td>
 											<td class="px-3 py-2 text-left border-b border-gray-200"><?= htmlspecialchars($donation["condition"]) ?></td>

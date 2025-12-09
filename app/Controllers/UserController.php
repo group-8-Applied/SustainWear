@@ -57,14 +57,53 @@ class UserController extends ControllerBase {
 			return;
 		}
 
+		// handle photo if one was uploaded
+		$photoPath = null;
+		if (isset($_FILES["photo"]) && $_FILES["photo"]["error"] === UPLOAD_ERR_OK) { // exists and uploaded successfully
+			$allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp"];
+
+			$isValidType = in_array($_FILES["photo"]["type"], $allowedTypes);
+			$isValidSize = $_FILES["photo"]["size"] < (1024 * 1024 * 10); // 10mb // todo: maybe make configurable?
+
+			if (!$isValidType || !$isValidSize) {
+				$donations = $this->donationModel->getByDonor($user["user_id"]);
+				$this->render("user/donate", [
+					"user" => $user,
+					"donations" => $donations,
+					"donationMessage" => $isValidType ? "Invalid file type. Please upload a JPG, PNG, GIF, or WebP image." : "File is too large. Maximum size is 10MB.",
+					"isError" => true
+				]);
+				return;
+			}
+
+			$extension = pathinfo($_FILES["photo"]["name"], PATHINFO_EXTENSION);
+			$fileName = uniqid("donation_" . $user["user_id"] . "_", true) . "." . $extension; // 23 random hex chars
+			
+			// move from tmp dir to /uploads
+			$targetPath = __DIR__ . "/../../public/uploads/donations/" . $fileName;
+			if (move_uploaded_file($_FILES["photo"]["tmp_name"], $targetPath)) {
+				$photoPath = "/uploads/donations/" . $fileName;
+			} else {
+				$donations = $this->donationModel->getByDonor($user["user_id"]);
+				$this->render("user/donate", [
+					"user" => $user,
+					"donations" => $donations,
+					"donationMessage" => "Error uploading photo. Please try again.",
+					"isError" => true
+				]);
+				return;
+			}
+		}
+
 		try {
-			$donationID = $this->donationModel->createDonation(
+			$this->donationModel->createDonation(
 				$user["user_id"],
 				$user["full_name"],
 				$itemType,
 				$size,
 				$condition,
-				$notes
+				$notes,
+				$photoPath
 			);
 
 			$donations = $this->donationModel->getByDonor($user["user_id"]);
