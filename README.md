@@ -32,10 +32,10 @@
 1. **Build CSS using Tailwind**
    ```bash
    # For development
-   tailwindcss -o styles/output.css --watch
+   tailwindcss -o public/styles/output.css --watch
 
    # For production
-   tailwindcss -o styles/output.css --minify
+   tailwindcss -o public/styles/output.css --minify
 
    # [Run commands from SustainWear directory]
    ```
