@@ -54,13 +54,13 @@
 
 			<section class="mb-6">
 				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
-					<p class="font-bold text-lg mb-3">Filter donations</p>
+					<p class="font-bold text-lg mb-3">Filter Donations</p>
 
 					<form method="GET" action="/admin/donations">
 						<div class="flex flex-wrap gap-4">
 							<div class="flex-1 min-w-full sm:min-w-[10rem]">
 								<label class="block text-sm mb-1" for="donor_name">Search donor name</label>
-								<input id="donor_name" name="donor_name" value="<?= htmlspecialchars($filters["donor_name"] ?? '') ?>" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="text" placeholder="Type to search..." />
+								<input id="donor_name" name="donor_name" value="<?= htmlspecialchars($filters["donor_name"] ?? "") ?>" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="text" placeholder="John Smith" />
 							</div>
 
 							<div class="flex-1 min-w-full sm:min-w-[10rem]">
@@ -106,13 +106,13 @@
 
 			<section class="mb-6">
 				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
-					<p class="font-bold text-lg mb-3">All donations</p>
+					<p class="font-bold text-lg mb-3">All Donations</p>
 
 					<div class="overflow-x-auto -mx-4 sm:mx-0">
 						<table class="w-full border-collapse text-sm">
 							<thead class="bg-gray-100">
 								<tr>
-									<th class="px-3 py-2 text-left border-b border-gray-200">id</th>
+									<th class="px-3 py-2 text-left border-b border-gray-200">ID</th>
 									<th class="px-3 py-2 text-left border-b border-gray-200">Donor</th>
 									<th class="px-3 py-2 text-left border-b border-gray-200">Item</th>
 									<th class="px-3 py-2 text-left border-b border-gray-200">Size</th>
@@ -165,16 +165,16 @@
 
 			<section class="mb-6">
 				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
-					<p class="font-bold text-lg mb-3">Quick actions</p>
+					<p class="font-bold text-lg mb-3">Quick Actions</p>
 
 					<div class="flex flex-col gap-4">
 						<div>
-							<h4 class="font-bold mb-2">Update donation status by ID</h4>
+							<h4 class="font-bold mb-2">Update Donation Status</h4>
 							<form method="POST" action="/admin/update-donation-status">
 								<div class="flex flex-wrap gap-4 items-end">
 									<div class="flex-1 min-w-full sm:min-w-[10rem]">
 										<label class="block text-sm mb-1" for="donation_id">Donation ID</label>
-										<input id="donation_id" name="donation_id" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="number" placeholder="e.g., 1" required />
+										<input id="donation_id" name="donation_id" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="number" placeholder="e.g. 10" required />
 									</div>
 									<div class="flex-1 min-w-full sm:min-w-[10rem]">
 										<label class="block text-sm mb-1" for="status">New status</label>
