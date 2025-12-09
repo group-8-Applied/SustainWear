@@ -94,6 +94,18 @@
 									<option value="Other" <?= ($filters["item_type"] ?? "") === "Other" ? "selected" : "" ?>>Other</option>
 								</select>
 							</div>
+
+							<div class="flex-1 min-w-full sm:min-w-[10rem]">
+								<label class="block text-sm mb-1" for="reviewer_id">Reviewed by</label>
+								<select id="reviewer_id" name="reviewer_id" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+									<option value="">Any</option>
+									<?php foreach ($employees as $employee): ?>
+										<option value="<?= htmlspecialchars($employee["user_id"]) ?>" <?= ($filters["reviewer_id"] ?? "") == $employee["user_id"] ? "selected" : "" ?>>
+											<?= htmlspecialchars($employee["full_name"]) ?>
+										</option>
+									<?php endforeach ?>
+								</select>
+							</div>
 						</div>
 
 						<div class="mt-4 flex gap-2">

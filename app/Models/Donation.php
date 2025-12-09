@@ -59,6 +59,11 @@ class Donation {
 			$params[":donor_name"] = "%" . $filters["donor_name"] . "%"; // % means it is contained *somewhere*
 		}
 
+		if (!empty($filters["reviewer_id"])) {
+			$query .= " AND reviewer_id = :reviewer_id";
+			$params[":reviewer_id"] = $filters["reviewer_id"];
+		}
+
 		$query .= " ORDER BY submitted_date DESC"; // sort by latest
 
 		// add limit and offset to allow for paginated queries
@@ -98,6 +103,11 @@ class Donation {
 		if (!empty($filters["donor_name"])) {
 			$query .= " AND donor_name LIKE :donor_name";
 			$params[":donor_name"] = "%" . $filters["donor_name"] . "%";
+		}
+
+		if (!empty($filters["reviewer_id"])) {
+			$query .= " AND reviewer_id = :reviewer_id";
+			$params[":reviewer_id"] = $filters["reviewer_id"];
 		}
 
 		$result = $this->db->fetchOne($query, $params);

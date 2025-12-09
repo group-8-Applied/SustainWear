@@ -42,6 +42,9 @@ class AdminController extends ControllerBase {
 		if (isset($_GET["item_type"]) && !empty($_GET["item_type"])) {
 			$filters["item_type"] = $_GET["item_type"];
 		}
+		if (isset($_GET["reviewer_id"]) && !empty($_GET["reviewer_id"])) {
+			$filters["reviewer_id"] = $_GET["reviewer_id"];
+		}
 
 		$perPage = 10;
 		$donationCount = $this->donationModel->countUsingFilters($filters);
@@ -50,14 +53,13 @@ class AdminController extends ControllerBase {
 		$pageGET = isset($_GET["page"]) && is_numeric($_GET["page"]) ? intval($_GET["page"]) : 1;
 		$currentPage = min(max(1, $pageGET), $pageCount); // clamp between 1 and pageCount
 
-		$donations = $this->donationModel->getResults($filters, $perPage, ($currentPage - 1) * $perPage);
-
 		$this->render("admin/donations", [
-			"donations" => $donations,
+			"donations" => $this->donationModel->getResults($filters, $perPage, ($currentPage - 1) * $perPage),
 			"filters" => $filters,
 			"currentPage" => $currentPage,
 			"pageCount" => $pageCount,
-			"donationCount" => $donationCount
+			"donationCount" => $donationCount,
+			"employees" => $this->accountModel->getEmployeeNames()
 		]);
 	}
 

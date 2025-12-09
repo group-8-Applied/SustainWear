@@ -84,6 +84,12 @@ class Account {
 		return $this->db->fetchAll("SELECT user_id, full_name, email, user_role FROM accounts");
 	}
 
+	public function getEmployeeNames() {
+		return $this->db->fetchAll(
+			"SELECT user_id, full_name FROM accounts WHERE user_role IN ('staff', 'admin') ORDER BY full_name ASC"
+		);
+	}
+
 	public function updateProfile($userID, $fullName, $email, $newPassword = null) {
 		$updateData = [
 			"full_name" => $fullName,
