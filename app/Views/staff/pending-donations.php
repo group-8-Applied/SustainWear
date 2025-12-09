@@ -65,20 +65,29 @@ $declinedTodayCount = count(array_filter($declinedToday, function($d) {
 							<?php foreach ($donations as $donation): ?>
 								<div class="border border-gray-200 rounded p-4">
 									<div class="flex flex-col sm:flex-row justify-between items-start gap-3">
-										<div style="flex: 1;">
-											<h4 class="font-bold text-base">
-												<?= htmlspecialchars($donation["item_type"]) ?> (<?= htmlspecialchars($donation["size"]) ?>)
-											</h4>
-											<p class="text-sm text-gray-600 mt-1">
-												<strong>Donation ID:</strong> #<?= htmlspecialchars($donation["donation_id"]) ?><br>
-												<strong>Donor:</strong> <?= htmlspecialchars($donation["donor_name"]) ?><br>
-												<strong>Condition:</strong> <?= htmlspecialchars($donation["condition"]) ?><br>
-												<strong>Submitted:</strong> <?= htmlspecialchars(date("Y-m-d H:i", strtotime($donation["submitted_date"]))) ?>
-											</p>
-											<?php if (!empty($donation["notes"])): ?>
-												<p class="text-sm text-gray-700 mt-2">
-													<strong>Notes:</strong> <?= htmlspecialchars($donation["notes"]) ?>
+										<div class="flex flex-col sm:flex-row gap-3 flex-1 min-w-0">
+											<div style="flex: 1;">
+												<h4 class="font-bold text-base">
+													<?= htmlspecialchars($donation["item_type"]) ?> (<?= htmlspecialchars($donation["size"]) ?>)
+												</h4>
+												<p class="text-sm text-gray-600 mt-1">
+													<strong>Donation ID:</strong> #<?= htmlspecialchars($donation["donation_id"]) ?><br>
+													<strong>Donor:</strong> <?= htmlspecialchars($donation["donor_name"]) ?><br>
+													<strong>Condition:</strong> <?= htmlspecialchars($donation["condition"]) ?><br>
+													<strong>Submitted:</strong> <?= htmlspecialchars(date("Y-m-d H:i", strtotime($donation["submitted_date"]))) ?>
 												</p>
+												<?php if (!empty($donation["notes"])): ?>
+													<p class="text-sm text-gray-700 mt-2">
+														<strong>Notes:</strong> <?= htmlspecialchars($donation["notes"]) ?>
+													</p>
+												<?php endif ?>
+											</div>
+											<?php if (!empty($donation["photo_path"])): ?>
+												<div class="flex-shrink-0">
+													<a href="<?= htmlspecialchars($donation["photo_path"]) ?>" target="_blank" class="inline-block">
+														<img src="<?= htmlspecialchars($donation["photo_path"]) ?>" alt="Donation photo" class="w-20 h-20 object-cover rounded cursor-pointer hover:opacity-75 transition-opacity" />
+													</a>
+												</div>
 											<?php endif ?>
 										</div>
 										<div class="flex gap-2 flex-shrink-0">
