@@ -67,9 +67,9 @@
 								<label class="block text-sm mb-1" for="status">Status</label>
 								<select id="status" name="status" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
 									<option value="">Any</option>
-									<option value="pending" <?= $filters["status"] === "pending" ? "selected" : "" ?>>Pending</option>
-									<option value="approved" <?= $filters["status"] === "approved" ? "selected" : "" ?>>Approved</option>
-									<option value="declined" <?= $filters["status"] === "declined" ? "selected" : "" ?>>Declined</option>
+									<option value="pending" <?= ($filters["status"] ?? "") === "pending" ? "selected" : "" ?>>Pending</option>
+									<option value="approved" <?= ($filters["status"] ?? "") === "approved" ? "selected" : "" ?>>Approved</option>
+									<option value="declined" <?= ($filters["status"] ?? "") === "declined" ? "selected" : "" ?>>Declined</option>
 								</select>
 							</div>
 
@@ -77,9 +77,9 @@
 								<label class="block text-sm mb-1" for="condition">Condition</label>
 								<select id="condition" name="condition" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
 									<option value="">Any</option>
-									<option value="Excellent" <?= $filters["condition"] === "Excellent" ? "selected" : "" ?>>Excellent</option>
-									<option value="Good" <?= $filters["condition"] === "Good" ? "selected" : "" ?>>Good</option>
-									<option value="Acceptable" <?= $filters["condition"] === "Acceptable" ? "selected" : "" ?>>Acceptable</option>
+									<option value="Excellent" <?= ($filters["condition"] ?? "") === "Excellent" ? "selected" : "" ?>>Excellent</option>
+									<option value="Good" <?= ($filters["condition"] ?? "") === "Good" ? "selected" : "" ?>>Good</option>
+									<option value="Acceptable" <?= ($filters["condition"] ?? "") === "Acceptable" ? "selected" : "" ?>>Acceptable</option>
 								</select>
 							</div>
 
@@ -87,11 +87,11 @@
 								<label class="block text-sm mb-1" for="item_type">Item type</label>
 								<select id="item_type" name="item_type" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
 									<option value="">Any</option>
-									<option value="Coat" <?= $filters["item_type"] === "Coat" ? "selected" : "" ?>>Coat / Jacket</option>
-									<option value="Jeans" <?= $filters["item_type"] === "Jeans" ? "selected" : "" ?>>Jeans</option>
-									<option value="T-Shirt" <?= $filters["item_type"] === "T-Shirt" ? "selected" : "" ?>>T-Shirt</option>
-									<option value="Shoes" <?= $filters["item_type"] === "Shoes" ? "selected" : "" ?>>Shoes</option>
-									<option value="Other" <?= $filters["item_type"] === "Other" ? "selected" : "" ?>>Other</option>
+									<option value="Coat" <?= ($filters["item_type"] ?? "") === "Coat" ? "selected" : "" ?>>Coat / Jacket</option>
+									<option value="Jeans" <?= ($filters["item_type"] ?? "") === "Jeans" ? "selected" : "" ?>>Jeans</option>
+									<option value="T-Shirt" <?= ($filters["item_type"] ?? "") === "T-Shirt" ? "selected" : "" ?>>T-Shirt</option>
+									<option value="Shoes" <?= ($filters["item_type"] ?? "") === "Shoes" ? "selected" : "" ?>>Shoes</option>
+									<option value="Other" <?= ($filters["item_type"] ?? "") === "Other" ? "selected" : "" ?>>Other</option>
 								</select>
 							</div>
 						</div>
