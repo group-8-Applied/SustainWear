@@ -13,7 +13,7 @@ if ($userRole === "admin") {
 		["label" => "Donations", "url" => "/admin/donations"],
 		["label" => "System Settings", "url" => "/admin/settings"]
 	];
-} else if ($userRole === "staff") {
+} elseif ($userRole === "staff") {
 	$navItems = [
 		["label" => "Overview", "url" => "/staff/dashboard"],
 		["label" => "Pending Donations", "url" => "/staff/pending-donations"],
