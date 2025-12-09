@@ -72,7 +72,7 @@
 									<tbody>
 										<?php
 										$donationModel = new Donation();
-										$pendingDonations = $donationModel->getByStatus("pending");
+										$pendingDonations = $donationModel->getResults(["status" => "pending"]);
 										$displayDonations = array_slice($pendingDonations, 0, 5);
 
 										if (empty($displayDonations)): ?>

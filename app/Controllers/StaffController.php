@@ -18,7 +18,7 @@ class StaffController extends ControllerBase {
 	}
 
 	public function pendingDonations() {
-		$pendingDonations = $this->donationModel->getByStatus("pending");
+		$pendingDonations = $this->donationModel->getResults(["status" => "pending"]);
 
 		$this->render("staff/pending-donations", [
 			"donations" => $pendingDonations

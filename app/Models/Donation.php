@@ -29,15 +29,49 @@ class Donation {
 		);
 	}
 
-	public function getByStatus($status) {
-		return $this->db->fetchAll(
-			"SELECT * FROM donations WHERE status = :status ORDER BY submitted_date DESC",
-			[":status" => $status]
-		);
+	public function getResults($filters = [], $limit = null, $offset = 0) {
+		$query = "SELECT * FROM donations WHERE 1=1"; // select all to begin with
+		$params = [];
+
+		if (!empty($filters["status"])) {
+			$query .= " AND status = :status";
+			$params[":status"] = $filters["status"];
+		}
+
+		if (!empty($filters["donor_id"])) {
+			$query .= " AND donor_id = :donor_id";
+			$params[":donor_id"] = $filters["donor_id"];
+		}
+
+		if (!empty($filters["item_type"])) {
+			$query .= " AND item_type = :item_type";
+			$params[":item_type"] = $filters["item_type"];
+		}
+
+		if (!empty($filters["condition"])) {
+			$query .= " AND condition = :condition";
+			$params[":condition"] = $filters["condition"];
+		}
+
+		if (!empty($filters["donor_name"])) {
+			$query .= " AND donor_name LIKE :donor_name";
+			$params[":donor_name"] = "%" . $filters["donor_name"] . "%"; // % means it is contained *somewhere*
+		}
+
+		$query .= " ORDER BY submitted_date DESC"; // sort by latest
+
+		// add limit and offset to allow for paginated queries
+		if ($limit !== null) {
+			$query .= " LIMIT :limit OFFSET :offset";
+			$params[":limit"] = $limit;
+			$params[":offset"] = $offset;
+		}
+
+		return $this->db->fetchAll($query, $params);
 	}
 
-	public function getAll($filters = []) {
-		$query = "SELECT * FROM donations WHERE 1=1";
+	public function countUsingFilters($filters = []) {
+		$query = "SELECT COUNT(*) as count FROM donations WHERE 1=1";
 		$params = [];
 
 		if (!empty($filters["status"])) {
@@ -65,9 +99,8 @@ class Donation {
 			$params[":donor_name"] = "%" . $filters["donor_name"] . "%";
 		}
 
-		$query .= " ORDER BY submitted_date DESC";
-
-		return $this->db->fetchAll($query, $params);
+		$result = $this->db->fetchOne($query, $params);
+		return $result ? $result["count"] : 0;
 	}
 
 	public function updateStatus($donationId, $status, $reviewerId) {

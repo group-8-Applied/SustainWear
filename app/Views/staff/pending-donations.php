@@ -3,12 +3,12 @@ $user = Auth::getUser();
 $donationModel = new Donation();
 $stats = $donationModel->getStats();
 
-$approvedToday = $donationModel->getAll(["status' => 'approved"]);
+$approvedToday = $donationModel->getResults(["status" => "approved"]);
 $approvedTodayCount = count(array_filter($approvedToday, function($d) {
 	return date("Y-m-d", strtotime($d["reviewed_date"])) === date("Y-m-d");
 }));
 
-$declinedToday = $donationModel->getAll(["status' => 'declined"]);
+$declinedToday = $donationModel->getResults(["status" => "declined"]);
 $declinedTodayCount = count(array_filter($declinedToday, function($d) {
 	return date("Y-m-d", strtotime($d["reviewed_date"])) === date("Y-m-d");
 }));
