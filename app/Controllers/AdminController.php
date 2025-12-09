@@ -29,6 +29,7 @@ class AdminController extends ControllerBase {
 	public function donations() {
 		$filters = [];
 
+		// load filters from get params
 		if (isset($_GET["status"]) && !empty($_GET["status"])) {
 			$filters["status"] = $_GET["status"];
 		}
@@ -42,11 +43,21 @@ class AdminController extends ControllerBase {
 			$filters["item_type"] = $_GET["item_type"];
 		}
 
-		$donations = $this->donationModel->getAll($filters);
+		$perPage = 10;
+		$donationCount = $this->donationModel->countUsingFilters($filters);
+		$pageCount = ceil($donationCount / $perPage);
+
+		$pageGET = isset($_GET["page"]) && is_numeric($_GET["page"]) ? intval($_GET["page"]) : 1;
+		$currentPage = min(max(1, $pageGET), $pageCount); // clamp between 1 and pageCount
+
+		$donations = $this->donationModel->getResults($filters, $perPage, ($currentPage - 1) * $perPage);
 
 		$this->render("admin/donations", [
 			"donations" => $donations,
-			"filters" => $filters
+			"filters" => $filters,
+			"currentPage" => $currentPage,
+			"pageCount" => $pageCount,
+			"donationCount" => $donationCount
 		]);
 	}
 
