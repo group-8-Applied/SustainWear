@@ -11,7 +11,7 @@
 
 1. **Install MAMP**
    - Download and install MAMP from https://www.mamp.info/
-   - Move SustainWear project to `<MAMP PATH>/htdocs/SustainWear/`
+   - Move SustainWear project files to `<MAMP PATH>/htdocs/`
 
 2. **Install Tailwind CSS CLI**
    - Download the latest executable from https://github.com/tailwindlabs/tailwindcss/releases/latest
@@ -46,6 +46,6 @@
    - Click "Start" to run the PHP server
 
 2. **Access the website**
-   - Open a browser and visit http://localhost/SustainWear
+   - Open a browser and visit http://localhost/
 
-   - If no database has been set up, visit http://localhost/SustainWear/db_init.php to create one
+   - If no database has been set up, visit http://localhost/db-init.php to create one
