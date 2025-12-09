@@ -29,7 +29,7 @@ class UserController extends ControllerBase {
 			"user" => $user,
 			"donations" => $donations,
 			"donationMessage" => "",
-			"messageType" => ""
+			"isError" => false
 		]);
 	}
 
@@ -52,7 +52,7 @@ class UserController extends ControllerBase {
 				"user" => $user,
 				"donations" => $donations,
 				"donationMessage" => "Please fill in all required fields.",
-				"messageType" => "error"
+				"isError" => true
 			]);
 			return;
 		}
@@ -72,7 +72,7 @@ class UserController extends ControllerBase {
 				"user" => $user,
 				"donations" => $donations,
 				"donationMessage" => "Donation submitted successfully! Your donation is now pending review.",
-				"messageType" => "success"
+				"isError" => false
 			]);
 		} catch (Exception $e) {
 			$donations = $this->donationModel->getByDonor($user["user_id"]);
@@ -80,7 +80,7 @@ class UserController extends ControllerBase {
 				"user" => $user,
 				"donations" => $donations,
 				"donationMessage" => "Error submitting donation. Please try again.",
-				"messageType" => "error"
+				"isError" => true
 			]);
 		}
 	}
@@ -90,7 +90,7 @@ class UserController extends ControllerBase {
 		$this->render("user/profile", [
 			"user" => $user,
 			"statusMessage" => "",
-			"messageType" => ""
+			"isError" => false
 		]);
 	}
 
@@ -112,7 +112,7 @@ class UserController extends ControllerBase {
 			$this->render("user/profile", [
 				"user" => $user,
 				"statusMessage" => "Full name and email are required.",
-				"messageType" => "error"
+				"isError" => true
 			]);
 			return;
 		}
@@ -123,7 +123,7 @@ class UserController extends ControllerBase {
 			$this->render("user/profile", [
 				"user" => $user,
 				"statusMessage" => "Email address is invalid or already registered.",
-				"messageType" => "error"
+				"isError" => true
 			]);
 			return;
 		}
@@ -134,7 +134,7 @@ class UserController extends ControllerBase {
 				$this->render("user/profile", [
 					"user" => $user,
 					"statusMessage" => "Passwords do not match.",
-					"messageType" => "error"
+					"isError" => true
 				]);
 				return;
 			}
@@ -143,7 +143,7 @@ class UserController extends ControllerBase {
 				$this->render("user/profile", [
 					"user" => $user,
 					"statusMessage" => "Password must be at least 8 characters long.",
-					"messageType" => "error"
+					"isError" => true
 				]);
 				return;
 			}
@@ -161,13 +161,13 @@ class UserController extends ControllerBase {
 			$this->render("user/profile", [
 				"user" => Auth::getUser(),
 				"statusMessage" => "Profile updated successfully!",
-				"messageType" => "success"
+				"isError" => false
 			]);
 		} catch (Exception $e) {
 			$this->render("user/profile", [
 				"user" => $user,
 				"statusMessage" => "Error updating profile: " . $e->getMessage(),
-				"messageType" => "error"
+				"isError" => true
 			]);
 		}
 	}

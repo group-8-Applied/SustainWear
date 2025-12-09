@@ -28,7 +28,7 @@
 					<h3 class="font-bold text-lg">Edit profile details</h3>
 
 					<?php if (!empty($statusMessage)): ?>
-						<div class="mt-3 p-3 rounded <?= $messageType === "error" ? "bg-red-100 text-red-700" : "bg-green-100 text-green-700" ?>">
+						<div class="mt-3 p-3 rounded <?= $isError ? "bg-red-100 text-red-700" : "bg-green-100 text-green-700" ?>">
 							<?= htmlspecialchars($statusMessage) ?>
 						</div>
 					<?php endif; ?>
