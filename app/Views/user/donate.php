@@ -57,7 +57,7 @@
 						<div class="flex flex-wrap gap-4 mt-3">
 							<div class="flex-1 min-w-full sm:min-w-[10rem]">
 								<label class="block text-sm mb-1" for="notes">Notes (optional)</label>
-								<textarea id="notes" name="notes" rows="3" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Anything else staf should know?"></textarea>
+								<textarea id="notes" name="notes" rows="3" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Anything else staff should know?"></textarea>
 							</div>
 						</div>
 
