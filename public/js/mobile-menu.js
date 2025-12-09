@@ -44,7 +44,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	// tablet users with keyboard
 	document.addEventListener("keydown", function(e) {
-		if (e.key === "Escape" && sidebar.style.transform === "translateX(0px)") { // if open
+		// if escape pressed while mobile sidebar is open
+		if (e.key === "Escape" && sidebar.style.transform === "translateX(0px)" && window.innerWidth < MOBILE_THRESHOLD) {
 			closeSidebar();
 		}
 	});
