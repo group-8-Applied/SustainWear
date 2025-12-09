@@ -107,7 +107,7 @@
 							<div class="flex-1 min-w-full sm:min-w-[10rem]">
 								<label class="block text-sm mb-1" for="role-change-role">New role</label>
 								<select id="role-change-role" name="role_change_role" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-									<option value="">Pick one…</option>
+									<option value="">Pick one...</option>
 									<option value="admin">Admin</option>
 									<option value="staff">Staff</option>
 									<option value="donor">Donor</option>

@@ -46,12 +46,46 @@ class UserController extends ControllerBase {
 		$condition = $_POST["condition"] ?? "";
 		$notes = $_POST["notes"] ?? "";
 
+		// all valid options. same as in the js
+		$validItemTypes = ["Coat", "Jeans", "T-Shirt", "Shoes"];
+		$validSizes = [
+			"Coat" => ["XS", "S", "M", "L", "XL", "XXL"],
+			"Jeans" => ["26", "28", "30", "32", "34", "36", "38", "40", "42"],
+			"T-Shirt" => ["XS", "S", "M", "L", "XL", "XXL"],
+			"Shoes" => ["3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"]
+		];
+		$validConditions = ["Excellent", "Good", "Acceptable"];
+
 		if (empty($itemType) || empty($size) || empty($condition)) {
 			$donations = $this->donationModel->getByDonor($user["user_id"]);
 			$this->render("user/donate", [
 				"user" => $user,
 				"donations" => $donations,
 				"donationMessage" => "Please fill in all required fields.",
+				"isError" => true
+			]);
+			return;
+		}
+
+		// make sure size matches item type if it's not custom
+		if (in_array($itemType, $validItemTypes) && !in_array($size, $validSizes[$itemType])) {
+			$donations = $this->donationModel->getByDonor($user["user_id"]);
+			$this->render("user/donate", [
+				"user" => $user,
+				"donations" => $donations,
+				"donationMessage" => "Invalid size selected for this item type.",
+				"isError" => true
+			]);
+			return;
+		}
+
+		// make sure condition is valid
+		if (!in_array($condition, $validConditions)) {
+			$donations = $this->donationModel->getByDonor($user["user_id"]);
+			$this->render("user/donate", [
+				"user" => $user,
+				"donations" => $donations,
+				"donationMessage" => "Invalid condition selected.",
 				"isError" => true
 			]);
 			return;

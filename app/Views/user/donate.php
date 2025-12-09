@@ -29,24 +29,26 @@
 							<div class="flex-1 min-w-full sm:min-w-[10rem]">
 								<label class="block text-sm mb-1" for="item_type">Item type</label>
 								<select id="item_type" name="item_type" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-									<option value="">Pick an item…</option>
+									<option value="">Pick an item...</option>
 									<option value="Coat">Coat / Jacket</option>
 									<option value="Jeans">Jeans</option>
 									<option value="T-Shirt">T-Shirt</option>
 									<option value="Shoes">Shoes</option>
-									<option value="Other">Other clothing</option>
+									<option value="Other">Other (describe)</option>
 								</select>
 							</div>
 
 							<div class="flex-1 min-w-full sm:min-w-[10rem]">
 								<label class="block text-sm mb-1" for="size">Size</label>
-								<input id="size" name="size" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="text" placeholder="example: M, 32, 8" />
+								<select id="size" name="size" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+								<option value="">Select item type first...</option>
+							</select>
 							</div>
 
 							<div class="flex-1 min-w-full sm:min-w-[10rem]">
 								<label class="block text-sm mb-1" for="condition">Condition</label>
 								<select id="condition" name="condition" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-									<option value="">Select condition…</option>
+									<option value="">Select condition...</option>
 									<option value="Excellent">Excellent</option>
 									<option value="Good">Good</option>
 									<option value="Acceptable">Acceptable</option>
@@ -146,5 +148,6 @@
 	</div>
 
 	<script src="/js/mobile-menu.js"></script>
+	<script src="/js/donation-form.js"></script>
 </body>
 </html>
