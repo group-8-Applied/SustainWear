@@ -61,28 +61,24 @@ class AdminController extends ControllerBase {
 		]);
 	}
 
-	public function updateDonationStatus() {
+	public function updateDonation() {
 		if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 			$this->redirect("/admin/donations");
 			return;
 		}
 
 		$user = Auth::getUser();
-		$donationId = $_POST["donation_id"] ?? "";
+		$donationID = $_POST["donation_id"] ?? "";
 		$status = $_POST["status"] ?? "";
 
-		if (empty($donationId) || empty($status)) {
-			$this->redirect("/admin/donations");
-			return;
-		}
-
-		if (!in_array($status, ["pending", "approved", "declined"])) {
+		// if status is invalid, cancel
+		if (empty($donationID) || empty($status) || !in_array($status, ["pending", "approved", "declined"])) {
 			$this->redirect("/admin/donations");
 			return;
 		}
 
 		try {
-			$this->donationModel->updateStatus($donationId, $status, $user["user_id"]);
+			$this->donationModel->updateStatus($donationID, $status, $user["user_id"]);
 			$this->redirect("/admin/donations");
 		} catch (Exception $e) {
 			$this->redirect("/admin/donations");

@@ -38,10 +38,10 @@ class Auth {
 		return self::$user ? self::$user["user_role"] : null;
 	}
 
-	public static function loginWithSession($userId, $sessionToken) {
+	public static function loginWithSession($userID, $sessionToken) {
 		self::initSession();
 
-		$_SESSION["user_id"] = $userId;
+		$_SESSION["user_id"] = $userID;
 		$_SESSION["session_token"] = $sessionToken;
 
 		Auth::redirectToDashboard();

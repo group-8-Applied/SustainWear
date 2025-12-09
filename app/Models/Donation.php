@@ -7,9 +7,9 @@ class Donation {
 		$this->db = Database::getInstance();
 	}
 
-	public function createDonation($donorId, $donorName, $itemType, $size, $condition, $notes = "") {
-		$donationId = $this->db->insert("donations", [
-			"donor_id" => $donorId,
+	public function createDonation($donorID, $donorName, $itemType, $size, $condition, $notes = "") {
+		$donationID = $this->db->insert("donations", [
+			"donor_id" => $donorID,
 			"donor_name" => $donorName,
 			"item_type" => $itemType,
 			"size" => $size,
@@ -19,13 +19,13 @@ class Donation {
 			"submitted_date" => date("Y-m-d H:i:s")
 		]);
 
-		return $donationId;
+		return $donationID;
 	}
 
-	public function getByDonor($donorId) {
+	public function getByDonor($donorID) {
 		return $this->db->fetchAll(
 			"SELECT * FROM donations WHERE donor_id = :donor_id ORDER BY submitted_date DESC",
-			[":donor_id" => $donorId]
+			[":donor_id" => $donorID]
 		);
 	}
 
@@ -103,16 +103,16 @@ class Donation {
 		return $result ? $result["count"] : 0;
 	}
 
-	public function updateStatus($donationId, $status, $reviewerId) {
+	public function updateStatus($donationID, $status, $reviewerID) {
 		return $this->db->update(
 			"donations",
 			[
 				"status" => $status,
 				"reviewed_date" => date("Y-m-d H:i:s"),
-				"reviewer_id" => $reviewerId
+				"reviewer_id" => $reviewerID
 			],
 			"donation_id = :donation_id",
-			[":donation_id" => $donationId]
+			[":donation_id" => $donationID]
 		);
 	}
 

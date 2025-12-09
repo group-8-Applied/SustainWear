@@ -19,7 +19,7 @@ class Account {
 		$passwordHash = password_hash($password, PASSWORD_DEFAULT);
 		$sessionToken = bin2hex(random_bytes(32));
 
-		$userId = $this->db->insert("accounts", [
+		$userID = $this->db->insert("accounts", [
 			"full_name" => $fullName,
 			"email" => $email,
 			"password_hash" => $passwordHash,
@@ -28,7 +28,7 @@ class Account {
 		]);
 
 		return [
-			"user_id" => $userId,
+			"user_id" => $userID,
 			"session_token" => $sessionToken
 		];
 	}
@@ -50,14 +50,14 @@ class Account {
 		return false;
 	}
 
-	public function updateSessionToken($userId) {
+	public function updateSessionToken($userID) {
 		$sessionToken = bin2hex(random_bytes(32));
 
 		$this->db->update(
 			"accounts",
 			["session_token" => $sessionToken],
 			"user_id = :user_id",
-			[":user_id" => $userId]
+			[":user_id" => $userID]
 		);
 
 		return $sessionToken;

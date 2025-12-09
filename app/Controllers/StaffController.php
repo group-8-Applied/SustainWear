@@ -32,15 +32,15 @@ class StaffController extends ControllerBase {
 		}
 
 		$user = Auth::getUser();
-		$donationId = $_POST["donation_id"] ?? "";
+		$donationID = $_POST["donation_id"] ?? "";
 
-		if (empty($donationId)) {
+		if (empty($donationID)) {
 			$this->redirect("/staff/pending-donations");
 			return;
 		}
 
 		try {
-			$this->donationModel->updateStatus($donationId, "approved", $user["user_id"]);
+			$this->donationModel->updateStatus($donationID, "approved", $user["user_id"]);
 			$this->redirect("/staff/pending-donations");
 		} catch (Exception $e) {
 			$this->redirect("/staff/pending-donations");
@@ -54,15 +54,15 @@ class StaffController extends ControllerBase {
 		}
 
 		$user = Auth::getUser();
-		$donationId = $_POST["donation_id"] ?? "";
+		$donationID = $_POST["donation_id"] ?? "";
 
-		if (empty($donationId)) {
+		if (empty($donationID)) {
 			$this->redirect("/staff/pending-donations");
 			return;
 		}
 
 		try {
-			$this->donationModel->updateStatus($donationId, "declined", $user["user_id"]);
+			$this->donationModel->updateStatus($donationID, "declined", $user["user_id"]);
 			$this->redirect("/staff/pending-donations");
 		} catch (Exception $e) {
 			$this->redirect("/staff/pending-donations");

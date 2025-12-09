@@ -1,7 +1,3 @@
-<?php
-	$messageType = $messageType ?? '';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

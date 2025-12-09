@@ -26,7 +26,8 @@ class UserController extends ControllerBase {
 		$this->render("user/donate", [
 			"user" => $user,
 			"donations" => $donations,
-			"donationMessage" => ""
+			"donationMessage" => "",
+			"messageType" => ""
 		]);
 	}
 
@@ -55,7 +56,7 @@ class UserController extends ControllerBase {
 		}
 
 		try {
-			$donationId = $this->donationModel->createDonation(
+			$donationID = $this->donationModel->createDonation(
 				$user["user_id"],
 				$user["full_name"],
 				$itemType,
