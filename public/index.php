@@ -70,6 +70,10 @@ $router->add("GET", "/user/profile", "UserController@profile")->useMiddleware(fu
 	Auth::requireRole("donor");
 });
 
+$router->add("POST", "/user/profile", "UserController@updateProfile")->useMiddleware(function() {
+	Auth::requireRole("donor");
+});
+
 $router->add("GET", "/user/notifications", "UserController@notifications")->useMiddleware(function() {
 	Auth::requireRole("donor");
 });

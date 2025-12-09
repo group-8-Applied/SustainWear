@@ -7,6 +7,23 @@ class Account {
 		$this->db = Database::getInstance();
 	}
 
+	public function validateEmailForUse($email) {
+		$errors = [];
+
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			$errors[] = "Email address is invalid";
+		}
+
+		if ($this->emailExists($email)) {
+			$errors[] = "Email address is already registered";
+		}
+
+		return [
+			"success" => empty($errors),
+			"errors" => $errors
+		];
+	}
+
 	public function emailExists($email) {
 		$result = $this->db->fetchOne(
 			"SELECT * FROM accounts WHERE email = :email",
@@ -65,5 +82,25 @@ class Account {
 
 	public function getAll() {
 		return $this->db->fetchAll("SELECT user_id, full_name, email, user_role FROM accounts");
+	}
+
+	public function updateProfile($userID, $fullName, $email, $newPassword = null) {
+		$updateData = [
+			"full_name" => $fullName,
+			"email" => $email
+		];
+
+		if ($newPassword !== null && !empty($newPassword)) {
+			$updateData["password_hash"] = password_hash($newPassword, PASSWORD_BCRYPT);
+		}
+
+		$this->db->update(
+			"accounts",
+			$updateData,
+			"user_id = :user_id",
+			[":user_id" => $userID]
+		);
+
+		return true;
 	}
 }

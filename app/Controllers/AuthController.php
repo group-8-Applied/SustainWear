@@ -47,7 +47,7 @@ class AuthController extends ControllerBase {
 		$email = strtolower(trim($_POST["email"]));
 		$fullName = ucwords(strtolower(trim($_POST["full_name"])));
 		$password = $_POST["password"];
-		$passwordConfirmation = $_POST["password-confirmation"];
+		$passwordConfirmation = $_POST["password_confirmation"];
 
 		// password validation
 		$errors = [];
@@ -64,12 +64,10 @@ class AuthController extends ControllerBase {
 			$errors[] = "Name invalid";
 		}
 
-		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			$errors[] = "Email address is invalid";
-		}
-
-		if ($this->accountModel->emailExists($email)) {
-			$errors[] = "Email address is already registered";
+		// validate email address
+		$emailValidation = $this->accountModel->validateEmailForUse($email);
+		if (!$emailValidation["success"]) {
+			$errors = array_merge($errors, $emailValidation["errors"]);
 		}
 
 		if (!empty($errors)) {

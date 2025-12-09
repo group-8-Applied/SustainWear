@@ -35,7 +35,7 @@
 
 				<div class="grid gap-[6px] mt-[2px]">
 					<label for="su-confirm" class="font-semibold text-sm text-gray-700">Confirm password</label>
-					<input id="su-confirm" name="password-confirmation" type="password" placeholder="Confirm password" class="w-full py-[10px] px-[12px] rounded-[10px] border border-gray-300 bg-white" required />
+					<input id="su-confirm" name="password_confirmation" type="password" placeholder="Confirm password" class="w-full py-[10px] px-[12px] rounded-[10px] border border-gray-300 bg-white" required />
 				</div>
 
 				<button class="inline-block border-0 rounded-[10px] py-[12px] px-[14px] font-semibold cursor-pointer bg-blue-500 text-white hover:bg-blue-600 mt-2" type="submit">Create Account</button>

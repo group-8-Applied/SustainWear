@@ -26,28 +26,35 @@
 			<section class="mb-6">
 				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
 					<h3 class="font-bold text-lg">Edit profile details</h3>
-					<form method="post" class="mt-3">
+
+					<?php if (!empty($statusMessage)): ?>
+						<div class="mt-3 p-3 rounded <?= $messageType === "error" ? "bg-red-100 text-red-700" : "bg-green-100 text-green-700" ?>">
+							<?= htmlspecialchars($statusMessage) ?>
+						</div>
+					<?php endif; ?>
+
+					<form method="post" action="/user/profile" class="mt-3">
 						<div class="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-3">
 							<div class="flex-1 flex flex-col">
 								<label class="block text-sm mb-1" for="Name"><strong>Full Name</strong></label>
-								<input id="Name" type="text" name="Name" placeholder="Enter your full name" value="<?= $user["full_name"]?>" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"/>
+								<input id="full_name" type="text" name="full_name" placeholder="Enter your full name" value="<?= $user["full_name"]?>" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"/>
 							</div>
 
 							<div class="flex-1 flex flex-col">
 								<label class="block text-sm mb-1" for="Email"><strong>Email Address</strong></label>
-								<input id="Email" type="email" name="Email" placeholder="Enter your email address" value="<?= $user["email"]?>" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"/>
+								<input id="email" type="email" name="email" placeholder="Enter your email address" value="<?= $user["email"]?>" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"/>
 							</div>
 						</div>
 
 						<div class="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-3">
 							<div class="flex-1 flex flex-col">
 								<label class="block text-sm mb-1" for="Password"><strong>New Password</strong></label>
-								<input id="Password" type="password" name="Password" placeholder="Leave blank to keep current password" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"/>
+								<input id="password" type="password" name="password" placeholder="Leave blank to keep current password" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"/>
 							</div>
 
 							<div class="flex-1 flex flex-col">
 								<label class="block text-sm mb-1" for="confirm_pass"><strong>Confirm New Password</strong></label>
-								<input id="confirm_pass" type="password" name="confirm_pass" placeholder="Confirm your new password" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"/>
+								<input id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm your new password" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"/>
 							</div>
 						</div>
 
