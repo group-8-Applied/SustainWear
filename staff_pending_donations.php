@@ -61,14 +61,14 @@
 						<div style="flex: 1; min-width: 10rem;">
 							<label for="filter-condition" class="block text-sm mb-1">Condition</label>
 							<select id="filter-condition" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                <!-- Add drop down options here -->
+								<!-- Add drop down options here -->
 							</select>
 						</div>
 
 						<div style="flex: 1; min-width: 10rem;">
 							<label for="filter-item" class="block text-sm mb-1">Item type</label>
 							<select id="filter-item" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                <!-- Add drop down options here -->
+								<!-- Add drop down options here -->
 							</select>
 						</div>
 					</div>
@@ -95,7 +95,7 @@
 
 							<tbody>
 								<?php
-								// Loop through all pending donations
+								// loop through pending donations
 								foreach ($pendingDonations as $donation) {
 								?>
 									<tr>

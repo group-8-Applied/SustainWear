@@ -1,0 +1,105 @@
+<?php
+
+class Donation {
+	private $db;
+
+	public function __construct() {
+		$this->db = Database::getInstance();
+	}
+
+	public function createDonation($donorId, $donorName, $itemType, $size, $condition, $notes = "") {
+		$donationId = $this->db->insert("donations", [
+			"donor_id" => $donorId,
+			"donor_name" => $donorName,
+			"item_type" => $itemType,
+			"size" => $size,
+			"condition" => $condition,
+			"notes" => $notes,
+			"status" => "pending",
+			"submitted_date" => date("Y-m-d H:i:s")
+		]);
+
+		return $donationId;
+	}
+
+	public function getByDonor($donorId) {
+		return $this->db->fetchAll(
+			"SELECT * FROM donations WHERE donor_id = :donor_id ORDER BY submitted_date DESC",
+			[":donor_id" => $donorId]
+		);
+	}
+
+	public function getByStatus($status) {
+		return $this->db->fetchAll(
+			"SELECT * FROM donations WHERE status = :status ORDER BY submitted_date DESC",
+			[":status" => $status]
+		);
+	}
+
+	public function getAll($filters = []) {
+		$query = "SELECT * FROM donations WHERE 1=1";
+		$params = [];
+
+		if (!empty($filters["status"])) {
+			$query .= " AND status = :status";
+			$params[":status"] = $filters["status"];
+		}
+
+		if (!empty($filters["donor_id"])) {
+			$query .= " AND donor_id = :donor_id";
+			$params[":donor_id"] = $filters["donor_id"];
+		}
+
+		if (!empty($filters["item_type"])) {
+			$query .= " AND item_type = :item_type";
+			$params[":item_type"] = $filters["item_type"];
+		}
+
+		if (!empty($filters["condition"])) {
+			$query .= " AND condition = :condition";
+			$params[":condition"] = $filters["condition"];
+		}
+
+		if (!empty($filters["donor_name"])) {
+			$query .= " AND donor_name LIKE :donor_name";
+			$params[":donor_name"] = "%" . $filters["donor_name"] . "%";
+		}
+
+		$query .= " ORDER BY submitted_date DESC";
+
+		return $this->db->fetchAll($query, $params);
+	}
+
+	public function updateStatus($donationId, $status, $reviewerId) {
+		return $this->db->update(
+			"donations",
+			[
+				"status" => $status,
+				"reviewed_date" => date("Y-m-d H:i:s"),
+				"reviewer_id" => $reviewerId
+			],
+			"donation_id = :donation_id",
+			[":donation_id" => $donationId]
+		);
+	}
+
+	public function getStats() {
+		$stats = [];
+
+		$result = $this->db->fetchOne("SELECT COUNT(*) as count FROM donations WHERE status = 'pending'");
+		$stats["pending"] = $result ? $result["count"] : 0;
+
+		$result = $this->db->fetchOne(
+			"SELECT COUNT(*) as count FROM donations WHERE status = 'approved' AND DATE(reviewed_date) = DATE('now')"
+		);
+		$stats["approved_today"] = $result ? $result["count"] : 0;
+
+		$result = $this->db->fetchOne("SELECT COUNT(*) as count FROM donations WHERE status = 'approved'");
+		$stats["total_approved"] = $result ? $result["count"] : 0;
+
+		$result = $this->db->fetchOne("SELECT COUNT(*) as count FROM donations");
+		$stats["total"] = $result ? $result["count"] : 0;
+
+		return $stats;
+	}
+}

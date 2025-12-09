@@ -4,27 +4,27 @@ $current_page = basename($_SERVER["PHP_SELF"]);
 
 // Set navigation options based on user role
 if ($account_data["user_role"] === "admin") {
-    $nav_items = [
-        ["label" => "Overview", "url" => "admin_dashboard.php"],
-        ["label" => "Manage Users", "url" => "admin_manage_users.php"],
-        ["label" => "Donations", "url" => "admin_donations.php"],
-        ["label" => "System Settings", "url" => "admin_system_settings.php"]
-    ];
+	$nav_items = [
+		["label" => "Overview", "url" => "admin_dashboard.php"],
+		["label" => "Manage Users", "url" => "admin_manage_users.php"],
+		["label" => "Donations", "url" => "admin_donations.php"],
+		["label" => "System Settings", "url" => "admin_system_settings.php"]
+	];
 } else if ($account_data["user_role"] === "staff") {
-    $nav_items = [
-        ["label" => "Overview", "url" => "staff_dashboard.php"],
-        ["label" => "Pending Donations", "url" => "staff_pending_donations.php"],
-        ["label" => "Inventory", "url" => "staff_inventory.php"],
-        ["label" => "Reports", "url" => "staff_reports.php"]
-    ];
+	$nav_items = [
+		["label" => "Overview", "url" => "staff_dashboard.php"],
+		["label" => "Pending Donations", "url" => "staff_pending_donations.php"],
+		["label" => "Inventory", "url" => "staff_inventory.php"],
+		["label" => "Reports", "url" => "staff_reports.php"]
+	];
 } else { // donor
-    $nav_items = [
-        ["label" => "Dashboard", "url" => "account.php"],
-        ["label" => "Donations", "url" => "user_donate.php"],
-        ["label" => "Profile", "url" => "user_profile.php"],
-        ["label" => "Notifications", "url" => "user_notifications.php"],
-        ["label" => "Help & Support", "url" => "user_help_and_support.php"],
-    ];
+	$nav_items = [
+		["label" => "Dashboard", "url" => "account.php"],
+		["label" => "Donations", "url" => "user_donate.php"],
+		["label" => "Profile", "url" => "user_profile.php"],
+		["label" => "Notifications", "url" => "user_notifications.php"],
+		["label" => "Help & Support", "url" => "user_help_and_support.php"],
+	];
 }
 ?>
 

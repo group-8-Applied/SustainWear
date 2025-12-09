@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# if real file/dir, use that
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# else point to index.php (it will create router) whilst keeping query str
+RewriteRule ^(.*)$ index.php [QSA,L]
