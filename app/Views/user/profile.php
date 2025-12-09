@@ -30,12 +30,12 @@
 						<div class="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-3">
 							<div class="flex-1 flex flex-col">
 								<label class="block text-sm mb-1" for="Name"><strong>Full Name</strong></label>
-								<input id="Name" type="text" name="Name" placeholder="Enter your full name" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"/>
+								<input id="Name" type="text" name="Name" placeholder="Enter your full name" value="<?= $user["full_name"]?>" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"/>
 							</div>
 
 							<div class="flex-1 flex flex-col">
 								<label class="block text-sm mb-1" for="Email"><strong>Email Address</strong></label>
-								<input id="Email" type="email" name="Email" placeholder="Enter your email address" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"/>
+								<input id="Email" type="email" name="Email" placeholder="Enter your email address" value="<?= $user["email"]?>" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"/>
 							</div>
 						</div>
 
