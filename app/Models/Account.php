@@ -127,33 +127,63 @@ class Account {
 		return $this->db->fetchAll("SELECT user_id, full_name, email, user_role, is_active FROM accounts ORDER BY full_name ASC");
 	}
 
-	public function getFiltered($filters = []) {
-		$query = "SELECT user_id, full_name, email, user_role, is_active FROM accounts WHERE 1=1";
+	public function buildFilterConditions($filters = []) {
+		$conditions = [];
 		$params = [];
 
 		// filter by name/email
 		if (!empty($filters["search"])) {
-			$query .= " AND (full_name LIKE :search OR email LIKE :search)";
+			$conditions[] = "(full_name LIKE :search OR email LIKE :search)";
 			$params[":search"] = "%" . $filters["search"] . "%"; // % means contained anywhere
 		}
 
 		// filter by role
 		if (!empty($filters["role"]) && $filters["role"] !== "Any") {
-			$query .= " AND user_role = :role";
+			$conditions[] = "user_role = :role";
 			$params[":role"] = strtolower($filters["role"]);
 		}
 
 		// filter by status
 		if (!empty($filters["status"]) && $filters["status"] !== "Any") {
 			$isActive = boolval($filters["status"] === "Active");
-			$query .= " AND is_active = :is_active";
+			$conditions[] = "is_active = :is_active";
 			$params[":is_active"] = $isActive;
 		}
 
-		// sort by name alphabetically
+		return ["conditions" => $conditions, "params" => $params];
+	}
+
+	// so we can get a count without fetching all entries at once
+	public function countUsingFilters($filters = []) {
+		$query = "SELECT COUNT(*) as count FROM accounts WHERE 1=1"; // start with all
+
+		// build conditions
+		$filterData = $this->buildFilterConditions($filters);
+		foreach ($filterData["conditions"] as $condition) {
+			$query .= " AND " . $condition;
+		}
+
+		$result = $this->db->fetchOne($query, $filterData["params"]);
+		return $result ? intval($result["count"]) : 0;
+	}
+
+	public function getFiltered($filters = [], $limit = null, $offset = 0) {
+		$query = "SELECT user_id, full_name, email, user_role, is_active FROM accounts WHERE 1=1";
+
+		$filterData = $this->buildFilterConditions($filters);
+		foreach ($filterData["conditions"] as $condition) {
+			$query .= " AND " . $condition;
+		}
+
 		$query .= " ORDER BY full_name ASC";
 
-		return $this->db->fetchAll($query, $params);
+		if ($limit !== null) {
+			$query .= " LIMIT :limit OFFSET :offset";
+			$filterData["params"][":limit"] = $limit;
+			$filterData["params"][":offset"] = $offset;
+		}
+
+		return $this->db->fetchAll($query, $filterData["params"]);
 	}
 
 	public function getEmployeeNames() {

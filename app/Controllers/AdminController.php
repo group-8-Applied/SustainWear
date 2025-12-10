@@ -60,9 +60,19 @@ class AdminController extends ControllerBase {
 			$filters["status"] = $_GET["status"];
 		}
 
+		$perPage = 10;
+		$userCount = $this->accountModel->countUsingFilters($filters);
+		$pageCount = ceil($userCount / $perPage);
+
+		$pageGET = isset($_GET["page"]) && is_numeric($_GET["page"]) ? intval($_GET["page"]) : 1;
+		$currentPage = min(max(1, $pageGET), max(1, $pageCount)); // clamp between 1 and pageCount
+
 		$this->render("admin/manage-users", [
-			"users" => $this->accountModel->getFiltered($filters),
+			"users" => $this->accountModel->getFiltered($filters, $perPage, ($currentPage - 1) * $perPage),
 			"filters" => $filters,
+			"currentPage" => $currentPage,
+			"pageCount" => $pageCount,
+			"userCount" => $userCount,
 			"statusMessage" => $statusMessage,
 			"isError" => $isError
 		]);

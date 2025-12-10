@@ -66,7 +66,7 @@
 			<section class="mb-6">
 				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
 					<p class="font-bold text-lg mb-3">
-						Users in the system (<?= count($users) ?>)
+						Users in the system
 					</p>
 
 					<?php if (empty($users)): ?>
@@ -123,6 +123,13 @@
 							</table>
 						</div>
 					<?php endif; ?>
+
+					<?php
+						// pagination component for the table
+						$totalCount = $userCount;
+						$tableLabel = "users";
+						include __DIR__ . "/../components/pagination.php";
+					?>
 				</div>
 			</section>
 
