@@ -95,6 +95,37 @@ class Database {
 		return $this->connection->changes();
 	}
 
+	public function upsert($table_name, $data, $conflictColumns = []) {
+		$keys = array_keys($data);
+		$values = array_map(fn($col) => ":$col", $keys);
+
+		// build insert query
+		$sql = "INSERT INTO $table_name (" . implode(", ", $keys) . ") VALUES (" . implode(", ", $values) . ")";
+
+		// if we may need to handle conflicts
+		if (!empty($conflictColumns)) {
+			// for each conflicting column, modify it upon conflict
+			$sql .= " ON CONFLICT(" . implode(", ", $conflictColumns) . ") DO UPDATE SET ";
+			$updateParts = [];
+			foreach ($keys as $key) {
+				if (!in_array($key, $conflictColumns)) {
+					$updateParts[] = "$key = :$key";
+				}
+			}
+			$sql .= implode(", ", $updateParts);
+		}
+
+		// bind params
+		$params = [];
+		foreach ($data as $key => $value) {
+			$params[":$key"] = $value;
+		}
+
+		$this->query($sql, $params);
+		return $this->connection->changes();
+	}
+
+
 	public function resetDatabase() {
 		// disconnect from database
 		$this->connection->close();

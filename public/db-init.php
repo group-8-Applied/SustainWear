@@ -46,6 +46,11 @@ $db->exec("CREATE TABLE IF NOT EXISTS donations (
 	FOREIGN KEY (reviewer_id) REFERENCES accounts(user_id)
 )");
 
+$db->exec("CREATE TABLE IF NOT EXISTS settings (
+	setting_key TEXT PRIMARY KEY,
+	setting_value TEXT NOT NULL
+)");
+
 createUser($db, "Jake Flem", "jake.flem@gmail.com", "bigflemmer", "donor");
 createUser($db, "Saint Montgomery", "saintmo@hotmail.com", "patrick", "staff");
 createUser($db, "Prawn Teacon", "pt123@live.com", "coolcola251", "admin");
