@@ -50,22 +50,6 @@
 						</div>
 
 						<div>
-							<label class="flex items-center gap-2">
-								<input type="checkbox" class="w-4 h-4" />
-								<span>Require email verification</span>
-							</label>
-						</div>
-
-						<div>
-							<label class="block font-bold mb-2">Default user role</label>
-							<select class="w-full border border-gray-300 rounded px-3 py-2">
-								<option selected>Donor</option>
-								<option>Staff</option>
-								<option>Admin</option>
-							</select>
-						</div>
-
-						<div>
 							<label class="block font-bold mb-2">Session timeout (minutes)</label>
 							<input type="number" value="60" class="w-full border border-gray-300 rounded px-3 py-2" />
 						</div>
