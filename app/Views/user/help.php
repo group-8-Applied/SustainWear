@@ -5,7 +5,6 @@
 	$helpQuestionsFakeList = [
 		["question" => "How do I donate clothes?", "answer" => "Go to the Donations page, fill in the item details, and submit the form. Staff will then review your donation."],
 		["question" => "What happens after I submit a donation?", "answer" => "Your donation will appear with the status Pending. A staff member will approve or decline it and the status will update."],
-		["question" => "I forgot my password, what do I do?", "answer" => "On the login screen, use the Forgot password link. You will be emailed instructions to reset it (planned feature)."],
 		["question" => "Who can see my donations?", "answer" => "Only authorised charity staff and administrators can see detailed donation information."]
 	];
 ?>
@@ -63,37 +62,6 @@
 							</li>
 						<?php endforeach; ?>
 					</ul>
-				</div>
-			</section>
-
-			<section class="mb-6">
-				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
-					<p class="font-bold text-lg">
-						Contact support
-					</p>
-					<p class="text-sm text-gray-600 mt-1">Use this form to describe a problem or ask a question. Not functional as of right now</p>
-
-					<form method="POST" class="mt-3">
-						<div class="flex flex-wrap gap-4 mt-3">
-							<div class="flex-1 min-w-full sm:min-w-[10rem]">
-								<label class="block text-sm mb-1" for="help_name">Your name</label>
-								<input id="help_name" name="help_name" type="text" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="How should we address you?" />
-							</div>
-							<div class="flex-1 min-w-full sm:min-w-[10rem]">
-								<label class="block text-sm mb-1" for="help_topic">Topic (optional)</label>
-								<input id="help_topic" name="help_topic" type="text" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="e.g. Donations, Login, Account" />
-							</div>
-						</div>
-						<div class="flex flex-wrap gap-4 mt-3">
-							<div class="flex-1 min-w-full sm:min-w-[10rem]">
-								<label class="block text-sm mb-1" for="help_message">What do you need help with?</label>
-								<textarea id="help_message" name="help_message" rows="4" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Write a short description of the issue."></textarea>
-							</div>
-						</div>
-						<div class="flex flex-wrap gap-4 mt-3">
-							<button type="submit" class="border border-gray-300 rounded bg-blue-500 text-white text-xs cursor-pointer mr-1 px-2 py-1 hover:bg-blue-600 transition-colors">Send message</button>
-						</div>
-					</form>
 				</div>
 			</section>
 		</main>
