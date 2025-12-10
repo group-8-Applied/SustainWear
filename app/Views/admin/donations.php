@@ -19,12 +19,8 @@
 		<?php include __DIR__ . "/../components/sidebar.php"; ?>
 
 		<main class="flex-1 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8">
-
 			<section class="mb-6">
 				<h2 class="text-2xl font-bold mb-4">Donations Management</h2>
-				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
-					<p>You are signed in as <strong><?= $user["full_name"]; ?></strong> (<?= $user["user_role"]; ?>).</p>
-				</div>
 			</section>
 
 			<section class="mb-6">

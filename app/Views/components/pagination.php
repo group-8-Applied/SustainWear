@@ -11,7 +11,7 @@
 					if (!empty($value)) $queryParams[$key] = $value;
 				}
 				$queryString = http_build_query($queryParams); // url encode
-				$paginationBaseUrl = $_SERVER['REQUEST_URI'] . "?" . ($queryString ? $queryString . "&" : "");
+				$paginationBaseUrl = $_SERVER["REQUEST_URI"] . "?" . ($queryString ? $queryString . "&" : "");
 			?>
 
 			<?php if ($currentPage > 1): ?>

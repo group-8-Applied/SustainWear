@@ -35,6 +35,7 @@
 					</div>
 				</div>
 			</section>
+
 			<section class="mb-6">
 				<div class="flex flex-col sm:flex-row gap-4">
 					<div class="flex-1 min-w-full sm:min-w-[200px] bg-white rounded-xl shadow-md p-6 sm:p-8">

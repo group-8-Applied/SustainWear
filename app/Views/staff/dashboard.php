@@ -23,13 +23,10 @@
 						<h3 class="font-bold text-lg">Full Name</h3>
 						<p><?= $user["full_name"]; ?></p>
 					</div>
+
 					<div class="mt-4">
 						<h3 class="font-bold text-lg">Email</h3>
 						<p><?= $user["email"]; ?></p>
-					</div>
-					<div class="mt-4">
-						<h3 class="font-bold text-lg">Role</h3>
-						<p><?= $user["user_role"]; ?></p>
 					</div>
 				</div>
 			</section>

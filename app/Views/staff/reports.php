@@ -17,11 +17,8 @@
 		<main class="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8">
 			<section class="mb-6">
 				<h2 class="text-2xl font-bold mb-4">Reports</h2>
-				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
-					<p>You are signed in as <strong><?= $user["full_name"]; ?></strong> (<?= $user["user_role"]; ?>).</p>
-					<p class="mt-2 text-sm text-gray-700">View donation and inventory statistics and trends.</p>
-				</div>
 			</section>
+
 			<section class="mb-6">
 				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
 					<p class="font-bold text-lg mb-3">Monthly summary</p>

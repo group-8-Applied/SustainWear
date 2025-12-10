@@ -28,7 +28,6 @@ $declinedTodayCount = count(array_filter($declinedToday, function($d) {
 		<?php include __DIR__ . "/../components/sidebar.php"; ?>
 
 		<main class="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8">
-
 			<section class="mb-6">
 				<h2 class="text-2xl font-bold mb-4">Pending Donations</h2>
 				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">

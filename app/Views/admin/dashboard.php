@@ -16,7 +16,6 @@
 		<?php include __DIR__ . "/../components/sidebar.php"; ?>
 
 		<main class="flex-1 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8">
-
 			<section class="mb-6">
 				<h2 class="text-2xl font-bold mb-4">Admin Dashboard</h2>
 
@@ -30,13 +29,9 @@
 						<h3 class="font-bold text-lg">Email</h3>
 						<p><?= $user["email"]; ?></p>
 					</div>
-
-					<div class="mt-4">
-						<h3 class="font-bold text-lg">Role</h3>
-						<p><?= $user["user_role"]; ?></p>
-					</div>
 				</div>
 			</section>
+
 			<section class="mb-6">
 				<div class="flex flex-col sm:flex-row gap-4">
 
