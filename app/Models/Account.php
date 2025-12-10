@@ -109,4 +109,47 @@ class Account {
 
 		return true;
 	}
+
+	public function updateUser($email, $newRole = null, $newPassword = null) {
+		$user = $this->db->fetchOne(
+			"SELECT user_id FROM accounts WHERE email = :email",
+			[":email" => $email]
+		);
+
+		if (!$user) {
+			return [
+				"success" => false,
+				"error" => "User not found"
+			];
+		}
+
+		// will contain the changes to make
+		$updateData = [];
+
+		if ($newRole !== null && !empty($newRole)) { // role is being changed
+			if (!in_array($newRole, ["admin", "staff", "donor"])) { // ensure it's a valid value
+				return [
+					"success" => false,
+					"error" => "Invalid role"
+				];
+			}
+			$updateData["user_role"] = $newRole;
+		}
+
+		if ($newPassword !== null && !empty($newPassword)) {
+			$updateData["password_hash"] = password_hash($newPassword, PASSWORD_BCRYPT);
+		}
+
+		$this->db->update(
+			"accounts",
+			$updateData,
+			"user_id = :user_id",
+			[":user_id" => $user["user_id"]]
+		);
+
+		return [
+			"success" => true,
+			"message" => "User updated successfully"
+		];
+	}
 }

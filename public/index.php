@@ -118,6 +118,10 @@ $router->add("GET", "/admin/users", "AdminController@manageUsers")->useMiddlewar
 	Auth::requireRole("admin");
 });
 
+$router->add("POST", "/admin/users", "AdminController@manageUsers")->useMiddleware(function() {
+	Auth::requireRole("admin");
+});
+
 $router->add("GET", "/admin/donations", "AdminController@donations")->useMiddleware(function() {
 	Auth::requireRole("admin");
 });

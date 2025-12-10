@@ -97,24 +97,35 @@
 
 			<section class="mb-6">
 				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
-					<p class="font-bold text-lg mb-3">Change a user's role</p>
-					<form method="POST">
+					<p class="font-bold text-lg mb-3">Change a user's role or password</p>
+
+					<?php if (isset($statusMessage)): ?>
+						<div class="mb-4 p-3 rounded border <?= $isError ? 'bg-red-100 border-red-400 text-red-700' : 'bg-green-100 border-green-400 text-green-700'; ?>">
+							<?= htmlspecialchars($statusMessage); ?>
+						</div>
+					<?php endif; ?>
+
+					<form method="POST" action="/admin/users">
 						<div class="flex flex-wrap gap-4 items-end">
 							<div class="flex-1 min-w-full sm:min-w-[10rem]">
-								<label class="block text-sm mb-1" for="role-change-email">User email</label>
-								<input id="role-change-email" name="role_change_email" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="email" placeholder="user@example.com"/>
+								<label class="block text-sm mb-1" for="user_email">User email</label>
+								<input id="user_email" name="user_email" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="email" placeholder="user@example.com" required/>
 							</div>
 							<div class="flex-1 min-w-full sm:min-w-[10rem]">
-								<label class="block text-sm mb-1" for="role-change-role">New role</label>
-								<select id="role-change-role" name="role_change_role" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+								<label class="block text-sm mb-1" for="new_role">New role</label>
+								<select id="new_role" name="new_role" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
 									<option value="">Pick one...</option>
 									<option value="admin">Admin</option>
 									<option value="staff">Staff</option>
 									<option value="donor">Donor</option>
 								</select>
 							</div>
+							<div class="flex-1 min-w-full sm:min-w-[10rem]">
+								<label class="block text-sm mb-1" for="new_password">New password</label>
+								<input id="new_password" name="new_password" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="password" placeholder="Password (if needed)"/>
+							</div>
 							<div class="flex-none">
-								<button type="submit" class="border border-gray-300 rounded bg-blue-500 text-white text-xs cursor-pointer px-2 py-1 hover:bg-blue-600 transition-colors">Change role</button>
+								<button type="submit" class="border border-gray-300 rounded bg-blue-500 text-white text-xs cursor-pointer px-2 py-1 hover:bg-blue-600 transition-colors">Update</button>
 							</div>
 						</div>
 					</form>

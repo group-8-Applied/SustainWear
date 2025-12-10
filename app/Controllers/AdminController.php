@@ -20,9 +20,39 @@ class AdminController extends ControllerBase {
 	}
 
 	public function manageUsers() {
+		$statusMessage = null;
+		$isError = false;
+
+		// handle form submission
+		if ($_SERVER["REQUEST_METHOD"] === "POST") {
+			$userEmail = isset($_POST["user_email"]) ? strtolower(trim($_POST["user_email"])) : "";
+			$newRole = isset($_POST["new_role"]) && !empty($_POST["new_role"]) ? $_POST["new_role"] : null;
+			$newPassword = isset($_POST["new_password"]) && !empty($_POST["new_password"]) ? $_POST["new_password"] : null;
+
+			if ($newRole === null && $newPassword === null) {
+				$statusMessage = "No changes specified";
+				$isError = true;
+			} elseif (empty($userEmail)) {
+				$statusMessage = "You must provide the user's email address";
+				$isError = true;
+			} elseif (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
+				$statusMessage = "Invalid email address";
+				$isError = true;
+			} elseif ($newPassword !== null && strlen($newPassword) < 8) {
+				$statusMessage = "Password must be at least 8 characters";
+				$isError = true;
+			} else {
+				$result = $this->accountModel->updateUser($userEmail, $newRole, $newPassword);
+				$statusMessage = $result["success"] ? $result["message"] : $result["error"];
+				$isError = !$result["success"];
+			}
+		}
+
 		$users = $this->accountModel->getAll();
 		$this->render("admin/manage-users", [
-			"users" => $users
+			"users" => $users,
+			"statusMessage" => $statusMessage,
+			"isError" => $isError
 		]);
 	}
 
