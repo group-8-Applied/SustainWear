@@ -25,7 +25,8 @@ $db->exec("CREATE TABLE IF NOT EXISTS accounts (
 	email TEXT NOT NULL UNIQUE,
 	password_hash TEXT NOT NULL,
 	session_token TEXT NOT NULL,
-	user_role TEXT NOT NULL
+	user_role TEXT NOT NULL,
+	is_active INTEGER NOT NULL DEFAULT 1
 )");
 
 $db->exec("CREATE TABLE IF NOT EXISTS donations (

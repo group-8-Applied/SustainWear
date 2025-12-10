@@ -23,7 +23,7 @@ class AdminController extends ControllerBase {
 		$statusMessage = null;
 		$isError = false;
 
-		// handle form submission
+		// handle form submission (update user role/password)
 		if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			$userEmail = isset($_POST["user_email"]) ? strtolower(trim($_POST["user_email"])) : "";
 			$newRole = isset($_POST["new_role"]) && !empty($_POST["new_role"]) ? $_POST["new_role"] : null;
@@ -48,12 +48,46 @@ class AdminController extends ControllerBase {
 			}
 		}
 
-		$users = $this->accountModel->getAll();
+		// load filters from get params
+		$filters = [];
+		if (isset($_GET["search"]) && !empty($_GET["search"])) {
+			$filters["search"] = $_GET["search"];
+		}
+		if (isset($_GET["role"]) && !empty($_GET["role"])) {
+			$filters["role"] = $_GET["role"];
+		}
+		if (isset($_GET["status"]) && !empty($_GET["status"])) {
+			$filters["status"] = $_GET["status"];
+		}
+
 		$this->render("admin/manage-users", [
-			"users" => $users,
+			"users" => $this->accountModel->getFiltered($filters),
+			"filters" => $filters,
 			"statusMessage" => $statusMessage,
 			"isError" => $isError
 		]);
+	}
+
+	public function toggleAccountState() {
+		if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+			$this->redirect("/admin/users");
+			return;
+		}
+
+		$userID = $_POST["user_id"] ?? "";
+		$action = $_POST["action"] ?? "";
+
+		try {
+			if ($action === "deactivate") {
+				$this->accountModel->deactivateUser($userID);
+			} else {
+				$this->accountModel->activateUser($userID);
+			}
+		} catch (Exception $e) {
+			// caught, but do nothing since we're redirecting anyway
+		}
+
+		$this->redirect("/admin/users");
 	}
 
 	public function donations() {

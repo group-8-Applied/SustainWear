@@ -80,8 +80,80 @@ class Account {
 		return $sessionToken;
 	}
 
+
+	public function deactivateUser($userID) {
+		try {
+			$this->db->update(
+				"accounts",
+				["is_active" => 0],
+				"user_id = :user_id",
+				[":user_id" => $userID]
+			);
+
+			return [
+				"success" => true,
+				"message" => "User deactivated successfully"
+			];
+		} catch (Exception $e) {
+			return [
+				"success" => false,
+				"error" => $e->getMessage()
+			];
+		}
+	}
+
+	public function activateUser($userID) {
+		try {
+			$this->db->update(
+				"accounts",
+				["is_active" => 1],
+				"user_id = :user_id",
+				[":user_id" => $userID]
+			);
+
+			return [
+				"success" => true,
+				"message" => "User activated successfully"
+			];
+		} catch (Exception $e) {
+			return [
+				"success" => false,
+				"error" => $e->getMessage()
+			];
+		}
+	}
+
 	public function getAll() {
-		return $this->db->fetchAll("SELECT user_id, full_name, email, user_role FROM accounts");
+		return $this->db->fetchAll("SELECT user_id, full_name, email, user_role, is_active FROM accounts ORDER BY full_name ASC");
+	}
+
+	public function getFiltered($filters = []) {
+		$query = "SELECT user_id, full_name, email, user_role, is_active FROM accounts WHERE 1=1";
+		$params = [];
+
+		// filter by name/email
+		if (!empty($filters["search"])) {
+			$query .= " AND (full_name LIKE :search OR email LIKE :search)";
+			$params[":search"] = "%" . $filters["search"] . "%"; // % means contained anywhere
+		}
+
+		// filter by role
+		if (!empty($filters["role"]) && $filters["role"] !== "Any") {
+			$query .= " AND user_role = :role";
+			$params[":role"] = strtolower($filters["role"]);
+		}
+
+		// filter by status
+		if (!empty($filters["status"]) && $filters["status"] !== "Any") {
+			$isActive = boolval($filters["status"] === "Active");
+			$query .= " AND is_active = :is_active";
+			$params[":is_active"] = $isActive;
+		}
+
+		// sort by name alphabetically
+		$query .= " ORDER BY full_name ASC";
+
+		return $this->db->fetchAll($query, $params);
 	}
 
 	public function getEmployeeNames() {
