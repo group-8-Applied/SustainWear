@@ -22,34 +22,6 @@
 
 			<section class="mb-6">
 				<div class="bg-white rounded-xl shadow-md p-6">
-					<h3 class="font-bold text-lg mb-4">General Settings</h3>
-
-					<div class="flex flex-col gap-4">
-						<div>
-							<label class="block font-bold mb-2">SustainWear</label>
-							<input type="text" value="SustainWear" class="w-full border border-gray-300 rounded px-3 py-2" />
-						</div>
-
-						<div>
-							<label class="block font-bold mb-2">Contact Email</label>
-							<input type="email" value="support@sustainwear.com" class="w-full border border-gray-300 rounded px-3 py-2" />
-						</div>
-
-						<div>
-							<label class="block font-bold mb-2">System Status</label>
-							<select class="w-full border border-gray-300 rounded px-3 py-2">
-								<option>Active</option>
-								<option>Maintenance Mode</option>
-							</select>
-						</div>
-					</div>
-
-					<button class="mt-6 bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition-colors">Save General Settings</button>
-				</div>
-			</section>
-
-			<section class="mb-6">
-				<div class="bg-white rounded-xl shadow-md p-6">
 					<h3 class="font-bold text-lg mb-4">Donation Settings</h3>
 
 					<div class="flex flex-col gap-4">
