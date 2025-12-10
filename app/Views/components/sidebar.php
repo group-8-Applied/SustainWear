@@ -10,7 +10,7 @@ if ($userRole === "admin") {
 	$navItems = [
 		["label" => "Overview", "url" => "/admin/dashboard"],
 		["label" => "Manage Users", "url" => "/admin/users"],
-		["label" => "Donations", "url" => "/admin/donations"],
+		["label" => "Manage Donations", "url" => "/admin/donations"],
 		["label" => "System Settings", "url" => "/admin/settings"],
 		["label" => "Profile", "url" => "/user/profile"]
 	];
@@ -18,7 +18,7 @@ if ($userRole === "admin") {
 	$navItems = [
 		["label" => "Overview", "url" => "/staff/dashboard"],
 		["label" => "Pending Donations", "url" => "/staff/pending-donations"],
-		["label" => "Donations", "url" => "/admin/donations"],
+		["label" => "Manage Donations", "url" => "/admin/donations"],
 		["label" => "Inventory", "url" => "/staff/inventory"],
 		["label" => "Reports", "url" => "/staff/reports"],
 		["label" => "Profile", "url" => "/user/profile"]
