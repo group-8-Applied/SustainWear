@@ -3,7 +3,7 @@ $user = Auth::getUser();
 $userRole = $user["user_role"];
 
 // Used to highlight current page
-$currentPath = $_SERVER["REQUEST_URI"];
+$currentPath = explode("?", $_SERVER["REQUEST_URI"])[0];
 
 // Set navigation options based on user role
 if ($userRole === "admin") {
