@@ -11,7 +11,8 @@ if ($userRole === "admin") {
 		["label" => "Overview", "url" => "/admin/dashboard"],
 		["label" => "Manage Users", "url" => "/admin/users"],
 		["label" => "Donations", "url" => "/admin/donations"],
-		["label" => "System Settings", "url" => "/admin/settings"]
+		["label" => "System Settings", "url" => "/admin/settings"],
+		["label" => "Profile", "url" => "/user/profile"]
 	];
 } elseif ($userRole === "staff") {
 	$navItems = [
@@ -19,7 +20,8 @@ if ($userRole === "admin") {
 		["label" => "Pending Donations", "url" => "/staff/pending-donations"],
 		["label" => "Donations", "url" => "/admin/donations"],
 		["label" => "Inventory", "url" => "/staff/inventory"],
-		["label" => "Reports", "url" => "/staff/reports"]
+		["label" => "Reports", "url" => "/staff/reports"],
+		["label" => "Profile", "url" => "/user/profile"]
 	];
 } else { // donor
 	$navItems = [
