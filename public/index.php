@@ -127,7 +127,7 @@ $router->add("POST", "/admin/toggle-account-state", "AdminController@toggleAccou
 });
 
 $router->add("GET", "/admin/donations", "AdminController@donations")->useMiddleware(function() {
-	Auth::requireRole("admin");
+	Auth::requireRole("staff");
 });
 
 $router->add("GET", "/admin/settings", "AdminController@settings")->useMiddleware(function() {

@@ -17,6 +17,7 @@ if ($userRole === "admin") {
 	$navItems = [
 		["label" => "Overview", "url" => "/staff/dashboard"],
 		["label" => "Pending Donations", "url" => "/staff/pending-donations"],
+		["label" => "Donations", "url" => "/admin/donations"],
 		["label" => "Inventory", "url" => "/staff/inventory"],
 		["label" => "Reports", "url" => "/staff/reports"]
 	];
