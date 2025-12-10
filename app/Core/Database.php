@@ -94,4 +94,19 @@ class Database {
 		$this->query($sql, $params);
 		return $this->connection->changes();
 	}
+
+	public function resetDatabase() {
+		// disconnect from database
+		$this->connection->close();
+
+		// remove file if it exists
+		$dbPath = __DIR__ . "/../../database.db";
+		if (file_exists($dbPath)) {
+			unlink($dbPath);
+		}
+
+		// redirect to database initialisation script
+		header("Location: /db-init.php");
+		exit();
+	}
 }

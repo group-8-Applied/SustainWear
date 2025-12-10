@@ -138,6 +138,10 @@ $router->add("GET", "/admin/settings", "AdminController@settings")->useMiddlewar
 	Auth::requireRole("admin");
 });
 
+$router->add("POST", "/admin/reset-database", "AdminController@resetDatabase")->useMiddleware(function() {
+	Auth::requireRole("admin");
+});
+
 
 // handle current incoming request
 $router->handleRequest();

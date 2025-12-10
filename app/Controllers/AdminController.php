@@ -161,6 +161,10 @@ class AdminController extends ControllerBase {
 		}
 	}
 
+	public function resetDatabase() {
+		Database::getInstance()->resetDatabase();
+	}
+
 	public function settings() {
 		$this->render("admin/settings");
 	}
