@@ -224,8 +224,9 @@ class UserController extends ControllerBase {
 				["question" => "How do I donate clothes?", "answer" => "To make a donation, go to the Donations page and fill out the form. You can attach a photo if you'd like, as well as a special note. Your donation will be reviewed by a member of staff and its status will be available on the Donations page."],
 				["question" => "What happens after I submit a donation?", "answer" => "Your donation will appear with the status 'pending'. A staff member will approve or decline it and the status will be updated on the Donations page."],
 				["question" => "Who can see my donations?", "answer" => "Only authorised charity staff and administrators can see donation information."],
+				["question" => "Where can I see my donation history?", "answer" => "You can view your donation history from the Donations page."],
 				["question" => "How can I delete my account?", "answer" => "You can delete your account by going to the Profile page and confirming your password. This process will remove all information associated with your account."],
-				["question" => "Can I change my account information or password?", "answer" => "You can update your account information by going to the Profile page."],
+				["question" => "Can I change my account information or password?", "answer" => "You can update your account information by going to the Profile page."]
 			]
 		]);
 	}
