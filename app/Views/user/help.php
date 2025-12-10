@@ -20,7 +20,7 @@
 
 			<section class="mb-6">
 				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
-					<p class="font-bold text-lg">Common questions</p>
+					<p class="font-bold text-lg">Frequently Asked Questions</p>
 
 					<ul class="list-none mt-3 p-0">
 						<?php foreach ($faqs as $row): ?>
