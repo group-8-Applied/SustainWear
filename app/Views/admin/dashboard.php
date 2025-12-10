@@ -1,7 +1,3 @@
-<?php
-	$user = Auth::getUser();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
