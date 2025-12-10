@@ -76,8 +76,8 @@
 						</div>
 					</form>
 
-					<?php if (!empty($donationMessage)): ?>
-						<p class="mt-3 text-[0.8rem] <?= $isError ? "text-red-600" : "text-green-600" ?>"><?= htmlspecialchars($donationMessage) ?></p>
+					<?php if (!empty($statusMessage)): ?>
+						<p class="mt-3 text-[0.8rem] <?= $isError ? "text-red-600" : "text-green-600" ?>"><?= htmlspecialchars($statusMessage) ?></p>
 					<?php endif ?>
 				</div>
 			</section>

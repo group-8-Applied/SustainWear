@@ -28,7 +28,7 @@ class UserController extends ControllerBase {
 		$this->render("user/donate", [
 			"user" => $user,
 			"donations" => $donations,
-			"donationMessage" => "",
+			"statusMessage" => "",
 			"isError" => false
 		]);
 	}
@@ -40,6 +40,8 @@ class UserController extends ControllerBase {
 		}
 
 		$user = Auth::getUser();
+		$statusMessage = null;
+		$isError = false;
 
 		$itemType = $_POST["item_type"] ?? "";
 		$size = $_POST["size"] ?? "";
@@ -57,105 +59,75 @@ class UserController extends ControllerBase {
 		$validConditions = ["Excellent", "Good", "Acceptable"];
 
 		if (empty($itemType) || empty($size) || empty($condition)) {
-			$donations = $this->donationModel->getByDonor($user["user_id"]);
-			$this->render("user/donate", [
-				"user" => $user,
-				"donations" => $donations,
-				"donationMessage" => "Please fill in all required fields.",
-				"isError" => true
-			]);
-			return;
+			$statusMessage = "Please fill in all required fields.";
+			$isError = true;
 		}
-
 		// make sure size matches item type if it's not custom
-		if (in_array($itemType, $validItemTypes) && !in_array($size, $validSizes[$itemType])) {
-			$donations = $this->donationModel->getByDonor($user["user_id"]);
-			$this->render("user/donate", [
-				"user" => $user,
-				"donations" => $donations,
-				"donationMessage" => "Invalid size selected for this item type.",
-				"isError" => true
-			]);
-			return;
+		elseif (in_array($itemType, $validItemTypes) && !in_array($size, $validSizes[$itemType])) {
+			$statusMessage = "Invalid size selected for this item type.";
+			$isError = true;
 		}
-
 		// make sure condition is valid
-		if (!in_array($condition, $validConditions)) {
-			$donations = $this->donationModel->getByDonor($user["user_id"]);
-			$this->render("user/donate", [
-				"user" => $user,
-				"donations" => $donations,
-				"donationMessage" => "Invalid condition selected.",
-				"isError" => true
-			]);
-			return;
-		}
+		elseif (!in_array($condition, $validConditions)) {
+			$statusMessage = "Invalid condition selected.";
+			$isError = true;
+		} else { // handle photo if one was uploaded
+			$photoPath = null;
+			if (isset($_FILES["photo"]) && $_FILES["photo"]["error"] === UPLOAD_ERR_OK) { // exists and uploaded successfully
+				$allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp"];
 
-		// handle photo if one was uploaded
-		$photoPath = null;
-		if (isset($_FILES["photo"]) && $_FILES["photo"]["error"] === UPLOAD_ERR_OK) { // exists and uploaded successfully
-			$allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp"];
+				$isValidType = in_array($_FILES["photo"]["type"], $allowedTypes);
+				$isValidSize = $_FILES["photo"]["size"] < (1024 * 1024 * 10); // 10mb // todo: maybe make configurable?
 
-			$isValidType = in_array($_FILES["photo"]["type"], $allowedTypes);
-			$isValidSize = $_FILES["photo"]["size"] < (1024 * 1024 * 10); // 10mb // todo: maybe make configurable?
+				if (!$isValidType) {
+					$statusMessage = "Invalid file type. Please upload a JPG, PNG, GIF, or WebP image.";
+					$isError = true;
+				} elseif (!$isValidSize) {
+					$statusMessage = "File is too large. Maximum size is 10MB.";
+					$isError = true;
+				} else {
+					$extension = pathinfo($_FILES["photo"]["name"], PATHINFO_EXTENSION);
+					$fileName = uniqid("donation_" . $user["user_id"] . "_", true) . "." . $extension; // 23 random hex chars
 
-			if (!$isValidType || !$isValidSize) {
-				$donations = $this->donationModel->getByDonor($user["user_id"]);
-				$this->render("user/donate", [
-					"user" => $user,
-					"donations" => $donations,
-					"donationMessage" => $isValidType ? "Invalid file type. Please upload a JPG, PNG, GIF, or WebP image." : "File is too large. Maximum size is 10MB.",
-					"isError" => true
-				]);
-				return;
+					// move from tmp dir to /uploads
+					$targetPath = __DIR__ . "/../../public/uploads/donations/" . $fileName;
+					if (move_uploaded_file($_FILES["photo"]["tmp_name"], $targetPath)) {
+						$photoPath = "/uploads/donations/" . $fileName;
+					} else {
+						$statusMessage = "Error uploading photo. Please try again.";
+						$isError = true;
+					}
+				}
 			}
 
-			$extension = pathinfo($_FILES["photo"]["name"], PATHINFO_EXTENSION);
-			$fileName = uniqid("donation_" . $user["user_id"] . "_", true) . "." . $extension; // 23 random hex chars
-			
-			// move from tmp dir to /uploads
-			$targetPath = __DIR__ . "/../../public/uploads/donations/" . $fileName;
-			if (move_uploaded_file($_FILES["photo"]["tmp_name"], $targetPath)) {
-				$photoPath = "/uploads/donations/" . $fileName;
-			} else {
-				$donations = $this->donationModel->getByDonor($user["user_id"]);
-				$this->render("user/donate", [
-					"user" => $user,
-					"donations" => $donations,
-					"donationMessage" => "Error uploading photo. Please try again.",
-					"isError" => true
-				]);
-				return;
+			// create donation if no errors occurred
+			if (!$isError) {
+				try {
+					$this->donationModel->createDonation(
+						$user["user_id"],
+						$user["full_name"],
+						$itemType,
+						$size,
+						$condition,
+						$notes,
+						$photoPath
+					);
+
+					$statusMessage = "Donation submitted successfully! Your donation is now pending review.";
+				} catch (Exception $e) {
+					$statusMessage = "Error submitting donation. Please try again.";
+					$isError = true;
+				}
 			}
 		}
 
-		try {
-			$this->donationModel->createDonation(
-				$user["user_id"],
-				$user["full_name"],
-				$itemType,
-				$size,
-				$condition,
-				$notes,
-				$photoPath
-			);
-
-			$donations = $this->donationModel->getByDonor($user["user_id"]);
-			$this->render("user/donate", [
-				"user" => $user,
-				"donations" => $donations,
-				"donationMessage" => "Donation submitted successfully! Your donation is now pending review.",
-				"isError" => false
-			]);
-		} catch (Exception $e) {
-			$donations = $this->donationModel->getByDonor($user["user_id"]);
-			$this->render("user/donate", [
-				"user" => $user,
-				"donations" => $donations,
-				"donationMessage" => "Error submitting donation. Please try again.",
-				"isError" => true
-			]);
-		}
+		$donations = $this->donationModel->getByDonor($user["user_id"]);
+		$this->render("user/donate", [
+			"user" => $user,
+			"donations" => $donations,
+			"statusMessage" => $statusMessage,
+			"isError" => $isError
+		]);
 	}
 
 	public function profile() {
