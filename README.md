@@ -12,6 +12,9 @@
 1. **Install MAMP**
    - Download and install MAMP from https://www.mamp.info/
    - Move SustainWear project files to `<MAMP PATH>/htdocs/`
+   - Ensure rewrite_module is enabled in httpd.conf
+      - Located at `<MAMP PATH>/conf/apache/httpd.conf`
+      - Ensure `#` is removed from line `#LoadModule rewrite_module modules/mod_rewrite.so`  
 
 2. **Install Tailwind CSS CLI**
    - Download the latest executable from https://github.com/tailwindlabs/tailwindcss/releases/latest
