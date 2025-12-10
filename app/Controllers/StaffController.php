@@ -85,12 +85,12 @@ class StaffController extends ControllerBase {
 
 		// use stock level param if exists else all
 		$stockLevelFilter = !empty($_GET["stock_level"]) ? $_GET["stock_level"] : "all";
-		
+
 		// store stats per category
 		$standardTypes = ["Coat", "Jeans", "T-Shirt", "Shoes"];
 		$categoryStats = array_fill_keys($standardTypes, 0);
 		$categoryStats["Other"] = 0;
-		
+
 		// load inventory items into array
 		$inventoryItems = [];
 		$filteredDonations = $this->donationModel->getResults($filters);
@@ -148,6 +148,95 @@ class StaffController extends ControllerBase {
 	}
 
 	public function reports() {
-		$this->render("staff/reports");
+		$standardTypes = ["Coat", "Jeans", "T-Shirt", "Shoes"];
+
+		$allDonations = $this->donationModel->getResults([]);
+		$totalDonations = count($allDonations);
+
+		$currentMonth = date("Y-m"); // numeric
+		$currentMonthName = date("F Y"); // text
+
+		// will store stats
+		$monthlyStats = [];
+		$currentMonthReceived = 0;
+		$currentMonthApproved = 0;
+		$currentMonthDeclined = 0;
+
+		// will be $categoryStats["Coats"] etc
+		$categoryStats = [];
+
+		foreach ($allDonations as $donation) {
+			$monthSubmitted = date("Y-m", strtotime($donation["submitted_date"]));
+			$monthLabel = date("F Y", strtotime($donation["submitted_date"]));
+
+			// insert month dict if not yet created
+			if (!isset($monthlyStats[$monthSubmitted])) {
+				$monthlyStats[$monthSubmitted] = [
+					"label" => $monthLabel,
+					"received" => 0,
+					"approved" => 0,
+					"declined" => 0
+				];
+			}
+
+			// increment stats
+			$monthlyStats[$monthSubmitted]["received"]++;
+
+			if ($donation["status"] === "approved") {
+				$monthlyStats[$monthSubmitted]["approved"]++;
+			} elseif ($donation["status"] === "declined") {
+				$monthlyStats[$monthSubmitted]["declined"]++;
+			}
+
+			// if month is current month
+			if ($monthSubmitted === $currentMonth) {
+				$currentMonthReceived++;
+
+				if ($donation["status"] === "approved") {
+					$currentMonthApproved++;
+
+					// if it's not a regular item, just put it in the "Other" category
+					$itemType = in_array($donation["item_type"], $standardTypes) ? $donation["item_type"] : "Other";
+					if (!isset($categoryStats[$itemType])) {
+						$categoryStats[$itemType] = 0;
+					}
+
+					$categoryStats[$itemType]++;
+				} elseif ($donation["status"] === "declined") {
+					$currentMonthDeclined++;
+				}
+			}
+		}
+
+		// sort months to have most recent first
+		krsort($monthlyStats);
+
+		// sort categories to have the most popular ones first
+		arsort($categoryStats);
+
+		// count all-time stats
+		$totalApproved = 0;
+		$totalDeclined = 0;
+
+		foreach ($allDonations as $donation) {
+			// we don't care about pending here
+			if ($donation["status"] === "approved") {
+				$totalApproved++;
+			} elseif ($donation["status"] === "declined") {
+				$totalDeclined++;
+			}
+		}
+
+		$this->render("staff/reports", [
+			"currentMonthName" => $currentMonthName,
+			"currentMonthReceived" => $currentMonthReceived,
+			"currentMonthApproved" => $currentMonthApproved,
+			"currentMonthDeclined" => $currentMonthDeclined,
+			"monthlyStats" => $monthlyStats,
+			"categoryStats" => $categoryStats,
+			"totalDonations" => $totalDonations,
+			"totalApproved" => $totalApproved,
+			"approvalRate" => $totalDonations > 0 ? round(($totalApproved / $totalDonations) * 100) : 0
+		]);
 	}
 }
