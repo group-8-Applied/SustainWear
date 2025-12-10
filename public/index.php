@@ -130,11 +130,11 @@ $router->add("GET", "/admin/donations", "AdminController@donations")->useMiddlew
 	Auth::requireRole("staff");
 });
 
-$router->add("GET", "/admin/settings", "AdminController@settings")->useMiddleware(function() {
-	Auth::requireRole("admin");
+$router->add("POST", "/admin/update-donation", "AdminController@updateDonation")->useMiddleware(function() {
+	Auth::requireRole("staff");
 });
 
-$router->add("POST", "/admin/update-donation", "AdminController@updateDonation")->useMiddleware(function() {
+$router->add("GET", "/admin/settings", "AdminController@settings")->useMiddleware(function() {
 	Auth::requireRole("admin");
 });
 
