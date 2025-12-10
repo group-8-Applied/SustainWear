@@ -17,7 +17,7 @@
 
 				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5 flex flex-col gap-3 items-start">
 					<p>You are logged in as <?=$user["full_name"]?> <br> <?=$user["email"] ?>.</p>
-					<p>Use the form below to record a clothing donation. Staff will review it and later change the status to <strong class="text-green-600">Approved</strong> or <strong class="text-red-500">Declined</strong>.</p>
+					<p>Use the form below to submit a clothing donation. Staff will review it and change the status to <strong class="text-green-600">Approved</strong> or <strong class="text-red-500">Declined</strong>.</p>
 				</div>
 			</section>
 
