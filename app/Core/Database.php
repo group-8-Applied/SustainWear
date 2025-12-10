@@ -7,7 +7,7 @@ class Database {
 	private function __construct() {
 		$dbPath = __DIR__ . "/../../database.db";
 		if (!file_exists($dbPath)) {
-			echo "Visit <a href='db-init.php'>db-init.php</a> to initialise the database.<br>";
+			echo "Visit <a href='/db-init.php'>db-init.php</a> to initialise the database.<br>";
 			die("Database does not exist.");
 		}
 		$this->connection = new SQLite3($dbPath);

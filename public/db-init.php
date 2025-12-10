@@ -1,11 +1,23 @@
 <?php
 
 if (file_exists(__DIR__ . "/../database.db")) {
-	echo "Database already exists. Delete database.db first if you want to reinitialize.";
+	echo "Database already exists. Delete database.db first if you want to reinitialise.";
 	exit();
 }
 
 $db = new SQLite3(__DIR__ . "/../database.db");
+
+function createUser($db, $email, $password, $role) {
+	$passwordHash = password_hash($password, PASSWORD_BCRYPT);
+
+	$db->exec("INSERT INTO accounts (full_name, email, password_hash, session_token, user_role) VALUES (
+		'$email',
+		'$email',
+		'$passwordHash',
+		'',
+		'$role'
+	)");
+}
 
 $db->exec("CREATE TABLE IF NOT EXISTS accounts (
 	user_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -33,32 +45,9 @@ $db->exec("CREATE TABLE IF NOT EXISTS donations (
 	FOREIGN KEY (reviewer_id) REFERENCES accounts(user_id)
 )");
 
-$passwordHash = password_hash("bigflemmer", PASSWORD_BCRYPT);
-$db->exec("INSERT INTO accounts (full_name, email, password_hash, session_token, user_role) VALUES (
-	'Jake Flemmings',
-	'jake.flem@gmail.com',
-	'$passwordHash',
-	'',
-	'donor'
-)");
-
-$passwordHash2 = password_hash("patrick", PASSWORD_BCRYPT);
-$db->exec("INSERT INTO accounts (full_name, email, password_hash, session_token, user_role) VALUES (
-	'Saint Montgomery',
-	'saintmo@hotmail.com',
-	'$passwordHash2',
-	'',
-	'staff'
-)");
-
-$passwordHash3 = password_hash("coolcola251", PASSWORD_BCRYPT);
-$db->exec("INSERT INTO accounts (full_name, email, password_hash, session_token, user_role) VALUES (
-	'Prawn Teacon',
-	'pt123@live.com',
-	'$passwordHash3',
-	'',
-	'admin'
-)");
+createUser($db, "jake.flem@gmail.com", "bigflemmer", "donor");
+createUser($db, "saintmo@hotmail.com", "patrick", "staff");
+createUser($db, "pt123@live.com", "coolcola251", "admin");
 
 echo "Database initialised<br>";
 echo "Test accounts:<br>";
