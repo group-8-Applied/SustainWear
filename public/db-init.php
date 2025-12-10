@@ -7,11 +7,11 @@ if (file_exists(__DIR__ . "/../database.db")) {
 
 $db = new SQLite3(__DIR__ . "/../database.db");
 
-function createUser($db, $email, $password, $role) {
+function createUser($db, $name, $email, $password, $role) {
 	$passwordHash = password_hash($password, PASSWORD_BCRYPT);
 
 	$db->exec("INSERT INTO accounts (full_name, email, password_hash, session_token, user_role) VALUES (
-		'$email',
+		'$name',
 		'$email',
 		'$passwordHash',
 		'',
@@ -46,9 +46,9 @@ $db->exec("CREATE TABLE IF NOT EXISTS donations (
 	FOREIGN KEY (reviewer_id) REFERENCES accounts(user_id)
 )");
 
-createUser($db, "jake.flem@gmail.com", "bigflemmer", "donor");
-createUser($db, "saintmo@hotmail.com", "patrick", "staff");
-createUser($db, "pt123@live.com", "coolcola251", "admin");
+createUser($db, "Jake Flem", "jake.flem@gmail.com", "bigflemmer", "donor");
+createUser($db, "Saint Montgomery", "saintmo@hotmail.com", "patrick", "staff");
+createUser($db, "Prawn Teacon", "pt123@live.com", "coolcola251", "admin");
 
 echo "Database initialised<br>";
 echo "Test accounts:<br>";
