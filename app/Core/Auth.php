@@ -52,11 +52,15 @@ class Auth {
 		session_destroy();
 	}
 
-	public static function requireRole($allowedRole) {
+	public static function requireRole($allowedRole, $strict = true) {
 		// if signed out, redirect to login
 		if (!self::isAuthenticated()) {
 			header("Location: /login");
 			exit();
+		}
+
+		if ($strict && self::getUserRole() !== $allowedRole) {
+			self::redirectToDashboard();
 		}
 
 		// use hierarchical system

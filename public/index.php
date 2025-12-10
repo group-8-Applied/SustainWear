@@ -67,11 +67,11 @@ $router->add("POST", "/user/donate", "UserController@submitDonation")->useMiddle
 });
 
 $router->add("GET", "/user/profile", "UserController@profile")->useMiddleware(function() {
-	Auth::requireRole("donor");
+	Auth::requireRole("donor", false);
 });
 
 $router->add("POST", "/user/profile", "UserController@updateProfile")->useMiddleware(function() {
-	Auth::requireRole("donor");
+	Auth::requireRole("donor", false);
 });
 
 $router->add("GET", "/user/notifications", "UserController@notifications")->useMiddleware(function() {
@@ -127,11 +127,11 @@ $router->add("POST", "/admin/toggle-account-state", "AdminController@toggleAccou
 });
 
 $router->add("GET", "/admin/donations", "AdminController@donations")->useMiddleware(function() {
-	Auth::requireRole("staff");
+	Auth::requireRole("staff", false);
 });
 
 $router->add("POST", "/admin/update-donation", "AdminController@updateDonation")->useMiddleware(function() {
-	Auth::requireRole("staff");
+	Auth::requireRole("staff", false);
 });
 
 $router->add("GET", "/admin/settings", "AdminController@settings")->useMiddleware(function() {
