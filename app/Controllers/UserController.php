@@ -121,7 +121,7 @@ class UserController extends ControllerBase {
 
 					$statusMessage = "Donation submitted successfully! Your donation is now pending review.";
 				} catch (Exception $e) {
-					$statusMessage = "Error submitting donation. Please try again.";
+					$statusMessage = "Error submitting donation: " . $e->getMessage();
 					$isError = true;
 				}
 			}

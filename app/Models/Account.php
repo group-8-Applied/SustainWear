@@ -97,7 +97,7 @@ class Account {
 		} catch (Exception $e) {
 			return [
 				"success" => false,
-				"error" => $e->getMessage()
+				"error" => "Error while deactivating user: " . $e->getMessage()
 			];
 		}
 	}
@@ -118,7 +118,7 @@ class Account {
 		} catch (Exception $e) {
 			return [
 				"success" => false,
-				"error" => $e->getMessage()
+				"error" => "Error while activating user: " . $e->getMessage()
 			];
 		}
 	}
