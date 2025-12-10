@@ -114,7 +114,6 @@
 														</button>
 													</form>
 												<?php else: ?>
-													<!-- <span class="text-xs text-gray-400"></span> -->
 													 <button type="submit" class="border border-gray-300 rounded bg-gray-300 text-black opacity-40 hover:bg-gray-600 text-xs cursor-not-allowed px-2 py-1 transition-colors" disabled>Deactivate</button>
 												<?php endif; ?>
 											</td>
