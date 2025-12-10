@@ -254,4 +254,24 @@ class Account {
 			"message" => "User updated successfully"
 		];
 	}
+
+	public function deleteAccount($userID) {
+		try {
+			$this->db->delete(
+				"accounts",
+				"user_id = :user_id",
+				[":user_id" => $userID]
+			);
+
+			return [
+				"success" => true,
+				"message" => "Account deleted successfully"
+			];
+		} catch (Exception $e) {
+			return [
+				"success" => false,
+				"error" => "Error while deleting account: " . $e->getMessage()
+			];
+		}
+	}
 }
