@@ -6,7 +6,7 @@ class Auth {
 	public static function initSession() {
 		if (session_status() === PHP_SESSION_NONE) {
 			$settingsModel = new Settings();
-			$timeoutSeconds = 20;//$settingsModel->getSessionTimeout() * 60 * 60;
+			$timeoutSeconds = $settingsModel->getSessionTimeout() * 60 * 60;
 
 			// set $_SESSION lifetime
 			session_set_cookie_params($timeoutSeconds);
@@ -24,7 +24,7 @@ class Auth {
 		}
 
 		$settingsModel = new Settings();
-		$timeoutSeconds = 20;//$settingsModel->getSessionTimeout() * 60 * 60;
+		$timeoutSeconds = $settingsModel->getSessionTimeout() * 60 * 60;
 
 		// if it has been more than $timeoutSeconds since user was last active
 		if (time() - $_SESSION["last_activity_time"] > $timeoutSeconds) {
