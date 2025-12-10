@@ -204,8 +204,6 @@ class Account {
 			"user_id = :user_id",
 			[":user_id" => $userID]
 		);
-
-		return true;
 	}
 
 	public function updateUser($email, $newRole = null, $newPassword = null) {

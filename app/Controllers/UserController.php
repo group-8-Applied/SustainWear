@@ -194,7 +194,7 @@ class UserController extends ControllerBase {
 						$password
 					);
 
-					$user = Auth::getUser(); // refresh user data
+					Auth::isAuthenticated(); // refresh Auth::$user
 					$statusMessage = "Profile updated successfully!";
 				} catch (Exception $e) {
 					$statusMessage = "Error updating profile: " . $e->getMessage();
