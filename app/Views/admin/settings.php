@@ -60,7 +60,7 @@
 
 							<div>
 								<label class="block font-bold mb-2">Session timeout (hours)</label>
-								<input type="number" name="session_timeout" value="<?= htmlspecialchars($settings['session_timeout'] ?? '60') ?>" class="w-full border border-gray-300 rounded px-3 py-2" />
+								<input type="number" name="session_timeout" value="<?= htmlspecialchars($settings['session_timeout'] ?? '24') ?>" class="w-full border border-gray-300 rounded px-3 py-2" />
 							</div>
 						</div>
 
