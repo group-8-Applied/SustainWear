@@ -2,9 +2,11 @@
 
 class AuthController extends ControllerBase {
 	private $accountModel;
+	private $settingsModel;
 
 	public function __construct() {
 		$this->accountModel = new Account();
+		$this->settingsModel = new Settings();
 	}
 
 	public function showLogin() {
@@ -35,7 +37,11 @@ class AuthController extends ControllerBase {
 	}
 
 	public function showSignup() {
-		$this->render("auth/signup", ["signup_msg" => ""]);
+		$allowRegistrations = $this->settingsModel->allowRegistrations();
+		$this->render("auth/signup", [
+			"statusMessage" => $allowRegistrations ? "" : "Registrations are closed",
+			"allowRegistrations" => $allowRegistrations
+		]);
 	}
 
 	public function signup() {
@@ -44,14 +50,20 @@ class AuthController extends ControllerBase {
 			return;
 		}
 
+		$allowRegistrations = $this->settingsModel->allowRegistrations();
+
 		$email = strtolower(trim($_POST["email"]));
 		$fullName = ucwords(strtolower(trim($_POST["full_name"])));
 		$password = $_POST["password"];
 		$passwordConfirmation = $_POST["password_confirmation"];
 
-		// password validation
 		$errors = [];
 
+		if (!$allowRegistrations) {
+			$errors[] = "Registrations are closed";
+		}
+		
+		// password validation
 		if ($password !== $passwordConfirmation) {
 			$errors[] = "Passwords do not match";
 		}
@@ -71,7 +83,10 @@ class AuthController extends ControllerBase {
 		}
 
 		if (!empty($errors)) {
-			$this->render("auth/signup", ["signup_msg" => implode(", ", $errors)]);
+			$this->render("auth/signup", [
+				"statusMessage" => implode(", ", $errors),
+				"allowRegistrations" => $allowRegistrations
+			]);
 			return;
 		}
 

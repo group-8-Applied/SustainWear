@@ -41,9 +41,9 @@
 				<button class="inline-block border-0 rounded-[10px] py-[12px] px-[14px] font-semibold cursor-pointer bg-blue-500 text-white hover:bg-blue-600 mt-2" type="submit">Create Account</button>
 			</form>
 
-			<?php if (!empty($signup_msg)): ?>
+			<?php if (!empty($statusMessage)): ?>
 				<p class="text-red-500 text-center mt-4">
-					<?= htmlspecialchars($signup_msg) ?>
+					<?= htmlspecialchars($statusMessage) ?>
 				</p>
 			<?php endif; ?>
 		</div>
