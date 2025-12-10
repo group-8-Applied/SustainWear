@@ -253,6 +253,20 @@ class Account {
 
 	public function deleteAccount($userID) {
 		try {
+			// remove any donation images they may have uploaded
+			$donations = $this->db->fetchAll(
+				"SELECT photo_path FROM donations WHERE donor_id = :donor_id AND photo_path IS NOT NULL",
+				[":donor_id" => $userID]
+			);
+
+			foreach ($donations as $donation) {
+				$filePath = __DIR__ . "/../../public" . $donation["photo_path"];
+				// if file exists, remove it
+				if (file_exists($filePath)) {
+					unlink($filePath);
+				}
+			}
+
 			$this->db->delete(
 				"accounts",
 				"user_id = :user_id",
