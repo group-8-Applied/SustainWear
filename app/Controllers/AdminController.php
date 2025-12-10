@@ -3,10 +3,12 @@
 class AdminController extends ControllerBase {
 	private $accountModel;
 	private $donationModel;
+	private $settingsModel;
 
 	public function __construct() {
 		$this->accountModel = new Account();
 		$this->donationModel = new Donation();
+		$this->settingsModel = new Settings();
 	}
 
 	public function dashboard() {
@@ -166,6 +168,44 @@ class AdminController extends ControllerBase {
 	}
 
 	public function settings() {
-		$this->render("admin/settings");
+		$statusMessage = null;
+		$isError = false;
+
+		if ($_SERVER["REQUEST_METHOD"] === "POST") {
+			$action = $_POST["action"] ?? "";
+
+			switch ($action) {
+				case "save_donation_settings":
+					// get checkbox value
+					$allowDonations = isset($_POST["allow_donations"]) ? "1" : "0";
+
+					// set setting in database
+					$this->settingsModel->set("allow_donations", $allowDonations);
+
+					$statusMessage = "Donation settings saved successfully";
+					break;
+				case "save_user_settings":
+					$allowRegistrations = isset($_POST["allow_registrations"]) ? "1" : "0";
+					$sessionTimeout = $_POST["session_timeout"] ?? "24";
+
+					// ensure valid
+					if (is_numeric($sessionTimeout) && intval($sessionTimeout) > 0) {
+						$this->settingsModel->set("allow_registrations", $allowRegistrations);
+						$this->settingsModel->set("session_timeout", $sessionTimeout);
+
+						$statusMessage = "User settings saved successfully";
+					} else {
+						$statusMessage = "Session timeout must be a positive number";
+						$isError = true;
+					}
+					break;
+			}
+		}
+
+		$this->render("admin/settings", [
+			"settings" => $this->settingsModel->getAll(),
+			"statusMessage" => $statusMessage,
+			"isError" => $isError
+		]);
 	}
 }

@@ -16,20 +16,30 @@
 				<h2 class="text-2xl font-bold mb-4">System Settings</h2>
 			</section>
 
+			<?php if (isset($statusMessage)): ?>
+				<div class="mb-6 p-4 rounded <?= $isError ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700' ?>">
+					<?= htmlspecialchars($statusMessage) ?>
+				</div>
+			<?php endif; ?>
+
 			<section class="mb-6">
 				<div class="bg-white rounded-xl shadow-md p-6">
 					<h3 class="font-bold text-lg mb-4">Donation Settings</h3>
 
-					<div class="flex flex-col gap-4">
-						<div>
-							<label class="flex items-center gap-2">
-								<input type="checkbox" checked class="w-4 h-4" />
-								<span>Allow new donations</span>
-							</label>
-						</div>
-					</div>
+					<form method="POST" action="/admin/settings">
+						<input type="hidden" name="action" value="save_donation_settings" />
 
-					<button class="mt-6 bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition-colors">Save Donation Settings</button>
+						<div class="flex flex-col gap-4">
+							<div>
+								<label class="flex items-center gap-2">
+									<input type="checkbox" name="allow_donations" <?= ($settings['allow_donations'] ?? '1') === '1' ? 'checked' : '' ?> class="w-4 h-4" />
+									<span>Allow new donations</span>
+								</label>
+							</div>
+						</div>
+
+						<button type="submit" class="mt-6 bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition-colors">Save Donation Settings</button>
+					</form>
 				</div>
 			</section>
 
@@ -37,21 +47,25 @@
 				<div class="bg-white rounded-xl shadow-md p-6">
 					<h3 class="font-bold text-lg mb-4">User Settings</h3>
 
-					<div class="flex flex-col gap-4">
-						<div>
-							<label class="flex items-center gap-2">
-								<input type="checkbox" checked class="w-4 h-4" />
-								<span>Allow new user registrations</span>
-							</label>
+					<form method="POST" action="/admin/settings">
+						<input type="hidden" name="action" value="save_user_settings" />
+
+						<div class="flex flex-col gap-4">
+							<div>
+								<label class="flex items-center gap-2">
+									<input type="checkbox" name="allow_registrations" <?= ($settings['allow_registrations'] ?? '1') === '1' ? 'checked' : '' ?> class="w-4 h-4" />
+									<span>Allow new user registrations</span>
+								</label>
+							</div>
+
+							<div>
+								<label class="block font-bold mb-2">Session timeout (hours)</label>
+								<input type="number" name="session_timeout" value="<?= htmlspecialchars($settings['session_timeout'] ?? '60') ?>" class="w-full border border-gray-300 rounded px-3 py-2" />
+							</div>
 						</div>
 
-						<div>
-							<label class="block font-bold mb-2">Session timeout (minutes)</label>
-							<input type="number" value="60" class="w-full border border-gray-300 rounded px-3 py-2" />
-						</div>
-					</div>
-
-					<button class="mt-6 bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition-colors">Save User Settings</button>
+						<button type="submit" class="mt-6 bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition-colors">Save User Settings</button>
+					</form>
 				</div>
 			</section>
 
