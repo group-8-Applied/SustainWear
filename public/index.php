@@ -74,6 +74,10 @@ $router->add("POST", "/user/profile", "UserController@updateProfile")->useMiddle
 	Auth::requireRole("donor", false);
 });
 
+$router->add("POST", "/user/delete-profile", "UserController@deleteProfile")->useMiddleware(function() {
+	Auth::requireRole("donor", false);
+});
+
 $router->add("GET", "/user/notifications", "UserController@notifications")->useMiddleware(function() {
 	Auth::requireRole("donor");
 });

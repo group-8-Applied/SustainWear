@@ -140,8 +140,10 @@ class UserController extends ControllerBase {
 		$user = Auth::getUser();
 		$this->render("user/profile", [
 			"user" => $user,
-			"statusMessage" => "",
-			"isError" => false
+			"updateStatusMessage" => "",
+			"update_isError" => false,
+			"deleteStatusMessage" => "",
+			"delete_isError" => false
 		]);
 	}
 
@@ -157,7 +159,7 @@ class UserController extends ControllerBase {
 
 		$email = strtolower(trim($_POST["email"])) ?? "";
 		$fullName = ucwords(strtolower(trim($_POST["full_name"]))) ?? "";
-		$password = $_POST["password"] ?? "";
+		$password = $_POST["new_password"] ?? "";
 		$passwordConfirmation = $_POST["password_confirmation"] ?? "";
 
 		// these are autofilled so should exist
@@ -203,8 +205,10 @@ class UserController extends ControllerBase {
 
 		$this->render("user/profile", [
 			"user" => $user,
-			"statusMessage" => $statusMessage,
-			"isError" => $isError
+			"updateStatusMessage" => $statusMessage,
+			"update_isError" => $isError,
+			"deleteStatusMessage" => "",
+			"delete_isError" => false
 		]);
 	}
 
@@ -214,5 +218,46 @@ class UserController extends ControllerBase {
 
 	public function help() {
 		$this->render("user/help");
+	}
+
+	public function deleteProfile() {
+		if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+			$this->redirect("/user/profile");
+			return;
+		}
+
+		$user = Auth::getUser();
+		$password = $_POST["delete_password"] ?? "";
+		$statusMessage = null;
+		$isError = false;
+
+		// verify password
+		$account = $this->accountModel->verifyPassword($user["email"], $password);
+
+		if (!$account) {
+			$statusMessage = "Incorrect password. Please try again.";
+			$isError = true;
+		} else {
+			// delete account
+			$result = $this->accountModel->deleteAccount($user["user_id"]);
+
+			if ($result["success"]) {
+				// log out and go back to login page
+				Auth::logoutSession();
+				$this->redirect("/login");
+				return;
+			} else {
+				$statusMessage = $result["error"];
+				$isError = true;
+			}
+		}
+
+		$this->render("user/profile", [
+			"user" => $user,
+			"updateStatusMessage" => "",
+			"update_isError" => false,
+			"deleteStatusMessage" => $statusMessage,
+			"delete_isError" => $isError
+		]);
 	}
 }
