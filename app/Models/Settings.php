@@ -35,11 +35,11 @@ class Settings {
 	}
 
 	public function allowDonations() {
-		return $this->get("allow_donations") === "1";
+		return $this->get("allow_donations") !== "0";
 	}
 
 	public function allowRegistrations() {
-		return $this->get("allow_registrations") === "1";
+		return $this->get("allow_registrations") !== "0";
 	}
 
 	public function getSessionTimeout() {
