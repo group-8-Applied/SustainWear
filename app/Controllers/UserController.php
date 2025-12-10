@@ -3,10 +3,12 @@
 class UserController extends ControllerBase {
 	private $accountModel;
 	private $donationModel;
+	private $settingsModel;
 
 	public function __construct() {
 		$this->accountModel = new Account();
 		$this->donationModel = new Donation();
+		$this->settingsModel = new Settings();
 	}
 
 	public function dashboard() {
@@ -24,12 +26,14 @@ class UserController extends ControllerBase {
 	public function donate() {
 		$user = Auth::getUser();
 		$donations = $this->donationModel->getByDonor($user["user_id"]);
+		$allowDonations = $this->settingsModel->allowDonations();
 
 		$this->render("user/donate", [
 			"user" => $user,
 			"donations" => $donations,
 			"statusMessage" => "",
-			"isError" => false
+			"isError" => false,
+			"allowDonations" => $allowDonations
 		]);
 	}
 
@@ -58,9 +62,11 @@ class UserController extends ControllerBase {
 		];
 		$validConditions = ["Excellent", "Good", "Acceptable"];
 
-		// make sure account has not been deactivated
-		if (!boolval($user["is_active"])) {
-			$statusMessage = "Your account has been deactivated by an admin. You cannot submit donations at this time.";
+		// if donations are disabled or account has been deactivated
+		$allowDonations = $this->settingsModel->allowDonations();
+		if (!$allowDonations || !boolval($user["is_active"])) {
+			// no need for a detailed error since this is the POST req. the UI shouldn't even let users reach this point
+			$statusMessage = "Cannot submit donations at this time.";
 			$isError = true;
 		}
 		// make sure all required fields were provided
@@ -127,12 +133,12 @@ class UserController extends ControllerBase {
 			}
 		}
 
-		$donations = $this->donationModel->getByDonor($user["user_id"]);
 		$this->render("user/donate", [
 			"user" => $user,
-			"donations" => $donations,
+			"donations" => $this->donationModel->getByDonor($user["user_id"]),
 			"statusMessage" => $statusMessage,
-			"isError" => $isError
+			"isError" => $isError,
+			"allowDonations" => $allowDonations
 		]);
 	}
 
