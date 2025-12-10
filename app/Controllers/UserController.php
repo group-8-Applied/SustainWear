@@ -146,6 +146,8 @@ class UserController extends ControllerBase {
 		}
 
 		$user = Auth::getUser();
+		$statusMessage = null;
+		$isError = false;
 
 		$email = strtolower(trim($_POST["email"])) ?? "";
 		$fullName = ucwords(strtolower(trim($_POST["full_name"]))) ?? "";
@@ -154,67 +156,50 @@ class UserController extends ControllerBase {
 
 		// these are autofilled so should exist
 		if (empty($fullName) || empty($email)) {
-			$this->render("user/profile", [
-				"user" => $user,
-				"statusMessage" => "Full name and email are required.",
-				"isError" => true
-			]);
-			return;
-		}
-
-		// validate email address
-		$emailValidation = $this->accountModel->validateEmailForUse($email);
-		if ($email !== $user["email"] && !$emailValidation["success"]) {
-			$this->render("user/profile", [
-				"user" => $user,
-				"statusMessage" => "Email address is invalid or already registered.",
-				"isError" => true
-			]);
-			return;
-		}
-
-		// validate password if provided
-		if (!empty($password) || !empty($passwordConfirmation)) {
-			if ($password !== $passwordConfirmation) {
-				$this->render("user/profile", [
-					"user" => $user,
-					"statusMessage" => "Passwords do not match.",
-					"isError" => true
-				]);
-				return;
+			$statusMessage = "Full name and email are required.";
+			$isError = true;
+		} else {
+			// validate email address
+			$emailValidation = $this->accountModel->validateEmailForUse($email);
+			if ($email !== $user["email"] && !$emailValidation["success"]) {
+				$statusMessage = "Email address is invalid or already registered.";
+				$isError = true;
+			}
+			// validate password if provided
+			elseif (!empty($password) || !empty($passwordConfirmation)) {
+				if ($password !== $passwordConfirmation) {
+					$statusMessage = "Passwords do not match.";
+					$isError = true;
+				} elseif (strlen($password) < 8) {
+					$statusMessage = "Password must be at least 8 characters long.";
+					$isError = true;
+				}
 			}
 
-			if (strlen($password) < 8) {
-				$this->render("user/profile", [
-					"user" => $user,
-					"statusMessage" => "Password must be at least 8 characters long.",
-					"isError" => true
-				]);
-				return;
+			// update profile if no errors occurred
+			if (!$isError) {
+				try {
+					$this->accountModel->updateProfile(
+						$user["user_id"],
+						$fullName,
+						$email,
+						$password
+					);
+
+					$user = Auth::getUser(); // refresh user data
+					$statusMessage = "Profile updated successfully!";
+				} catch (Exception $e) {
+					$statusMessage = "Error updating profile: " . $e->getMessage();
+					$isError = true;
+				}
 			}
 		}
 
-		try {
-			// Update profile
-			$this->accountModel->updateProfile(
-				$user["user_id"],
-				$fullName,
-				$email,
-				$password
-			);
-
-			$this->render("user/profile", [
-				"user" => Auth::getUser(),
-				"statusMessage" => "Profile updated successfully!",
-				"isError" => false
-			]);
-		} catch (Exception $e) {
-			$this->render("user/profile", [
-				"user" => $user,
-				"statusMessage" => "Error updating profile: " . $e->getMessage(),
-				"isError" => true
-			]);
-		}
+		$this->render("user/profile", [
+			"user" => $user,
+			"statusMessage" => $statusMessage,
+			"isError" => $isError
+		]);
 	}
 
 	public function notifications() {
