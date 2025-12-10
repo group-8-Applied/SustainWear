@@ -123,10 +123,6 @@ class Account {
 		}
 	}
 
-	public function getAll() {
-		return $this->db->fetchAll("SELECT user_id, full_name, email, user_role, is_active FROM accounts ORDER BY full_name ASC");
-	}
-
 	public function buildFilterConditions($filters = []) {
 		$conditions = [];
 		$params = [];

@@ -42,7 +42,7 @@ class Router {
 			}
 
 			// invoke handler
-			$this->runController($route["callback"], []);
+			$this->runController($route["callback"]);
 			return;
 		}
 
@@ -51,7 +51,7 @@ class Router {
 		echo "Page not found";
 	}
 
-	private function runController($controllerAction, $params) {
+	private function runController($controllerAction) {
 		if (strpos($controllerAction, "@") === false) return;
 
 		list($controller, $action) = explode("@", $controllerAction);
