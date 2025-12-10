@@ -25,15 +25,15 @@
 				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
 					<h3 class="font-bold text-lg">New donation</h3>
 
-					<?php if (!$allowDonations): ?>
-						<div class="mt-3 p-4 bg-yellow-100 text-yellow-700 rounded">
-							<p class="font-semibold">Donations are currently disabled</p>
-							<p class="text-sm mt-1">SustainWear admins have temporarily disabled new donations. Please try again at another time.</p>
-						</div>
-					<?php elseif (!boolval($user["is_active"])): ?>
+					<?php if (!boolval($user["is_active"])): ?>
 						<div class="mt-3 p-4 bg-red-100 text-red-700 rounded">
 							<p class="font-semibold">Your account has been deactivated</p>
 							<p class="text-sm mt-1">Your account has been deactivated by an admin. You cannot submit donations at this time.</p>
+						</div>
+					<?php elseif (!$allowDonations): ?>
+						<div class="mt-3 p-4 bg-yellow-100 text-yellow-700 rounded">
+							<p class="font-semibold">Donations are currently disabled</p>
+							<p class="text-sm mt-1">SustainWear admins have temporarily disabled new donations. Please try again at another time.</p>
 						</div>
 					<?php else: ?>
 
