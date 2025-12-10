@@ -59,8 +59,13 @@ class Auth {
 			exit();
 		}
 
-		// if wrong role, redirect to correct dashboard
-		if (self::getUserRole() !== $allowedRole) {
+		// use hierarchical system
+		$roles = ["donor", "staff", "admin"];
+		$index = array_search(self::getUserRole(), $roles);
+		$indexAllowed = array_search($allowedRole, $roles);
+		
+		// if role doesn't have access, redirect to the user's dashboard
+		if ($index < $indexAllowed) {
 			self::redirectToDashboard();
 		}
 	}
