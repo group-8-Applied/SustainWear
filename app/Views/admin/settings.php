@@ -31,23 +31,6 @@
 								<span>Allow new donations</span>
 							</label>
 						</div>
-
-						<div>
-							<label class="flex items-center gap-2">
-								<input type="checkbox" checked class="w-4 h-4" />
-								<span>Require staff approval for donations</span>
-							</label>
-						</div>
-
-						<div>
-							<label class="block font-bold mb-2">Maximum items per donation</label>
-							<input type="number" value="10" class="w-full border border-gray-300 rounded px-3 py-2" />
-						</div>
-
-						<div>
-							<label class="block font-bold mb-2">Donation categories (comma-separated)</label>
-							<textarea class="w-full border border-gray-300 rounded px-3 py-2 h-20">Shirts, Pants, Dresses, Jackets, Shoes, Accessories</textarea>
-						</div>
 					</div>
 
 					<button class="mt-6 bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition-colors">Save Donation Settings</button>
