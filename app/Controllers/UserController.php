@@ -213,7 +213,13 @@ class UserController extends ControllerBase {
 	}
 
 	public function help() {
-		$this->render("user/help");
+		$this->render("user/help", [
+			"faqs" => [
+				["question" => "How do I donate clothes?", "answer" => "Go to the Donations page, fill in the item details, and submit the form. Staff will then review your donation."],
+				["question" => "What happens after I submit a donation?", "answer" => "Your donation will appear with the status Pending. A staff member will approve or decline it and the status will update."],
+				["question" => "Who can see my donations?", "answer" => "Only authorised charity staff and administrators can see detailed donation information."]
+			]
+		]);
 	}
 
 	public function deleteProfile() {
