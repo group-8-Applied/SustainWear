@@ -46,6 +46,8 @@
 2. **Start PHP server**
    - Launch MAMP
 
+   - Ensure Apache is selected as the web server, not nginx.
+
    - Click "Start" to run the PHP server
 
 2. **Access the website**
