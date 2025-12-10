@@ -58,7 +58,13 @@ class UserController extends ControllerBase {
 		];
 		$validConditions = ["Excellent", "Good", "Acceptable"];
 
-		if (empty($itemType) || empty($size) || empty($condition)) {
+		// make sure account has not been deactivated
+		if (!boolval($user["is_active"])) {
+			$statusMessage = "Your account has been deactivated by an admin. You cannot submit donations at this time.";
+			$isError = true;
+		}
+		// make sure all required fields were provided
+		elseif (empty($itemType) || empty($size) || empty($condition)) {
 			$statusMessage = "Please fill in all required fields.";
 			$isError = true;
 		}
