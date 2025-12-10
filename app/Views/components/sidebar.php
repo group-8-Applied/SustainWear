@@ -28,7 +28,7 @@ if ($userRole === "admin") {
 		["label" => "Dashboard", "url" => "/user/dashboard"],
 		["label" => "Donations", "url" => "/user/donate"],
 		["label" => "Profile", "url" => "/user/profile"],
-		["label" => "Help & Support", "url" => "/user/help"],
+		["label" => "Help & Support", "url" => "/user/help"]
 	];
 }
 ?>
