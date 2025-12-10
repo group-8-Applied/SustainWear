@@ -4,7 +4,7 @@
 
 ### Requirements
 
-- [MAMP](https://www.mamp.info/) - Local PHP server
+- [MAMP](https://www.mamp.info/) - Local PHP (7+) server
 - [Tailwind CSS Standalone CLI](https://tailwindcss.com/blog/standalone-cli) - CSS framework
 
 ### Setup Instructions
@@ -52,3 +52,20 @@
    - Open a browser and visit http://localhost/
 
    - If no database has been set up, visit http://localhost/db-init.php to create one
+
+### Source Tree Structure
+
+```
+app                 # MVC application
+├── Controllers/          # Use data from models to render our view templates
+├── Core/                 # Backend core - handles routing, authentication, etc
+├── Models/               # Database abstraction used by controllers
+└── Views/                # HTML templates and components
+
+public              # All web-accessible files
+├── db-init.php           # Database initialisation script
+├── index.php             # Entry point for each request, specifies routes
+├── js/                   # Client-side JavsScript
+├── styles/               # Tailwind-generated CSS
+└── uploads/              # User-uploaded content
+```
