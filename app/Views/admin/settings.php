@@ -61,42 +61,6 @@
 
 			<section class="mb-6">
 				<div class="bg-white rounded-xl shadow-md p-6">
-					<h3 class="font-bold text-lg mb-4">Notification Settings</h3>
-
-					<div class="flex flex-col gap-4">
-						<div>
-							<label class="flex items-center gap-2">
-								<input type="checkbox" checked class="w-4 h-4" />
-								<span>Email notifications for new donations</span>
-							</label>
-						</div>
-
-						<div>
-							<label class="flex items-center gap-2">
-								<input type="checkbox" checked class="w-4 h-4" />
-								<span>Email notifications for user registrations</span>
-							</label>
-						</div>
-
-						<div>
-							<label class="flex items-center gap-2">
-								<input type="checkbox" class="w-4 h-4" />
-								<span>Daily summary reports</span>
-							</label>
-						</div>
-
-						<div>
-							<label class="block font-bold mb-2">Admin notification email</label>
-							<input type="email" value="admin@sustainwear.com" class="w-full border border-gray-300 rounded px-3 py-2" />
-						</div>
-					</div>
-
-					<button class="mt-6 bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition-colors">Save Notification Settings</button>
-				</div>
-			</section>
-
-			<section class="mb-6">
-				<div class="bg-white rounded-xl shadow-md p-6">
 					<h3 class="font-bold text-lg mb-4">Emergency Settings</h3>
 
 					<div class="flex flex-col gap-4">

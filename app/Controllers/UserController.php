@@ -212,10 +212,6 @@ class UserController extends ControllerBase {
 		]);
 	}
 
-	public function notifications() {
-		$this->render("user/notifications");
-	}
-
 	public function help() {
 		$this->render("user/help");
 	}
