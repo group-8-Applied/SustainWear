@@ -57,7 +57,7 @@ $declinedTodayCount = count(array_filter($declinedToday, function($d) {
 			</section>
 			<section class="mb-6">
 				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
-					<p class="font-bold text-lg mb-3">Review Donations</p>
+					<h3 class="font-bold text-lg mb-3">Review Donations</h3>
 					<div class="space-y-4">
 						<?php if (empty($donations)): ?>
 							<p class="text-center text-gray-500 py-4">No pending donations to review</p>
@@ -67,9 +67,9 @@ $declinedTodayCount = count(array_filter($declinedToday, function($d) {
 									<div class="flex flex-col sm:flex-row justify-between items-start gap-3">
 										<div class="flex flex-col sm:flex-row gap-3 flex-1 min-w-0">
 											<div style="flex: 1;">
-												<h4 class="font-bold text-base">
+												<p class="font-bold text-base">
 													<?= htmlspecialchars($donation["item_type"]) ?> (<?= htmlspecialchars($donation["size"]) ?>)
-												</h4>
+												</p>
 												<p class="text-sm text-gray-600 mt-1">
 													<strong>Donation ID:</strong> #<?= htmlspecialchars($donation["donation_id"]) ?><br>
 													<strong>Donor:</strong> <?= htmlspecialchars($donation["donor_name"]) ?><br>
