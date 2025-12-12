@@ -18,7 +18,7 @@
 
 				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5 flex flex-col gap-3 items-start">
 					<p>You are logged in as <?=$user["full_name"]?> <br> <?=$user["email"] ?>.</p>
-					<p>Use the form below to submit a clothing donation. Staff will review it and change the status to <strong class="text-green-600">Approved</strong> or <strong class="text-red-500">Declined</strong>.</p>
+					<p>Use the form below to submit a clothing donation. Staff will review it and change the status to <strong class="text-[#008533]">Approved</strong> or <strong class="text-[#EB000C]">Declined</strong>.</p>
 				</div>
 			</section>
 
@@ -86,12 +86,12 @@
 						</div>
 
 						<div class="flex flex-wrap gap-4 mt-3">
-							<button type="submit" class="border border-gray-300 rounded bg-blue-500 text-white text-xs cursor-pointer mr-1 px-2 py-1 hover:bg-blue-600 transition-colors">Submit donation</button>
+							<button type="submit" class="border border-gray-300 rounded bg-[#0A6CFF] text-white text-xs cursor-pointer mr-1 px-2 py-1 hover:bg-[#0A6CFF] transition-colors">Submit donation</button>
 						</div>
 					</form>
 
 					<?php if (!empty($statusMessage)): ?>
-						<p class="mt-3 text-[0.8rem] <?= $isError ? "text-red-600" : "text-green-600" ?>"><?= htmlspecialchars($statusMessage) ?></p>
+						<p class="mt-3 text-[0.8rem] <?= $isError ? "text-[#EB000C]" : "text-[#008533]" ?>"><?= htmlspecialchars($statusMessage) ?></p>
 					<?php endif ?>
 
 					<?php endif; ?>
@@ -128,7 +128,7 @@
 														<img src="<?= htmlspecialchars($donation["photo_path"]) ?>" alt="Photo attachment" class="w-12 h-12 object-cover rounded cursor-pointer hover:opacity-75 transition-opacity" />
 													</a>
 												<?php else: ?>
-													<span class="text-gray-400 text-xs">No photo</span>
+													<span class="text-[#666E7A] text-xs">No photo</span>
 												<?php endif ?>
 											</td>
 											<td class="px-3 py-2 text-left border-b border-gray-200"><?= htmlspecialchars($donation["item_type"]) ?></td>

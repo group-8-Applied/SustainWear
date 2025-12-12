@@ -91,7 +91,7 @@
 						</div>
 
 						<div style="flex: 1; min-width: 10rem; display: flex; align-items: flex-end; gap: 0.5rem;">
-							<button type="submit" class="px-4 py-[0.4rem] bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-[0.9rem]">Apply</button>
+							<button type="submit" class="px-4 py-[0.4rem] bg-[#0A6CFF] text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-[0.9rem]">Apply</button>
 							<a href="/staff/inventory" class="px-4 py-[0.4rem] bg-gray-200 text-gray-700 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 text-[0.9rem] inline-block text-center">Clear</a>
 						</div>
 					</form>

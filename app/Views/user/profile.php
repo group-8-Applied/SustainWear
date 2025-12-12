@@ -56,7 +56,7 @@
 						</div>
 
 						<div class="flex flex-wrap gap-4 mt-3">
-							<button class="border border-gray-300 rounded bg-blue-500 text-white text-xs cursor-pointer mr-1 px-2 py-1 hover:bg-blue-600 transition-colors" type="submit">Save Changes</button>
+							<button class="border border-gray-300 rounded bg-[#0A6CFF] text-white text-xs cursor-pointer mr-1 px-2 py-1 hover:bg-[#0A6CFF] transition-colors" type="submit">Save Changes</button>
 						</div>
 					</form>
 				</div>
@@ -64,7 +64,7 @@
 
 			<section class="mb-6">
 				<div class="bg-white rounded-xl shadow-md p-4 sm:p-5">
-					<h3 class="font-bold text-lg text-red-600">Delete Account</h3>
+					<h3 class="font-bold text-lg text-[#EB000C]">Delete Account</h3>
 					<p class="text-sm text-gray-600 mt-2">You will not be able to recover your account once you delete it. This action will remove all information tied to your account.</p>
 
 					<?php if (!empty($deleteStatusMessage)): ?>
@@ -80,7 +80,7 @@
 						</div>
 
 						<div class="flex flex-wrap gap-4 mt-3">
-							<button class="border border-red-600 rounded bg-red-600 text-white text-xs cursor-pointer px-2 py-1 hover:bg-red-700 transition-colors" type="submit">Delete My Account</button>
+							<button class="border border-[#EB000C] rounded bg-[#EB000C] text-white text-xs cursor-pointer px-2 py-1 hover:bg-red-700 transition-colors" type="submit">Delete My Account</button>
 						</div>
 					</form>
 				</div>

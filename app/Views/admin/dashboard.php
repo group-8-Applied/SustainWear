@@ -44,7 +44,7 @@
 
 					<div class="flex-1 min-w-full sm:min-w-[200px] bg-white rounded-xl shadow-md p-6 sm:p-8">
 						<p class="font-bold text-lg">Approved</p>
-						<p class="text-xl sm:text-2xl font-extrabold mt-1 text-green-600"><?= $stats["total_approved"] ?></p>
+						<p class="text-xl sm:text-2xl font-extrabold mt-1 text-[#008533]"><?= $stats["total_approved"] ?></p>
 					</div>
 				</div>
 			</section>

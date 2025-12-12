@@ -46,12 +46,12 @@ $declinedTodayCount = count(array_filter($declinedToday, function($d) {
 
 					<div class="flex-1 min-w-full sm:min-w-[200px] bg-white rounded-xl shadow-md p-6 sm:p-8">
 						<p class="font-bold text-lg">Approved Today</p>
-						<p class="text-xl sm:text-2xl font-extrabold mt-1 text-green-600"><?= $approvedTodayCount ?></p>
+						<p class="text-xl sm:text-2xl font-extrabold mt-1 text-[#008533]"><?= $approvedTodayCount ?></p>
 					</div>
 
 					<div class="flex-1 min-w-full sm:min-w-[200px] bg-white rounded-xl shadow-md p-6 sm:p-8">
 						<p class="font-bold text-lg">Declined Today</p>
-						<p class="text-xl sm:text-2xl font-extrabold mt-1 text-red-600"><?= $declinedTodayCount ?></p>
+						<p class="text-xl sm:text-2xl font-extrabold mt-1 text-[#EB000C]"><?= $declinedTodayCount ?></p>
 					</div>
 				</div>
 			</section>
@@ -93,11 +93,11 @@ $declinedTodayCount = count(array_filter($declinedToday, function($d) {
 										<div class="flex gap-2 flex-shrink-0">
 											<form method="POST" action="/staff/approve-donation" style="display: inline;">
 												<input type="hidden" name="donation_id" value="<?= htmlspecialchars($donation["donation_id"]) ?>">
-												<button type="submit" title="Approve" class="w-8 h-8 rounded-full bg-green-500/20 text-green-600 font-bold text-base flex items-center justify-center hover:opacity-80 transition-opacity flex-shrink-0">✓</button>
+												<button type="submit" title="Approve" class="w-8 h-8 rounded-full bg-green-500/20 text-[#008533] font-bold text-base flex items-center justify-center hover:opacity-80 transition-opacity flex-shrink-0">✓</button>
 											</form>
 											<form method="POST" action="/staff/decline-donation" style="display: inline;">
 												<input type="hidden" name="donation_id" value="<?= htmlspecialchars($donation["donation_id"]) ?>">
-												<button type="submit" title="Decline" class="w-8 h-8 rounded-full bg-red-500/20 text-red-600 font-bold text-base flex items-center justify-center hover:opacity-80 transition-opacity flex-shrink-0">✕</button>
+												<button type="submit" title="Decline" class="w-8 h-8 rounded-full bg-red-500/20 text-[#EB000C] font-bold text-base flex items-center justify-center hover:opacity-80 transition-opacity flex-shrink-0">✕</button>
 											</form>
 										</div>
 									</div>

@@ -39,12 +39,12 @@
 
 					<div class="flex-1 min-w-full sm:min-w-[200px] bg-white rounded-xl shadow-md p-6 sm:p-8">
 						<p class="font-bold text-lg">Approved</p>
-						<p class="text-xl sm:text-2xl font-extrabold mt-1 text-green-600"><?= $stats["total_approved"] ?></p>
+						<p class="text-xl sm:text-2xl font-extrabold mt-1 text-[#008533]"><?= $stats["total_approved"] ?></p>
 					</div>
 
 					<div class="flex-1 min-w-full sm:min-w-[200px] bg-white rounded-xl shadow-md p-6 sm:p-8">
 						<p class="font-bold text-lg">Declined</p>
-						<p class="text-xl sm:text-2xl font-extrabold mt-1 text-red-600"><?= $stats["total"] - $stats["total_approved"] - $stats["pending"] ?></p>
+						<p class="text-xl sm:text-2xl font-extrabold mt-1 text-[#EB000C]"><?= $stats["total"] - $stats["total_approved"] - $stats["pending"] ?></p>
 					</div>
 				</div>
 			</section>
@@ -106,7 +106,7 @@
 						</div>
 
 						<div class="mt-4 flex gap-2">
-							<button type="submit" class="border border-gray-300 rounded bg-blue-500 text-white text-xs cursor-pointer px-4 py-2 hover:bg-blue-600 transition-colors">Apply Filters</button>
+							<button type="submit" class="border border-gray-300 rounded bg-[#0A6CFF] text-white text-xs cursor-pointer px-4 py-2 hover:bg-[#0A6CFF] transition-colors">Apply Filters</button>
 							<a href="/admin/donations" class="border border-gray-300 rounded bg-gray-200 text-gray-700 text-xs cursor-pointer px-4 py-2 hover:bg-gray-300 transition-colors inline-block">Clear Filters</a>
 						</div>
 					</form>
@@ -147,7 +147,7 @@
 														<img src="<?= htmlspecialchars($donation["photo_path"]) ?>" alt="Photo attachment" class="w-12 h-12 object-cover rounded cursor-pointer hover:opacity-75 transition-opacity" />
 													</a>
 												<?php else: ?>
-													<span class="text-gray-400 text-xs">No photo</span>
+													<span class="text-[#666E7A] text-xs">No photo</span>
 												<?php endif ?>
 											</td>
 											<td class="px-3 py-2 text-left border-b border-gray-200">
@@ -212,7 +212,7 @@
 										</select>
 									</div>
 									<div class="flex-none">
-										<button type="submit" class="border border-gray-300 rounded bg-blue-500 text-white text-xs cursor-pointer px-4 py-2 hover:bg-blue-600 transition-colors">Update Status</button>
+										<button type="submit" class="border border-gray-300 rounded bg-[#0A6CFF] text-white text-xs cursor-pointer px-4 py-2 hover:bg-[#0A6CFF] transition-colors">Update Status</button>
 									</div>
 								</div>
 							</form>

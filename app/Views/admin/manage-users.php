@@ -52,7 +52,7 @@
 						</div>
 
 						<div class="flex gap-2 mt-4">
-							<button type="submit" class="border border-gray-300 rounded bg-blue-500 text-white text-sm cursor-pointer px-4 py-2 hover:bg-blue-600 transition-colors">Apply Filters</button>
+							<button type="submit" class="border border-gray-300 rounded bg-[#0A6CFF] text-white text-sm cursor-pointer px-4 py-2 hover:bg-[#0A6CFF] transition-colors">Apply Filters</button>
 							<a href="/admin/users" class="border border-gray-300 rounded bg-gray-200 text-gray-700 text-sm cursor-pointer px-4 py-2 hover:bg-gray-300 transition-colors inline-block">Clear Filters</a>
 						</div>
 					</form>
@@ -105,7 +105,7 @@
 													<form method="POST" action="/admin/toggle-account-state" style="display: inline;">
 														<input type="hidden" name="user_id" value="<?= $userEntry["user_id"] ?>" />
 														<input type="hidden" name="action" value="<?= $isActive ? 'deactivate' : 'activate' ?>" />
-														<button type="submit" class="rounded <?= $isActive ? 'bg-red-500 text-white hover:bg-red-600' : 'bg-green-500 text-white hover:bg-green-600' ?> text-xs cursor-pointer px-2 py-1 transition-colors">
+														<button type="submit" class="rounded <?= $isActive ? 'bg-[#EB000C] text-white hover:bg-[#EB000C]' : 'bg-[#008533] text-white hover:bg-[#008533]' ?> text-xs cursor-pointer px-2 py-1 transition-colors">
 															<?= $isActive ? 'Deactivate' : 'Activate' ?>
 														</button>
 													</form>
@@ -159,7 +159,7 @@
 								<input id="new_password" name="new_password" class="w-full px-2 py-[0.4rem] border border-gray-300 rounded text-[0.9rem] bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" type="password" placeholder="Password (if needed)"/>
 							</div>
 							<div class="flex-none">
-								<button type="submit" class="border border-gray-300 rounded bg-blue-500 text-white text-xs cursor-pointer px-2 py-1 hover:bg-blue-600 transition-colors">Update</button>
+								<button type="submit" class="border border-gray-300 rounded bg-[#0A6CFF] text-white text-xs cursor-pointer px-2 py-1 hover:bg-[#0A6CFF] transition-colors">Update</button>
 							</div>
 						</div>
 					</form>

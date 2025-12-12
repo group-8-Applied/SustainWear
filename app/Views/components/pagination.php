@@ -26,7 +26,7 @@
 				for ($i = $previousPage; $i <= $nextPage; $i++):
 			?>
 				<?php if ($i == $currentPage): ?>
-					<span class="px-3 py-1 text-sm border border-blue-500 rounded bg-blue-500 text-white font-semibold"><?= $i ?></span>
+					<span class="px-3 py-1 text-sm border border-blue-500 rounded bg-[#0A6CFF] text-white font-semibold"><?= $i ?></span>
 				<?php else: ?>
 					<a href="<?= $paginationBaseUrl ?>page=<?= $i ?>" class="px-3 py-1 text-sm border border-gray-300 rounded bg-white hover:bg-gray-100 transition-colors"><?= $i ?></a>
 				<?php endif; ?>
