@@ -1,10 +1,3 @@
-<?php
-	$user = Auth::getUser();
-	$donationModel = new Donation();
-	$stats = $donationModel->getStats();
-	$filters = $filters ?? [];
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

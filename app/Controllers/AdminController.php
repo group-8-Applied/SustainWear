@@ -103,6 +103,8 @@ class AdminController extends ControllerBase {
 	}
 
 	public function donations() {
+		$user = Auth::getUser();
+		$stats = $this->donationModel->getStats();
 		$filters = [];
 
 		// load filters from get params
@@ -130,6 +132,8 @@ class AdminController extends ControllerBase {
 		$currentPage = min(max(1, $pageGET), $pageCount); // clamp between 1 and pageCount
 
 		$this->render("admin/donations", [
+			"user" => $user,
+			"stats" => $stats,
 			"donations" => $this->donationModel->getResults($filters, $perPage, ($currentPage - 1) * $perPage),
 			"filters" => $filters,
 			"currentPage" => $currentPage,

@@ -1,19 +1,3 @@
-<?php
-$user = Auth::getUser();
-$donationModel = new Donation();
-$stats = $donationModel->getStats();
-
-$approvedToday = $donationModel->getResults(["status" => "approved"]);
-$approvedTodayCount = count(array_filter($approvedToday, function($d) {
-	return date("Y-m-d", strtotime($d["reviewed_date"])) === date("Y-m-d");
-}));
-
-$declinedToday = $donationModel->getResults(["status" => "declined"]);
-$declinedTodayCount = count(array_filter($declinedToday, function($d) {
-	return date("Y-m-d", strtotime($d["reviewed_date"])) === date("Y-m-d");
-}));
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

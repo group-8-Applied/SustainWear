@@ -18,10 +18,26 @@ class StaffController extends ControllerBase {
 	}
 
 	public function pendingDonations() {
+		$user = Auth::getUser();
+		$stats = $this->donationModel->getStats();
 		$pendingDonations = $this->donationModel->getResults(["status" => "pending"]);
 
+		$approvedToday = $this->donationModel->getResults(["status" => "approved"]);
+		$approvedTodayCount = count(array_filter($approvedToday, function($d) {
+			return date("Y-m-d", strtotime($d["reviewed_date"])) === date("Y-m-d");
+		}));
+
+		$declinedToday = $this->donationModel->getResults(["status" => "declined"]);
+		$declinedTodayCount = count(array_filter($declinedToday, function($d) {
+			return date("Y-m-d", strtotime($d["reviewed_date"])) === date("Y-m-d");
+		}));
+
 		$this->render("staff/pending-donations", [
-			"donations" => $pendingDonations
+			"user" => $user,
+			"stats" => $stats,
+			"donations" => $pendingDonations,
+			"approvedTodayCount" => $approvedTodayCount,
+			"declinedTodayCount" => $declinedTodayCount
 		]);
 	}
 
