@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<meta name="description" content="Manage system settings" />
 	<title>SustainWear • System Settings</title>
 	<link rel="stylesheet" href="/styles/output.css" />
 </head>
