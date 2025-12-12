@@ -195,7 +195,7 @@
 
 					<div class="flex flex-col gap-4">
 						<div>
-							<h4 class="font-bold mb-2">Update Donation Status</h4>
+							<p class="font-bold mb-2">Update Donation Status</p>
 							<form method="POST" action="/admin/update-donation">
 								<div class="flex flex-wrap gap-4 items-end">
 									<div class="flex-1 min-w-full sm:min-w-[10rem]">
