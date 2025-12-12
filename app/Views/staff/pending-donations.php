@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<meta name="description" content="Review and approve/decline pending donation submissions from donors" />
-	<title>SustainWear: Pending Donations</title>
+	<title>SustainWear • Pending Donations</title>
 	<link rel="stylesheet" href="/styles/output.css" />
 </head>
 
