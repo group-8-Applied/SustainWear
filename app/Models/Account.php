@@ -33,7 +33,7 @@ class Account {
 	}
 
 	public function createAccount($fullName, $email, $password) {
-		$passwordHash = password_hash($password, PASSWORD_DEFAULT);
+		$passwordHash = password_hash($password, PASSWORD_BCRYPT);
 		$sessionToken = bin2hex(random_bytes(32));
 
 		$userID = $this->db->insert("accounts", [
