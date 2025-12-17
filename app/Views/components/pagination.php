@@ -11,7 +11,8 @@
 					if (!empty($value)) $queryParams[$key] = $value;
 				}
 				$queryString = http_build_query($queryParams); // url encode
-				$paginationBaseUrl = $_SERVER["REQUEST_URI"] . "?" . ($queryString ? $queryString . "&" : "");
+				$baseURL = explode("?", $_SERVER["REQUEST_URI"])[0]; // remove any existing query string
+				$paginationBaseUrl = $baseURL . "?" . ($queryString ? $queryString . "&" : ""); // add page after filters if we need to, else just after base URL
 			?>
 
 			<?php if ($currentPage > 1): ?>
